@@ -8,6 +8,8 @@ const doces = defineCollection({
   schema: ({ image }) =>
     z.object({
       nome: z.string(),
+      // Artigo usado na mensagem do WhatsApp: "quero a paçoca", "quero o cajuzinho".
+      artigo: z.enum(['o', 'a']),
       descricao: z.string(),
       foto: image(),
       alt: z.string(),

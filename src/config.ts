@@ -50,7 +50,7 @@ export const mensagens = {
   revenda: 'Olá, Felipe! Vim pelo site e tenho interesse em revender os Doces Mantiqueira.',
   festas: 'Olá, Felipe! Vim pelo site e quero um orçamento para festa / quermesse.',
   flutuante: 'Olá, Felipe! Vim pelo site e queria mais informações.',
-  produto: (nomeDoce: string) => `Olá, Felipe! Vim pelo site e quero o(a) ${nomeDoce}.`,
+  produto: (artigo: string, nomeDoce: string) => `Olá, Felipe! Vim pelo site e quero ${artigo} ${nomeDoce}.`,
 };
 
 /** Único gerador de links de WhatsApp do site. */

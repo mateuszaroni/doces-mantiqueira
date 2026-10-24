@@ -2,6 +2,7 @@
   {
     "id": "pacoca",
     "nome": "Paçoca",
+    "artigo": "a",
     "descricao": "Paçoca de amendoim torrado, esfarelada, no pacote de 350g.",
     "foto": "../assets/fotos/produtos/pacoca.jpg",
     "alt": "Paçoca de amendoim esfarelada numa tigela vermelha, com amendoins em volta"
@@ -9,6 +10,7 @@
   {
     "id": "cajuzinho",
     "nome": "Cajuzinho",
+    "artigo": "o",
     "descricao": "Docinho de amendoim passado no açúcar.",
     "foto": "../assets/fotos/produtos/cajuzinho.jpg",
     "alt": "Cajuzinhos passados no açúcar, num prato branco"
@@ -16,6 +18,7 @@
   {
     "id": "doce-de-banana",
     "nome": "Doce de banana",
+    "artigo": "o",
     "descricao": "Bananada em cubinhos, com açúcar cristal.",
     "foto": "../assets/fotos/produtos/banana.jpg",
     "alt": "Bananada em cubinhos com açúcar cristal, numa bandeja branca sobre prato amarelo"
@@ -23,6 +26,7 @@
   {
     "id": "doce-de-batata-roxa",
     "nome": "Doce de batata roxa",
+    "artigo": "o",
     "descricao": "Doce de batata-doce roxa em pedaços.",
     "foto": "../assets/fotos/produtos/batata-roxa.jpg",
     "alt": "Pedaços de doce de batata-doce roxa num prato amarelo"
@@ -30,6 +34,7 @@
   {
     "id": "doce-de-batata",
     "nome": "Doce de batata",
+    "artigo": "o",
     "descricao": "Doce de batata-doce branca em pedaços, até quatro dias de preparo.",
     "foto": "../assets/fotos/produtos/batata.jpg",
     "alt": "Pedaços de doce de batata-doce branca numa bandeja"
@@ -37,6 +42,7 @@
   {
     "id": "doce-de-abobora",
     "nome": "Doce de abóbora",
+    "artigo": "o",
     "descricao": "Doce de abóbora em pedaços, até quatro dias de preparo.",
     "foto": "../assets/fotos/produtos/abobora.jpg",
     "alt": "Pedaços de doce de abóbora arrumados em roda num prato branco"
@@ -44,6 +50,7 @@
   {
     "id": "doce-de-leite",
     "nome": "Doce de leite",
+    "artigo": "o",
     "descricao": "Doce de leite em tabletes.",
     "foto": "../assets/fotos/produtos/doce-de-leite.jpg",
     "alt": "Tabletes de doce de leite num prato"
@@ -51,6 +58,7 @@
   {
     "id": "figo-cristalizado",
     "nome": "Figo cristalizado",
+    "artigo": "o",
     "descricao": "Figo inteiro, cristalizado no açúcar.",
     "foto": "../assets/fotos/produtos/figo.jpg",
     "alt": "Figos cristalizados inteiros num prato branco"
@@ -58,6 +66,7 @@
   {
     "id": "bandeja-sortida",
     "nome": "Bandeja sortida",
+    "artigo": "a",
     "descricao": "Um pouco de cada: abóbora, batata, doce de leite e bananada.",
     "foto": "../assets/fotos/produtos/sortida.jpg",
     "alt": "Bandeja com doce de abóbora, de batata, doce de leite e bananada"

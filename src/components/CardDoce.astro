@@ -32,7 +32,7 @@ const nomeNaFrase = doce.nome.charAt(0).toLowerCase() + doce.nome.slice(1);
     <BotaoWhatsApp
       class="card__botao"
       variante="compacto"
-      mensagem={mensagens.produto(nomeNaFrase)}
+      mensagem={mensagens.produto(doce.artigo, nomeNaFrase)}
       rotulo="Pedir este"
       detalhe=""
       complementoLeitor={doce.nome}
