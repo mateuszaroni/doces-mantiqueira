@@ -133,12 +133,11 @@ const regras = doces
     .vitrine__nomes {
       grid-area: nomes;
       display: flex;
-      gap: 0.25rem 1.25rem;
-      margin: 0 calc(var(--margem) * -1);
-      padding: 0.25rem var(--margem) 0.5rem;
-      overflow-x: auto;
-      scroll-snap-type: x proximity;
-      scrollbar-width: none;
+      flex-wrap: wrap;
+      min-inline-size: 0; /* fieldset cresce com o conteúdo sem isto */
+      gap: 0 1.1rem;
+      margin: 0;
+      padding: 0;
       border: 0;
     }
 
@@ -153,12 +152,11 @@ const regras = doces
       flex: none;
       padding: 0.35rem 0 0.35rem 1.15em;
       font-family: var(--fonte-titulo);
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       line-height: 1.15;
       color: var(--madeira);
       white-space: nowrap;
       cursor: pointer;
-      scroll-snap-align: start;
       transition: color 0.2s;
     }
 
@@ -172,8 +170,11 @@ const regras = doces
       height: 0.5em;
       background: var(--vermelho);
       clip-path: polygon(50% 0, 100% 100%, 0 100%);
-      transform: translateY(-60%) scale(0);
-      transition: transform 0.25s var(--curva);
+      opacity: 0;
+      transform: translateY(-60%) scale(0.5);
+      transition:
+        transform 0.25s var(--curva),
+        opacity 0.2s;
     }
 
     .vitrine__nomes label:hover {
@@ -185,6 +186,7 @@ const regras = doces
     }
 
     .vitrine__nomes input:checked + label::before {
+      opacity: 1;
       transform: translateY(-60%) scale(1);
     }
 
@@ -241,9 +243,7 @@ const regras = doces
 
       .vitrine__nomes {
         flex-direction: column;
-        margin: 0;
-        padding: 0;
-        overflow: visible;
+        flex-wrap: nowrap;
       }
 
       .vitrine__nomes label {

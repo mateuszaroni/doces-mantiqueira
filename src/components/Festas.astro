@@ -142,7 +142,7 @@ const ladrilhos: Ladrilho[] = [
 
   .ladrilho__texto {
     font-family: var(--fonte-titulo);
-    font-size: clamp(1.5rem, 6.5vw, 3.25rem);
+    font-size: clamp(1.35rem, 6vw, 3.25rem);
     line-height: 1;
     text-wrap: balance;
   }
@@ -176,13 +176,15 @@ const ladrilhos: Ladrilho[] = [
     }
   }
 
-  @media (min-width: 48rem) {
+  @media (min-width: 56rem) {
     .festas__cabeca {
       grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
       align-items: end;
       column-gap: 4rem;
     }
+  }
 
+  @media (min-width: 48rem) {
     .mural {
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 0.5rem;
@@ -190,7 +192,7 @@ const ladrilhos: Ladrilho[] = [
     }
 
     .ladrilho__texto {
-      font-size: clamp(1.75rem, 3.6vw, 3.5rem);
+      font-size: clamp(1.35rem, 3vw, 3.25rem);
     }
 
     .ladrilho__legenda {

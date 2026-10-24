@@ -14,8 +14,8 @@
   --texto-p: 1rem;
   --texto-m: 1.5rem;
   --texto-g: 2rem;
-  --texto-secao: clamp(2.25rem, 1.3rem + 3.6vw, 4rem);
-  --texto-h1: clamp(2.25rem, 1rem + 4.6vw, 4.5rem);
+  --texto-secao: clamp(2.25rem, 1.3rem + 3vw, 3.5rem);
+  --texto-h1: clamp(2.25rem, 1rem + 4.2vw, 4rem);
 
   --largura: 80rem;
   --margem: clamp(1rem, 4vw, 2.5rem);
@@ -214,9 +214,10 @@ a {
 /* Toalha xadrez: o detalhe marcante do site. Usar só duas vezes (vitrine e festas). */
 .xadrez {
   background-color: var(--creme);
-  background-image: /* taste-skill-ignore: padrão da toalha xadrez da marca, não é degradê */
-    linear-gradient(90deg, rgb(193 4 19 / 0.5) 50%, transparent 0),
-    linear-gradient(rgb(193 4 19 / 0.5) 50%, transparent 0);
+  /* Padrão da toalha xadrez da marca, desenhado com duas faixas de cor (não é degradê). */
+  background-image:
+    linear-gradient(90deg, rgb(193 4 19 / 0.5) 50%, transparent 0), /* taste-skill-ignore */
+    linear-gradient(rgb(193 4 19 / 0.5) 50%, transparent 0); /* taste-skill-ignore */
   background-size: 0.75rem 0.75rem;
 }
 
@@ -252,13 +253,21 @@ a {
     /* Demais seções: cada parte entra quando chega na tela, em escada. */
     .entra {
       animation: surgir linear both;
-      animation-timeline: view();
-      animation-range: entry calc(var(--ordem, 0) * 5%) entry calc(60% + var(--ordem, 0) * 5%);
     }
 
     /* A serra se desenha da esquerda para a direita conforme a rolagem. */
     .desenha {
       animation: desenhar linear both;
+    }
+
+    /* A linha do tempo da rolagem fica numa regra à parte, mais específica: o minificador
+       juntaria tudo no atalho "animation", que não aceita view(), e o navegador descartaria a regra. */
+    html .entra {
+      animation-timeline: view();
+      animation-range: entry calc(var(--ordem, 0) * 5%) entry calc(60% + var(--ordem, 0) * 5%);
+    }
+
+    html .desenha {
       animation-timeline: view();
       animation-range: entry 10% cover 45%;
     }
