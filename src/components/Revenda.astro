@@ -1,6 +1,9 @@
 ---
+import { Picture } from 'astro:assets';
 import BotaoWhatsApp from './BotaoWhatsApp.astro';
 import { mensagens } from '../config';
+import { recorteSerra } from '../lib/serra';
+import pacote from '../assets/fotos/extras/pacoca-pacote-350g.jpg';
 
 // Só os argumentos aprovados no briefing: sem números de margem, sem pedido mínimo, sem formatos de atacado.
 const argumentos = [
@@ -21,28 +24,42 @@ const argumentos = [
     texto: 'Doce artesanal, feito pela mesma família desde 1985.',
   },
 ];
+// Cada marcador (um pico da serra) leva uma cor dos pratos das fotos.
+const cores = ['--vermelho', '--abobora', '--prato', '--tacho'];
 ---
 
 <section class="revenda" id="revenda" aria-labelledby="titulo-revenda">
-  <div class="envelope revenda__grade">
-    <header class="revenda__cabeca">
-      <h2 id="titulo-revenda">Revenda os Doces Mantiqueira</h2>
-      <p>Para padarias, empórios, mercados e para quem quer uma renda extra.</p>
-    </header>
+  <div class="revenda__grade">
+    <Picture
+      src={pacote}
+      alt="Pacote de paçoca de amendoim Doces Mantiqueira de 350g, com rótulo, sobre prato laranja"
+      formats={['avif', 'webp']}
+      widths={[400, 600, 800, 1080]}
+      sizes="(min-width: 56rem) 42vw, 92vw"
+      loading="lazy"
+      pictureAttributes={{ class: 'revenda__foto entra' }}
+      style={`clip-path: ${recorteSerra(12)}`}
+    />
 
-    <ul class="revenda__lista" role="list">
-      {
-        argumentos.map((a) => (
-          <li>
-            <h3>{a.titulo}</h3>
-            <p>{a.texto}</p>
-          </li>
-        ))
-      }
-    </ul>
+    <div class="revenda__texto">
+      <h2 id="titulo-revenda" class="entra">Revenda os Doces Mantiqueira</h2>
+      <p class="revenda__publico entra" style="--ordem: 1">
+        Para padarias, empórios, mercados e para quem quer uma renda extra.
+      </p>
 
-    <div class="revenda__acao">
+      <ul class="revenda__lista" role="list">
+        {
+          argumentos.map((a, i) => (
+            <li class="entra" style={`--ordem: ${i + 1}; --pico: var(${cores[i]})`}>
+              <h3>{a.titulo}</h3>
+              <p>{a.texto}</p>
+            </li>
+          ))
+        }
+      </ul>
+
       <BotaoWhatsApp
+        class="revenda__botao entra"
         mensagem={mensagens.revenda}
         rotulo="Quero revender — falar com o Felipe"
         detalhe="Pelo WhatsApp"
@@ -52,33 +69,66 @@ const argumentos = [
 </section>
 
 <style>
+  .revenda {
+    padding-block: var(--entre-secoes);
+    overflow: hidden;
+  }
+
   .revenda__grade {
     display: grid;
-    gap: 2rem;
-    padding-block: 3rem;
+    gap: 2.5rem;
+    max-width: var(--largura);
+    margin-inline: auto;
+    padding-inline: var(--margem);
+  }
+
+  /* A foto sai pela borda esquerda da tela, com o topo em serra. */
+  .revenda__foto {
+    width: 88%;
+    margin-left: calc(var(--margem) * -1);
+  }
+
+  .revenda__foto :global(img) {
+    width: 100%;
+    max-height: 62svh;
+    object-fit: cover;
+    border-radius: 0 var(--raio) var(--raio) 0;
   }
 
   h2 {
-    font-size: var(--texto-g);
+    max-width: 17ch;
+    font-size: var(--texto-secao);
   }
 
-  .revenda__cabeca p {
+  .revenda__publico {
     margin-top: 1rem;
-    max-width: 30ch;
+    max-width: 34ch;
     color: var(--madeira);
   }
 
   .revenda__lista {
     display: grid;
     gap: 1.5rem;
-    margin: 0;
+    margin: 2rem 0 0;
     padding: 0;
     list-style: none;
   }
 
   .revenda__lista li {
-    padding-top: 0.9rem;
-    border-top: 2px solid var(--vermelho);
+    position: relative;
+    padding-left: 1.5rem;
+  }
+
+  /* Marcador: um pico da serra na cor do ponto. */
+  .revenda__lista li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.35rem;
+    width: 0.95rem;
+    height: 0.7rem;
+    background: var(--pico);
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
   }
 
   h3 {
@@ -86,48 +136,36 @@ const argumentos = [
   }
 
   .revenda__lista p {
-    margin-top: 0.35rem;
+    margin-top: 0.25rem;
     color: var(--madeira);
     font-size: var(--texto-p);
+  }
+
+  .revenda__texto :global(.revenda__botao) {
+    margin-top: 2.25rem;
   }
 
   @media (min-width: 40rem) {
     .revenda__lista {
       grid-template-columns: repeat(2, minmax(0, 1fr));
       column-gap: 2rem;
-      row-gap: 2rem;
     }
   }
 
-  @media (min-width: 64rem) {
+  @media (min-width: 56rem) {
     .revenda__grade {
-      grid-template-columns: 5fr 7fr;
-      grid-template-rows: auto 1fr;
-      column-gap: 4rem;
-      row-gap: 2rem;
-      padding-block: 5rem;
+      grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+      align-items: center;
+      column-gap: clamp(3rem, 6vw, 6rem);
     }
 
-    .revenda__cabeca {
-      grid-column: 1;
-      grid-row: 1;
+    .revenda__foto {
+      width: calc(100% + var(--margem) + 4vw);
+      margin-left: calc((var(--margem) + 4vw) * -1);
     }
 
-    .revenda__acao {
-      grid-column: 1;
-      grid-row: 2;
-    }
-
-    .revenda__lista {
-      grid-column: 2;
-      grid-row: 1 / span 2;
-      align-self: center;
-      column-gap: 2.5rem;
-      row-gap: 2.5rem;
-    }
-
-    h2 {
-      font-size: 2.5rem;
+    .revenda__foto :global(img) {
+      max-height: 82svh;
     }
   }
 </style>

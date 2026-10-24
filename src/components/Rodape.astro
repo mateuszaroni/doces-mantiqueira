@@ -13,10 +13,10 @@ const redes = [
 <footer class="rodape">
   <div class="envelope rodape__grade">
     <Image
-      class="rodape__logo"
+      class="rodape__logo entra"
       src={logoEscura}
       alt="Doces Mantiqueira, Piquete (SP)"
-      width={180}
+      width={720}
       loading="lazy"
     />
 
@@ -54,11 +54,13 @@ const redes = [
     display: grid;
     gap: 1.75rem;
     justify-items: start;
-    padding-block: 2.5rem 6rem; /* espaço para o botão flutuante não cobrir o fim */
+    padding-block: clamp(3.5rem, 7vw, 6rem) 6rem; /* espaço para o botão flutuante não cobrir o fim */
   }
 
+  /* A marca fecha a página em tamanho grande. */
   .rodape :global(.rodape__logo) {
-    width: 11.25rem;
+    width: min(100%, 40rem);
+    margin-bottom: 0.5rem;
   }
 
   .rodape__redes {
@@ -100,10 +102,14 @@ const redes = [
 
   @media (min-width: 64rem) {
     .rodape__grade {
-      grid-template-columns: auto 1fr auto;
-      align-items: center;
+      grid-template-columns: 1fr auto;
+      align-items: end;
       column-gap: 3rem;
-      padding-block: 3rem;
+      padding-block: 6rem 7rem; /* o fim fica acima do botão flutuante */
+    }
+
+    .rodape :global(.rodape__logo) {
+      grid-column: 1 / -1;
     }
 
     .rodape__dados {
