@@ -42,5 +42,23 @@ export default defineConfig({
         ],
       },
     },
+    {
+      // Só os algarismos 0–9, da Figtree: o zero da Atkinson é cortado (Ø) e destoa do site.
+      // Sem fallback, para as letras caírem na Atkinson. Arquivo gerado por subset (4 KB).
+      provider: local,
+      name: 'Algarismos',
+      cssVariable: '--fonte-algarismos',
+      fallbacks: [],
+      options: {
+        variants: [
+          {
+            src: ['./src/assets/fontes/figtree-algarismos.woff2'],
+            weight: '300 900',
+            style: 'normal',
+            unicodeRange: ['U+0030-0039'],
+          },
+        ],
+      },
+    },
   ],
 });

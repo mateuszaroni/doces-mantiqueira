@@ -45,7 +45,7 @@ body {
   margin: 0;
   background: var(--creme);
   color: var(--tacho);
-  font-family: var(--fonte-texto);
+  font-family: var(--fonte-algarismos), var(--fonte-texto);
   font-size: var(--texto-base);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
