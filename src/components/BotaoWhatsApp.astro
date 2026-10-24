@@ -32,7 +32,7 @@ const {
   <svg class="botao__icone" viewBox="0 0 24 24" aria-hidden="true"><path d={siWhatsapp.path} /></svg>
   <span class="botao__textos">
     <span>{rotulo}{complementoLeitor && <span class="so-leitor">: {complementoLeitor}</span>}</span>
-    {detalhe && <span class="botao__detalhe">{detalhe}</span>}
+    {detalhe && <span class="botao__detalhe">{` ${detalhe}`}</span>}
   </span>
   <span class="so-leitor">{", abre o WhatsApp em nova aba"}</span>
 </a>

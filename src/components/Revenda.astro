@@ -1,0 +1,133 @@
+---
+import BotaoWhatsApp from './BotaoWhatsApp.astro';
+import { mensagens } from '../config';
+
+// Só os argumentos aprovados no briefing: sem números de margem, sem pedido mínimo, sem formatos de atacado.
+const argumentos = [
+  {
+    titulo: 'Ótima margem de revenda',
+    texto: 'O preço para revenda você combina direto com o Felipe.',
+  },
+  {
+    titulo: 'Validade de 45 dias',
+    texto: 'Prazo bom para a prateleira da padaria, do empório ou do mercado.',
+  },
+  {
+    titulo: 'Entrega em todo o Vale do Paraíba',
+    texto: 'De Piquete até Resende (RJ).',
+  },
+  {
+    titulo: 'Mais de 40 anos de tradição',
+    texto: 'Doce artesanal, feito pela mesma família desde 1985.',
+  },
+];
+---
+
+<section class="revenda" id="revenda" aria-labelledby="titulo-revenda">
+  <div class="envelope revenda__grade">
+    <header class="revenda__cabeca">
+      <h2 id="titulo-revenda">Revenda os Doces Mantiqueira</h2>
+      <p>Para padarias, empórios, mercados e para quem quer uma renda extra.</p>
+    </header>
+
+    <ul class="revenda__lista" role="list">
+      {
+        argumentos.map((a) => (
+          <li>
+            <h3>{a.titulo}</h3>
+            <p>{a.texto}</p>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="revenda__acao">
+      <BotaoWhatsApp
+        mensagem={mensagens.revenda}
+        rotulo="Quero revender — falar com o Felipe"
+        detalhe="Pelo WhatsApp"
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  .revenda__grade {
+    display: grid;
+    gap: 2rem;
+    padding-block: 3rem;
+  }
+
+  h2 {
+    font-size: var(--texto-g);
+  }
+
+  .revenda__cabeca p {
+    margin-top: 1rem;
+    max-width: 30ch;
+    color: var(--madeira);
+  }
+
+  .revenda__lista {
+    display: grid;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .revenda__lista li {
+    padding-top: 0.9rem;
+    border-top: 2px solid var(--vermelho);
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  .revenda__lista p {
+    margin-top: 0.35rem;
+    color: var(--madeira);
+    font-size: var(--texto-p);
+  }
+
+  @media (min-width: 40rem) {
+    .revenda__lista {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 2rem;
+      row-gap: 2rem;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .revenda__grade {
+      grid-template-columns: 5fr 7fr;
+      grid-template-rows: auto 1fr;
+      column-gap: 4rem;
+      row-gap: 2rem;
+      padding-block: 5rem;
+    }
+
+    .revenda__cabeca {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .revenda__acao {
+      grid-column: 1;
+      grid-row: 2;
+    }
+
+    .revenda__lista {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+      align-self: center;
+      column-gap: 2.5rem;
+      row-gap: 2.5rem;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+    }
+  }
+</style>

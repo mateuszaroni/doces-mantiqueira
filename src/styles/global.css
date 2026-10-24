@@ -169,6 +169,7 @@ a {
 .botao__textos {
   display: flex;
   flex-direction: column;
+  text-wrap: balance;
 }
 
 .botao__detalhe {
