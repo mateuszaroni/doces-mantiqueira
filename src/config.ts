@@ -41,6 +41,10 @@ export const negocio = {
 
 export const enderecoCompleto = `${negocio.endereco.rua} — ${negocio.endereco.bairro}, ${negocio.endereco.cidade} - ${negocio.endereco.uf}, ${negocio.endereco.cep}`;
 
+// Abre o Google Maps já com o endereço (sem iframe: nada de cookies de terceiros no site).
+const consultaMapa = `${negocio.endereco.rua}, ${negocio.endereco.bairro}, ${negocio.endereco.cidade} - ${negocio.endereco.uf}, ${negocio.endereco.cep}`;
+export const linkComoChegar = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(consultaMapa)}`;
+
 // Só dígitos, no formato do wa.me: 55 + DDD + número.
 // PENDENTE: número do Felipe (pedir ao Mateus). Vazio, os links abrem o WhatsApp sem destinatário.
 export const whatsappFelipe = '';
