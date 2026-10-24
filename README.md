@@ -1,43 +1,31 @@
-# Astro Starter Kit: Minimal
+# Doces Mantiqueira — site
+
+Site de uma página da Doces Mantiqueira, de Piquete (SP). Astro, saída estática, publicado no Netlify.
+
+## Rodar no computador
 
 ```sh
-npm create astro@latest -- --template minimal
+npm install
+npm run dev      # http://localhost:4321
+npm run build    # gera dist/
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Onde mudar cada coisa
 
-## 🚀 Project Structure
+| O quê | Arquivo |
+|---|---|
+| Endereço, horário, CNPJ, redes, cidades atendidas, número e mensagens do WhatsApp | `src/config.ts` |
+| Os 9 doces da vitrine (nome, artigo, descrição, foto, texto alternativo) | `src/data/doces.json` |
+| Fotos | `src/assets/fotos/` |
+| Logo | `src/assets/logo/` |
+| Cores e tamanhos de letra | `src/styles/global.css` |
 
-Inside of your Astro project, you'll see the following folders and files:
+## Scripts de apoio
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+- `node scripts/gerar-og.mjs` — refaz `public/og.jpg`, a imagem da prévia do link no WhatsApp.
+- `node scripts/gerar-icones.mjs` — refaz `favicon.ico` e `apple-touch-icon.png` a partir de `public/favicon.svg`.
+- `node scripts/vetorizar-logo.mjs` — refaz o traço da logo a partir do PNG oficial em `design/logo/`.
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Indexação (quando o domínio próprio entrar)
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+No `.netlify.app` o site fica com `noindex` e sem sitemap. Quando o domínio entrar, troque `PUBLIC_INDEXAVEL` para `"true"` em `netlify.toml` (ou nas variáveis de ambiente do Netlify). Isso tira o `noindex`, coloca o endereço canônico e gera o sitemap e o `robots.txt` com ele.
