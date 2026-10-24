@@ -1,0 +1,154 @@
+---
+import { Picture } from 'astro:assets';
+import { negocio } from '../config';
+import avos from '../assets/fotos/historia/avos-pedro-e-mariazinha.png';
+---
+
+<section class="historia" id="historia" aria-labelledby="titulo-historia">
+  <div class="envelope historia__grade">
+    <Picture
+      src={avos}
+      alt="Seu Pedro Sabão e Dona Mariazinha, fundadores da Doces Mantiqueira"
+      formats={['avif', 'webp']}
+      widths={[360, 540, 720, 984]}
+      sizes="(min-width: 64rem) 480px, calc(100vw - 2rem)"
+      loading="lazy"
+      pictureAttributes={{ class: 'historia__foto' }}
+    />
+
+    <div class="historia__texto">
+      <h2 id="titulo-historia">Desde 1985, no pé da Serra da Mantiqueira</h2>
+      <p>
+        Tudo começou com Seu Pedro Sabão e Dona Mariazinha, fazendo balas de café em Piquete. Em 1987, Seu Pedro
+        aprendeu com um doceiro de Guaratinguetá as receitas que viraram a cara da casa: doce de leite, de abóbora, de
+        batata-doce e paçoca.
+      </p>
+      <p>
+        Nos anos 90, a segunda geração assumiu o tacho — e o jeito de fazer continua o mesmo. O doce de abóbora e o de
+        batata levam até quatro dias para ficar prontos.
+      </p>
+      <p>
+        Hoje são mais de 40 anos adoçando festas, quermesses e mesas de todo o Vale do Paraíba até Resende.
+      </p>
+
+      <ul class="selos" role="list">
+        <li class="selo">
+          <span class="selo__linha">Integra a</span>
+          <strong class="selo__titulo">Rota Gastronômica do Vale do Paraíba &amp; Mantiqueira</strong>
+          <span class="selo__linha">Secretaria de Turismo de SP</span>
+        </li>
+        <li>
+          <a class="selo selo--link" href={negocio.reportagemG1} target="_blank" rel="noopener">
+            <strong class="selo__titulo">Saiu no g1</strong>
+            <span class="selo__linha">Ler a reportagem<span class="so-leitor">{', abre em nova aba'}</span></span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .historia__grade {
+    display: grid;
+    gap: 2rem;
+    padding-block: 3rem;
+  }
+
+  .historia__foto :global(img) {
+    width: 100%;
+    border-radius: 0.375rem;
+  }
+
+  .historia__texto {
+    max-width: 38rem;
+  }
+
+  h2 {
+    font-size: var(--texto-g);
+  }
+
+  p {
+    margin-top: 1rem;
+  }
+
+  h2 + p {
+    margin-top: 1.25rem;
+  }
+
+  /* Selos tipográficos: filete duplo, como a faixa da logo. */
+  .selos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 2rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .selo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.15rem;
+    max-width: 17rem;
+    min-height: 100%;
+    padding: 0.85rem 1.1rem;
+    border: 2px solid var(--vermelho);
+    outline: 1px solid var(--vermelho);
+    outline-offset: -6px;
+    border-radius: 0.25rem;
+    color: var(--tacho);
+    line-height: 1.3;
+  }
+
+  .selo__titulo {
+    font-family: var(--fonte-titulo);
+    font-weight: 400;
+    font-size: 1.125rem;
+    color: var(--vermelho);
+  }
+
+  .selo__linha {
+    font-size: 0.875rem;
+    color: var(--madeira);
+  }
+
+  .selo--link {
+    text-decoration: none;
+    transition: background-color 0.15s;
+  }
+
+  .selo--link .selo__linha {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .selo--link:hover {
+    background: rgb(193 4 19 / 0.07);
+  }
+
+  .selo--link:focus-visible {
+    outline: 3px solid var(--vermelho);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .selo--link {
+      transition: none;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .historia__grade {
+      grid-template-columns: 5fr 7fr;
+      align-items: center;
+      gap: 4rem;
+      padding-block: 5rem;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+    }
+  }
+</style>
