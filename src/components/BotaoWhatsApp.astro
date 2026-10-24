@@ -1,0 +1,34 @@
+---
+import { siWhatsapp } from 'simple-icons';
+import { linkWhatsApp } from '../config';
+
+interface Props {
+  mensagem: string;
+  rotulo: string;
+  detalhe?: string;
+  variante?: 'primario' | 'secundario';
+  class?: string;
+}
+
+const {
+  mensagem,
+  rotulo,
+  detalhe = 'Falar com o Felipe no WhatsApp',
+  variante = 'primario',
+  class: classe,
+} = Astro.props;
+---
+
+<a
+  class:list={['botao', `botao--${variante}`, classe]}
+  href={linkWhatsApp(mensagem)}
+  target="_blank"
+  rel="noopener"
+>
+  <svg class="botao__icone" viewBox="0 0 24 24" aria-hidden="true"><path d={siWhatsapp.path} /></svg>
+  <span class="botao__textos">
+    <span>{rotulo}</span>
+    {detalhe && <span class="botao__detalhe">{detalhe}</span>}
+  </span>
+  <span class="so-leitor">(abre o WhatsApp em nova aba)</span>
+</a>

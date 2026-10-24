@@ -1,0 +1,30 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo/logo.svg';
+---
+
+<header class="cabecalho envelope">
+  <a href="/" class="cabecalho__logo" translate="no">
+    <Image src={logo} alt="Doces Mantiqueira, Piquete (SP)" width={220} loading="eager" />
+  </a>
+</header>
+
+<style>
+  .cabecalho {
+    padding-block: 1rem 0.25rem;
+  }
+
+  .cabecalho__logo {
+    display: inline-block;
+  }
+
+  .cabecalho__logo img {
+    width: clamp(10rem, 40vw, 13.75rem);
+  }
+
+  @media (min-width: 64rem) {
+    .cabecalho {
+      padding-top: 1.5rem;
+    }
+  }
+</style>
