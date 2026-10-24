@@ -26,3 +26,6 @@ pnpm-debug.log*
 # prévias temporárias
 design/**/_*.png
 design/**/trace-*.svg
+
+# relatórios da skill de design
+.taste-skill/

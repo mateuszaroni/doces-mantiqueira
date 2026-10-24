@@ -2,42 +2,63 @@
 import { getCollection } from 'astro:content';
 import CardDoce from './CardDoce.astro';
 import listaDoces from '../data/doces.json';
+import serra from '../assets/logo/serra.svg';
 
 // A coleção não garante ordem: segue a ordem em que os doces aparecem no JSON.
 const ordem = listaDoces.map((d) => d.id);
 const doces = (await getCollection('doces')).sort((a, b) => ordem.indexOf(a.id) - ordem.indexOf(b.id));
+
+// O "céu" atrás da serra de cada foto alterna entre as cores dos pratos das fotos.
+const campos = ['--prato', '--abobora', '--creme-rotulo'];
+
+// Vitrine interativa só com CSS: o doce marcado na lista aparece no palco.
+const regras = doces
+  .map(
+    ({ id }) =>
+      `.vitrine:has(#doce-${id}:checked) [data-doce="${id}"] { opacity: 1; visibility: visible; transform: none; }`,
+  )
+  .join('\n');
 ---
 
 <section class="vitrine" id="doces" aria-labelledby="titulo-vitrine">
-  <div class="toalha xadrez" aria-hidden="true"></div>
-  <div class="envelope vitrine__corpo">
-    <h2 id="titulo-vitrine">Os doces da casa</h2>
-    <ul class="vitrine__grade" role="list">
-      {doces.map(({ data }) => <CardDoce doce={data} />)}
+  <img class="serra-divisa desenha" src={serra.src} width={serra.width} height={serra.height} alt="" />
+
+  <div class="envelope vitrine__grade">
+    <h2 id="titulo-vitrine" class="vitrine__titulo entra">Os doces da casa</h2>
+
+    <fieldset class="vitrine__nomes entra" style="--ordem: 1">
+      <legend class="so-leitor">Escolha um doce para ver a foto e pedir</legend>
+      {
+        doces.map(({ id, data }, i) => (
+          <>
+            <input type="radio" name="doce" id={`doce-${id}`} value={id} checked={i === 0} />
+            <label for={`doce-${id}`}>{data.nome}</label>
+          </>
+        ))
+      }
+    </fieldset>
+
+    <ul class="vitrine__paineis" role="list">
+      {doces.map(({ id, data }, i) => <CardDoce id={id} doce={data} campo={campos[i % campos.length]} />)}
     </ul>
+
     <p class="vitrine__nota">Todos em embalagens de 350g.</p>
   </div>
 </section>
 
+<style is:inline set:html={`@supports selector(:has(*)) { ${regras} }`}></style>
+
 <style>
   .vitrine {
-    background: var(--creme-rotulo);
+    padding-block: var(--entre-secoes);
   }
 
-  .vitrine__corpo {
-    padding-block: 2.5rem 3rem;
+  .serra-divisa {
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
   }
 
-  h2 {
-    font-size: var(--texto-g);
-  }
-
-  .vitrine__grade {
-    display: grid;
-    gap: 1.75rem;
-    margin: 1.75rem 0 0;
-    padding: 0;
-    list-style: none;
+  .vitrine__titulo {
+    font-size: var(--texto-secao);
   }
 
   .vitrine__nota {
@@ -45,26 +66,218 @@ const doces = (await getCollection('doces')).sort((a, b) => ordem.indexOf(a.id) 
     font-weight: 700;
   }
 
+  /* Sem suporte a :has(), fica a grade com todos os doces (e nenhuma lista de escolha). */
+  .vitrine__nomes {
+    display: none;
+  }
+
+  .vitrine__paineis {
+    display: grid;
+    gap: 2.5rem 1.5rem;
+    margin: 2rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  :global(.painel__palco) {
+    overflow: hidden;
+    border-radius: var(--raio);
+    background: var(--campo);
+  }
+
+  :global(.painel__palco img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+  }
+
+  :global(.painel__texto) {
+    margin-top: 1rem;
+  }
+
+  :global(.painel__texto h3) {
+    font-size: var(--texto-m);
+  }
+
+  :global(.painel__texto p) {
+    margin-top: 0.35rem;
+    max-width: 34ch;
+    color: var(--madeira);
+  }
+
+  :global(.painel__texto .botao) {
+    margin-top: 1rem;
+  }
+
   @media (min-width: 40rem) {
-    .vitrine__grade {
+    .vitrine__paineis {
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      column-gap: 1.5rem;
-      row-gap: 2.5rem;
     }
   }
 
-  @media (min-width: 64rem) {
-    .vitrine__corpo {
-      padding-block: 4rem 4.5rem;
-    }
-
-    h2 {
-      font-size: 2.5rem;
-    }
-
+  /* Com :has(), vira a vitrine interativa: lista de nomes de um lado, palco do outro. */
+  @supports selector(:has(*)) {
     .vitrine__grade {
-      column-gap: 2.5rem;
-      row-gap: 3.5rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-areas: 'titulo' 'nomes' 'palco' 'texto' 'nota';
+      row-gap: 1.25rem;
+    }
+
+    .vitrine__titulo {
+      grid-area: titulo;
+    }
+
+    .vitrine__nomes {
+      grid-area: nomes;
+      display: flex;
+      gap: 0.25rem 1.25rem;
+      margin: 0 calc(var(--margem) * -1);
+      padding: 0.25rem var(--margem) 0.5rem;
+      overflow-x: auto;
+      scroll-snap-type: x proximity;
+      scrollbar-width: none;
+      border: 0;
+    }
+
+    .vitrine__nomes input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .vitrine__nomes label {
+      position: relative;
+      flex: none;
+      padding: 0.35rem 0 0.35rem 1.15em;
+      font-family: var(--fonte-titulo);
+      font-size: 1.5rem;
+      line-height: 1.15;
+      color: var(--madeira);
+      white-space: nowrap;
+      cursor: pointer;
+      scroll-snap-align: start;
+      transition: color 0.2s;
+    }
+
+    /* O marcador do doce escolhido é um pico da serra. */
+    .vitrine__nomes label::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 0.7em;
+      height: 0.5em;
+      background: var(--vermelho);
+      clip-path: polygon(50% 0, 100% 100%, 0 100%);
+      transform: translateY(-60%) scale(0);
+      transition: transform 0.25s var(--curva);
+    }
+
+    .vitrine__nomes label:hover {
+      color: var(--tacho);
+    }
+
+    .vitrine__nomes input:checked + label {
+      color: var(--vermelho);
+    }
+
+    .vitrine__nomes input:checked + label::before {
+      transform: translateY(-60%) scale(1);
+    }
+
+    .vitrine__nomes input:focus-visible + label {
+      outline: 3px solid var(--vermelho);
+      outline-offset: 2px;
+      border-radius: 0.25rem;
+    }
+
+    /* Os nove palcos e os nove textos ficam empilhados; só o escolhido aparece. */
+    .vitrine__paineis,
+    :global(.painel) {
+      display: contents;
+    }
+
+    :global(.painel__palco),
+    :global(.painel__texto) {
+      opacity: 0;
+      visibility: hidden;
+      transition:
+        opacity 0.45s var(--curva),
+        visibility 0.45s,
+        transform 0.6s var(--curva);
+    }
+
+    :global(.painel__palco) {
+      grid-area: palco;
+      transform: scale(0.98);
+    }
+
+    :global(.painel__texto) {
+      grid-area: texto;
+      margin-top: 0;
+      transform: translateY(0.5rem);
+    }
+
+    .vitrine__nota {
+      grid-area: nota;
+      margin-top: 0.5rem;
+    }
+
+    @media (min-width: 56rem) {
+      .vitrine__grade {
+        grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+        grid-template-rows: auto auto 1fr auto;
+        grid-template-areas:
+          'titulo palco'
+          'nomes palco'
+          'texto palco'
+          'nota palco';
+        column-gap: clamp(2.5rem, 5vw, 5rem);
+        row-gap: 1.5rem;
+      }
+
+      .vitrine__nomes {
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
+        overflow: visible;
+      }
+
+      .vitrine__nomes label {
+        align-self: flex-start;
+        padding-block: 0.15rem;
+        font-size: clamp(1.6rem, 2.3vw, 2.25rem);
+      }
+
+      :global(.painel__texto) {
+        align-self: end;
+      }
+
+      /* O nome já está grande na lista; o título continua para leitores de tela. */
+      :global(.painel__texto h3) {
+        position: absolute;
+        width: 1px;
+        height: 1px; /* taste-skill-ignore: título só para leitor de tela */
+        overflow: hidden;
+        clip-path: inset(50%);
+        white-space: nowrap;
+      }
+
+      :global(.painel__palco) {
+        align-self: start;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      :global(.painel__palco),
+      :global(.painel__texto),
+      .vitrine__nomes label::before {
+        transition: none;
+        transform: none;
+      }
     }
   }
 </style>

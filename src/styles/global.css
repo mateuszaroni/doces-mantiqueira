@@ -14,10 +14,17 @@
   --texto-p: 1rem;
   --texto-m: 1.5rem;
   --texto-g: 2rem;
-  --texto-h1: clamp(2.25rem, 1.4rem + 4.2vw, 3.75rem);
+  --texto-secao: clamp(2.25rem, 1.3rem + 3.6vw, 4rem);
+  --texto-h1: clamp(2.25rem, 1rem + 4.6vw, 4.5rem);
 
-  --largura: 76rem;
+  --largura: 80rem;
   --margem: clamp(1rem, 4vw, 2.5rem);
+  --entre-secoes: clamp(4.5rem, 3rem + 7vw, 9rem);
+  --raio: 0.75rem;
+
+  /* Movimento */
+  --curva: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --passo: 90ms;
 
   color-scheme: light;
 }
@@ -111,7 +118,7 @@ a {
 .so-leitor {
   position: absolute;
   width: 1px;
-  height: 1px;
+  height: 1px; /* taste-skill-ignore: texto só para leitor de tela, não é linha */
   margin: -1px;
   padding: 0;
   overflow: hidden;
@@ -134,7 +141,7 @@ a {
   text-decoration: none;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
-  transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+  transition: background-color 0.15s, color 0.15s, border-color 0.15s, transform 0.15s;
 }
 
 .botao--primario {
@@ -207,7 +214,7 @@ a {
 /* Toalha xadrez: o detalhe marcante do site. Usar só duas vezes (vitrine e festas). */
 .xadrez {
   background-color: var(--creme);
-  background-image:
+  background-image: /* taste-skill-ignore: padrão da toalha xadrez da marca, não é degradê */
     linear-gradient(90deg, rgb(193 4 19 / 0.5) 50%, transparent 0),
     linear-gradient(rgb(193 4 19 / 0.5) 50%, transparent 0);
   background-size: 0.75rem 0.75rem;
@@ -215,4 +222,58 @@ a {
 
 .toalha {
   height: 1.5rem;
+}
+
+/* Movimento --------------------------------------------------------------- */
+/* Tudo aqui é enfeite por cima de uma página que já está completa parada:
+   quem pede menos movimento, ou usa um navegador sem animação por rolagem, vê tudo no lugar. */
+
+@keyframes surgir {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+}
+
+@keyframes desenhar {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Primeira tela: entra em sequência ao carregar. */
+  .surge {
+    animation: surgir 0.9s var(--curva) both;
+    animation-delay: calc(120ms + var(--ordem, 0) * var(--passo));
+  }
+
+  @supports (animation-timeline: view()) {
+    /* Demais seções: cada parte entra quando chega na tela, em escada. */
+    .entra {
+      animation: surgir linear both;
+      animation-timeline: view();
+      animation-range: entry calc(var(--ordem, 0) * 5%) entry calc(60% + var(--ordem, 0) * 5%);
+    }
+
+    /* A serra se desenha da esquerda para a direita conforme a rolagem. */
+    .desenha {
+      animation: desenhar linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 45%;
+    }
+  }
+
+  .botao:active,
+  .flutuante:active {
+    transform: scale(0.97);
+  }
+}
+
+/* Serra entre seções: o traço da logo, só as montanhas. */
+.serra-divisa {
+  display: block;
+  width: min(100%, 34rem);
+  height: auto;
+  margin-inline: auto;
 }
