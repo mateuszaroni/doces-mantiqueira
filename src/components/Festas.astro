@@ -1,0 +1,92 @@
+---
+import { Picture } from 'astro:assets';
+import BotaoWhatsApp from './BotaoWhatsApp.astro';
+import { mensagens } from '../config';
+import pratoFesta from '../assets/fotos/produtos/doce-de-leite-e-cajuzinho-prato.jpg';
+---
+
+<section class="festas" id="festas" aria-labelledby="titulo-festas">
+  <div class="envelope festas__grade">
+    <div class="festas__mesa xadrez">
+      <Picture
+        src={pratoFesta}
+        alt="Prato com tabletes de doce de leite e cajuzinhos, sobre toalha xadrez vermelha"
+        formats={['avif', 'webp']}
+        widths={[360, 540, 720, 900]}
+        sizes="(min-width: 64rem) 520px, calc(100vw - 4rem)"
+        loading="lazy"
+      />
+    </div>
+
+    <div class="festas__texto">
+      <h2 id="titulo-festas">Festas, quermesses e arraiás</h2>
+      <p>
+        Para quem monta mesa de festa, quermesse de paróquia, arraiá ou aniversário caipira. A bandeja sortida traz um
+        pouco de cada, e os outros doces da vitrine completam a mesa.
+      </p>
+      <p>Junho e julho são a época mais procurada. Vale pedir com antecedência.</p>
+      <BotaoWhatsApp class="festas__botao" mensagem={mensagens.festas} rotulo="Pedir orçamento para festa" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .festas {
+    background: var(--creme-rotulo);
+  }
+
+  .festas__grade {
+    display: grid;
+    gap: 2rem;
+    padding-block: 3rem;
+  }
+
+  /* A foto apoiada na toalha, como um jogo americano. */
+  .festas__mesa {
+    padding: 0.75rem;
+    border-radius: 0.375rem;
+  }
+
+  .festas__mesa :global(img) {
+    width: 100%;
+    border-radius: 0.25rem;
+  }
+
+  .festas__texto {
+    max-width: 36rem;
+  }
+
+  h2 {
+    font-size: var(--texto-g);
+  }
+
+  p {
+    margin-top: 1rem;
+  }
+
+  h2 + p {
+    margin-top: 1.25rem;
+  }
+
+  .festas__texto :global(.festas__botao) {
+    margin-top: 1.75rem;
+  }
+
+  @media (min-width: 64rem) {
+    .festas__grade {
+      grid-template-columns: 6fr 5fr;
+      align-items: center;
+      gap: 4rem;
+      padding-block: 5rem;
+    }
+
+    .festas__mesa {
+      order: 2;
+      padding: 1.25rem;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+    }
+  }
+</style>

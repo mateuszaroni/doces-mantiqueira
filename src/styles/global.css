@@ -203,12 +203,15 @@ a {
   border-color: var(--vermelho-escuro);
 }
 
-/* Barra da toalha xadrez: o detalhe marcante do site. Usar só duas vezes. */
-.toalha {
-  height: 1.5rem;
+/* Toalha xadrez: o detalhe marcante do site. Usar só duas vezes (vitrine e festas). */
+.xadrez {
   background-color: var(--creme);
   background-image:
     linear-gradient(90deg, rgb(193 4 19 / 0.5) 50%, transparent 0),
     linear-gradient(rgb(193 4 19 / 0.5) 50%, transparent 0);
   background-size: 0.75rem 0.75rem;
+}
+
+.toalha {
+  height: 1.5rem;
 }
