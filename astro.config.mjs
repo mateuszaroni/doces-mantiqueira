@@ -1,8 +1,14 @@
 // @ts-check
 import { defineConfig, fontProviders } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
+import { loadEnv } from 'vite';
 
 // No Netlify, URL é o endereço público do site (*.netlify.app agora, domínio próprio depois).
 const site = process.env.URL ?? 'http://localhost:4321';
+
+// Portão 2: PUBLIC_INDEXAVEL=true tira o noindex e liga o sitemap. Com false, nada de sitemap.
+const { PUBLIC_INDEXAVEL } = loadEnv(process.env.NODE_ENV ?? 'production', process.cwd(), '');
+const indexavel = PUBLIC_INDEXAVEL === 'true';
 
 // Fontes servidas pelo próprio site, a partir dos arquivos dos pacotes npm:
 // nada é buscado em tempo de execução. Só o subconjunto latino (cobre o português).
@@ -11,6 +17,7 @@ const local = fontProviders.local();
 export default defineConfig({
   site,
   output: 'static',
+  integrations: indexavel ? [sitemap({ filter: (pagina) => !pagina.includes('/404') })] : [],
   fonts: [
     {
       provider: local,

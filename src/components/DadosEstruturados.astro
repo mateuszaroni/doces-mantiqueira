@@ -1,0 +1,42 @@
+---
+import { negocio } from '../config';
+import logo from '../assets/logo/logo.svg';
+
+const site = Astro.site!;
+const { endereco } = negocio;
+
+// Telefone fica de fora até o Mateus definir qual número vai no Perfil de Empresa do Google.
+const dados = {
+  '@context': 'https://schema.org',
+  '@type': 'ConfectioneryStore',
+  name: `${negocio.nome} — Piquete`,
+  alternateName: negocio.nome,
+  legalName: negocio.razaoSocial,
+  taxID: negocio.cnpj,
+  description: 'Doces caseiros feitos de forma artesanal em Piquete (SP), no pé da Serra da Mantiqueira, desde 1985.',
+  foundingDate: String(negocio.desde),
+  url: site.href,
+  image: new URL('/og.jpg', site).href,
+  logo: new URL(logo.src, site).href,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: endereco.rua,
+    addressLocality: endereco.cidade,
+    addressRegion: endereco.uf,
+    postalCode: endereco.cep,
+    addressCountry: 'BR',
+  },
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+      opens: negocio.horario.abre,
+      closes: negocio.horario.fecha,
+    },
+  ],
+  areaServed: [...negocio.cidadesAtendidas, 'Resende'].map((cidade) => ({ '@type': 'City', name: cidade })),
+  sameAs: [negocio.redes.instagram, negocio.redes.facebook],
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(dados)} />

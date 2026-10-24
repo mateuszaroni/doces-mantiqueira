@@ -6,10 +6,14 @@ import '../styles/global.css';
 interface Props {
   titulo: string;
   descricao: string;
+  /** false para páginas que nunca devem ir para os buscadores (ex.: 404). */
+  indexar?: boolean;
 }
 
-const { titulo, descricao } = Astro.props;
+const { titulo, descricao, indexar = true } = Astro.props;
 const canonica = new URL(Astro.url.pathname, Astro.site);
+// Prévia do link (WhatsApp, Facebook etc.). A imagem sai de scripts/gerar-og.mjs.
+const imagemOg = new URL('/og.jpg', Astro.site);
 ---
 
 <!doctype html>
@@ -19,8 +23,23 @@ const canonica = new URL(Astro.url.pathname, Astro.site);
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{titulo}</title>
     <meta name="description" content={descricao} />
-    {indexavel ? <link rel="canonical" href={canonica} /> : <meta name="robots" content="noindex, nofollow" />}
+    {indexavel && indexar ? <link rel="canonical" href={canonica} /> : <meta name="robots" content="noindex, nofollow" />}
     <meta name="theme-color" content="#fbf7e6" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="Doces Mantiqueira" />
+    <meta property="og:title" content={titulo} />
+    <meta property="og:description" content={descricao} />
+    <meta property="og:url" content={canonica} />
+    <meta property="og:image" content={imagemOg} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Logo da Doces Mantiqueira e fotos de doces caseiros: doce de abóbora, de batata, doce de leite, bananada, figo e paçoca"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
