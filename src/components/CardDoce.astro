@@ -1,0 +1,99 @@
+---
+import { Picture } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import BotaoWhatsApp from './BotaoWhatsApp.astro';
+import { mensagens } from '../config';
+
+interface Props {
+  doce: CollectionEntry<'doces'>['data'];
+}
+
+const { doce } = Astro.props;
+// "Doce de leite" vira "doce de leite" no meio da frase da mensagem.
+const nomeNaFrase = doce.nome.charAt(0).toLowerCase() + doce.nome.slice(1);
+---
+
+<li class="card">
+  <Picture
+    src={doce.foto}
+    alt={doce.alt}
+    formats={['avif', 'webp']}
+    width={480}
+    height={600}
+    fit="cover"
+    widths={[240, 360, 480, 720]}
+    sizes="(min-width: 76rem) 344px, (min-width: 40rem) 30vw, 7.5rem"
+    loading="lazy"
+    pictureAttributes={{ class: 'card__foto' }}
+  />
+  <div class="card__texto">
+    <h3>{doce.nome}</h3>
+    <p>{doce.descricao}</p>
+    <BotaoWhatsApp
+      class="card__botao"
+      variante="compacto"
+      mensagem={mensagens.produto(nomeNaFrase)}
+      rotulo="Pedir este"
+      detalhe=""
+      complementoLeitor={doce.nome}
+    />
+  </div>
+</li>
+
+<style>
+  .card {
+    display: grid;
+    grid-template-columns: 7.5rem minmax(0, 1fr);
+    gap: 1rem;
+    align-items: start;
+  }
+
+  .card__foto :global(img) {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 0.375rem;
+  }
+
+  .card__texto {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+  }
+
+  h3 {
+    font-size: var(--texto-m);
+  }
+
+  p {
+    color: var(--madeira);
+    font-size: var(--texto-p);
+    line-height: 1.5;
+  }
+
+  .card__texto :global(.card__botao) {
+    margin-top: 0.5rem;
+  }
+
+  @media (min-width: 40rem) {
+    .card {
+      grid-template-columns: 1fr;
+      grid-template-rows: subgrid;
+      grid-row: span 2;
+      gap: 0.9rem;
+    }
+
+    .card__texto {
+      height: 100%;
+    }
+
+    .card__texto :global(.card__botao) {
+      margin-top: auto;
+    }
+
+    p {
+      margin-bottom: 0.6rem;
+    }
+  }
+</style>

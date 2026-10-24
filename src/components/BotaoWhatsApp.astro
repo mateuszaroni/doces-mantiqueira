@@ -5,8 +5,11 @@ import { linkWhatsApp } from '../config';
 interface Props {
   mensagem: string;
   rotulo: string;
+  /** Segunda linha do botão. Passe "" para omitir. */
   detalhe?: string;
-  variante?: 'primario' | 'secundario';
+  /** Texto extra só para leitores de tela, para diferenciar botões de mesmo rótulo. */
+  complementoLeitor?: string;
+  variante?: 'primario' | 'secundario' | 'compacto';
   class?: string;
 }
 
@@ -14,6 +17,7 @@ const {
   mensagem,
   rotulo,
   detalhe = 'Falar com o Felipe no WhatsApp',
+  complementoLeitor,
   variante = 'primario',
   class: classe,
 } = Astro.props;
@@ -27,8 +31,8 @@ const {
 >
   <svg class="botao__icone" viewBox="0 0 24 24" aria-hidden="true"><path d={siWhatsapp.path} /></svg>
   <span class="botao__textos">
-    <span>{rotulo}</span>
+    <span>{rotulo}{complementoLeitor && <span class="so-leitor">: {complementoLeitor}</span>}</span>
     {detalhe && <span class="botao__detalhe">{detalhe}</span>}
   </span>
-  <span class="so-leitor">(abre o WhatsApp em nova aba)</span>
+  <span class="so-leitor">{", abre o WhatsApp em nova aba"}</span>
 </a>

@@ -1,0 +1,70 @@
+---
+import { getCollection } from 'astro:content';
+import CardDoce from './CardDoce.astro';
+import listaDoces from '../data/doces.json';
+
+// A coleção não garante ordem: segue a ordem em que os doces aparecem no JSON.
+const ordem = listaDoces.map((d) => d.id);
+const doces = (await getCollection('doces')).sort((a, b) => ordem.indexOf(a.id) - ordem.indexOf(b.id));
+---
+
+<section class="vitrine" id="doces" aria-labelledby="titulo-vitrine">
+  <div class="toalha" aria-hidden="true"></div>
+  <div class="envelope vitrine__corpo">
+    <h2 id="titulo-vitrine">Os doces da casa</h2>
+    <ul class="vitrine__grade" role="list">
+      {doces.map(({ data }) => <CardDoce doce={data} />)}
+    </ul>
+    <p class="vitrine__nota">Todos em embalagens de 350g.</p>
+  </div>
+</section>
+
+<style>
+  .vitrine {
+    background: var(--creme-rotulo);
+  }
+
+  .vitrine__corpo {
+    padding-block: 2.5rem 3rem;
+  }
+
+  h2 {
+    font-size: var(--texto-g);
+  }
+
+  .vitrine__grade {
+    display: grid;
+    gap: 1.75rem;
+    margin: 1.75rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .vitrine__nota {
+    margin-top: 2rem;
+    font-weight: 700;
+  }
+
+  @media (min-width: 40rem) {
+    .vitrine__grade {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      column-gap: 1.5rem;
+      row-gap: 2.5rem;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .vitrine__corpo {
+      padding-block: 4rem 4.5rem;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+    }
+
+    .vitrine__grade {
+      column-gap: 2.5rem;
+      row-gap: 3.5rem;
+    }
+  }
+</style>
