@@ -1,0 +1,46 @@
+---
+import Base from '../layouts/Base.astro';
+import Cabecalho from '../components/Cabecalho.astro';
+import BotaoWhatsApp from '../components/BotaoWhatsApp.astro';
+import { mensagens } from '../config';
+---
+
+<Base
+  titulo="Página não encontrada — Doces Mantiqueira, Piquete"
+  descricao="Esta página não existe. Volte para o início ou fale com o Felipe no WhatsApp."
+  indexar={false}
+>
+  <Cabecalho />
+  <main id="conteudo" class="envelope nao-encontrada">
+    <h1>Esta página não existe</h1>
+    <p>O endereço pode ter mudado ou estar com algum erro de digitação. Os doces continuam no início do site.</p>
+    <div class="nao-encontrada__acoes">
+      <a class="botao botao--secundario" href="/">Voltar para o início</a>
+      <BotaoWhatsApp mensagem={mensagens.flutuante} rotulo="Fale com o Felipe" detalhe="No WhatsApp" />
+    </div>
+  </main>
+</Base>
+
+<style>
+  .nao-encontrada {
+    padding-block: 2.5rem 5rem;
+  }
+
+  h1 {
+    font-size: var(--texto-h1);
+    max-width: 14ch;
+  }
+
+  p {
+    margin-top: 1rem;
+    max-width: 40ch;
+    color: var(--madeira);
+  }
+
+  .nao-encontrada__acoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+</style>
