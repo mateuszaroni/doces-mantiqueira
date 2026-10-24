@@ -45,9 +45,8 @@ export const enderecoCompleto = `${negocio.endereco.rua} — ${negocio.endereco.
 const consultaMapa = `${negocio.endereco.rua}, ${negocio.endereco.bairro}, ${negocio.endereco.cidade} - ${negocio.endereco.uf}, ${negocio.endereco.cep}`;
 export const linkComoChegar = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(consultaMapa)}`;
 
-// Só dígitos, no formato do wa.me: 55 + DDD + número.
-// PENDENTE: número do Felipe (pedir ao Mateus). Vazio, os links abrem o WhatsApp sem destinatário.
-export const whatsappFelipe = '';
+// Só dígitos, no formato do wa.me: 55 + DDD + número. Felipe: (12) 98315-7977.
+export const whatsappFelipe = '5512983157977';
 
 export const mensagens = {
   varejo: 'Olá, Felipe! Vim pelo site e quero fazer um pedido / orçamento para festa.',
