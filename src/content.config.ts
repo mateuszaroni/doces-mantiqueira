@@ -2,7 +2,7 @@ import { defineCollection } from 'astro:content';
 import { file } from 'astro/loaders';
 import { z } from 'astro/zod';
 
-// Os 9 doces da vitrine, na ordem do arquivo. Descrições são rascunho para a família revisar.
+// Os 9 doces da vitrine, na ordem do arquivo. Descrições aprovadas pela família em 24/10/2026.
 const doces = defineCollection({
   loader: file('src/data/doces.json'),
   schema: ({ image }) =>

@@ -17,7 +17,7 @@ export const negocio = {
     abre: '08:00',
     fecha: '18:00',
   },
-  // PROVISÓRIA: confirmar com o Mateus.
+  // Confirmada pelo Mateus em 24/10/2026.
   cidadesAtendidas: [
     'Piquete',
     'Lorena',
