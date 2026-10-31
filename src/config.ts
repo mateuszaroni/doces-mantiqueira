@@ -17,7 +17,7 @@ export const negocio = {
     abre: '08:00',
     fecha: '18:00',
   },
-  // Confirmada pelo Mateus em 24/10/2026.
+  // Provisória: confirmar com o Mateus (CLAUDE.md, seção 12).
   cidadesAtendidas: [
     'Piquete',
     'Lorena',
@@ -45,14 +45,14 @@ export const enderecoCompleto = `${negocio.endereco.rua} — ${negocio.endereco.
 const consultaMapa = `${negocio.endereco.rua}, ${negocio.endereco.bairro}, ${negocio.endereco.cidade} - ${negocio.endereco.uf}, ${negocio.endereco.cep}`;
 export const linkComoChegar = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(consultaMapa)}`;
 
-// Só dígitos, no formato do wa.me: 55 + DDD + número. Felipe: (12) 98315-7977.
-export const whatsappFelipe = '5512983157977';
+// Só dígitos, no formato do wa.me: 55 + DDD + número. Felipe: (12) 99194-7972.
+export const whatsappFelipe = '5512991947972';
 
 export const mensagens = {
   varejo: 'Olá, Felipe! Vim pelo site e quero fazer um pedido / orçamento para festa.',
   revenda: 'Olá, Felipe! Vim pelo site e tenho interesse em revender os Doces Mantiqueira.',
   festas: 'Olá, Felipe! Vim pelo site e quero um orçamento para festa / quermesse.',
-  flutuante: 'Olá, Felipe! Vim pelo site e queria mais informações.',
+  geral: 'Olá, Felipe! Vim pelo site e queria fazer um pedido.',
   produto: (artigo: string, nomeDoce: string) => `Olá, Felipe! Vim pelo site e quero ${artigo} ${nomeDoce}.`,
 };
 

@@ -1,0 +1,104 @@
+---
+import { negocio, linkComoChegar } from '../config';
+import serra from '../assets/logo/serra.svg';
+
+const { endereco } = negocio;
+---
+
+<section class="onde" id="onde-estamos" aria-labelledby="onde-titulo">
+  <div class="envelope onde__grade">
+    <h2 class="titulo-secao" id="onde-titulo">Onde estamos</h2>
+
+    <div class="onde__endereco">
+      <address>
+        <span class="onde__rua">{endereco.rua}</span>
+        <span>{endereco.bairro}, {endereco.cidade} - {endereco.uf}</span>
+        <span>CEP {endereco.cep}</span>
+      </address>
+      <a class="botao botao--vermelho" href={linkComoChegar} target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" />
+        </svg>
+        Como chegar
+        <span class="so-leitor">(abre o Google Maps em nova aba)</span>
+      </a>
+    </div>
+
+    <dl class="onde__info">
+      <div>
+        <dt>Horário</dt>
+        <dd>{negocio.horario.texto}</dd>
+      </div>
+      <div>
+        <dt>Cidades atendidas</dt>
+        <dd>{negocio.cidadesAtendidas.join(', ')} e {negocio.cidadesAtendidasResumo}.</dd>
+      </div>
+    </dl>
+  </div>
+  <div class="onde__serra" style={`--serra-img: url(${serra.src}); aspect-ratio: ${serra.width} / ${serra.height}`} aria-hidden="true"></div>
+</section>
+
+<style>
+  .onde {
+    position: relative;
+    padding-top: calc(var(--respiro) + 1rem);
+  }
+
+  .onde__grade {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 2.5rem clamp(2rem, 6vw, 6rem);
+  }
+
+  .onde h2 {
+    grid-column: 1 / -1;
+  }
+
+  address {
+    display: grid;
+    font-style: normal;
+    font-size: var(--t-grande);
+  }
+
+  .onde__rua {
+    margin-bottom: 0.5rem;
+    color: var(--tacho);
+    font: 850 clamp(2rem, 4.5vw, 3.75rem) / 1 var(--titulo);
+    font-variation-settings: 'opsz' 144, 'SOFT' 100;
+    letter-spacing: -0.035em;
+  }
+
+  .onde__endereco .botao {
+    margin-top: 2rem;
+  }
+
+  .onde__info {
+    display: grid;
+    gap: 2rem;
+    align-content: start;
+  }
+
+  dt {
+    color: var(--caramelo);
+    font-weight: 700;
+  }
+
+  dd {
+    margin-top: 0.35rem;
+    font-size: 1.125rem;
+  }
+
+  /* A linha da serra, tirada da logo e pintada de verde, fecha a página antes do rodapé. */
+  .onde__serra {
+    width: min(100%, 72rem);
+    margin: clamp(3rem, 6vw, 5rem) auto 0;
+    background: var(--serra);
+    mask: var(--serra-img) center / contain no-repeat;
+  }
+
+  @media (max-width: 760px) {
+    .onde__grade {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

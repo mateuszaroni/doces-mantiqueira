@@ -1,0 +1,115 @@
+---
+import { siFacebook, siInstagram } from 'simple-icons';
+import logoEscura from '../assets/logo/logo-fundo-escuro.svg';
+import { negocio, enderecoCompleto } from '../config';
+
+const redes = [
+  { nome: 'Instagram', url: negocio.redes.instagram, icone: siInstagram.path },
+  { nome: 'Facebook', url: negocio.redes.facebook, icone: siFacebook.path },
+];
+---
+
+<footer class="rodape">
+  <div class="envelope rodape__grade">
+    <img class="rodape__logo" src={logoEscura.src} width="220" height="104" alt="Doces Mantiqueira" loading="lazy" />
+
+    <ul class="rodape__redes">
+      {
+        redes.map((r) => (
+          <li>
+            <a href={r.url} target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d={r.icone} />
+              </svg>
+              {r.nome}
+              <span class="so-leitor">(abre em nova aba)</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="rodape__dados">
+      <p>{negocio.razaoSocial}</p>
+      <p>CNPJ {negocio.cnpj}</p>
+      <p>{enderecoCompleto}</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .rodape {
+    padding-block: clamp(3.5rem, 7vw, 5.5rem);
+    background: var(--tacho);
+    color: var(--creme);
+  }
+
+  .rodape__grade {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2.5rem 4rem;
+    align-items: center;
+  }
+
+  .rodape__logo {
+    width: 220px;
+  }
+
+  .rodape__redes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .rodape__redes a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    min-height: 3rem;
+    padding: 0 1.25rem;
+    border: 2px solid rgb(251 244 228 / 0.5);
+    border-radius: 999px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .rodape__redes a:hover {
+    border-color: var(--creme);
+  }
+
+  .rodape__redes svg {
+    width: 1.25rem;
+    fill: currentColor;
+  }
+
+  .rodape__dados {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 2rem;
+    padding-top: 2rem;
+    border-top: 2px solid rgb(251 244 228 / 0.2);
+    font-size: 0.9375rem;
+  }
+
+  @media (max-width: 760px) {
+    .rodape__grade {
+      grid-template-columns: 1fr;
+    }
+
+    .rodape__logo {
+      width: 180px;
+    }
+
+    .rodape__redes {
+      justify-content: flex-start;
+    }
+
+    .rodape__dados {
+      flex-direction: column;
+    }
+  }
+</style>

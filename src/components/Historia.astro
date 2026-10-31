@@ -1,0 +1,177 @@
+---
+import { Picture } from 'astro:assets';
+import avos from '../assets/fotos/historia/avos-pedro-e-mariazinha.png';
+import { negocio } from '../config';
+---
+
+<section class="historia" id="historia" aria-labelledby="historia-titulo">
+  <div class="envelope historia__grade">
+    <h2 class="so-leitor" id="historia-titulo">Nossa história</h2>
+    <p class="historia__manifesto">
+      <span>Receita de família.</span>
+      <span>Feito no tacho.</span>
+      <span>Desde 1985.</span>
+    </p>
+
+    <figure class="historia__foto">
+      <Picture
+        src={avos}
+        formats={['avif', 'webp']}
+        widths={[360, 540, 720, 984]}
+        sizes="(max-width: 760px) 90vw, 40vw"
+        alt="Seu Pedro Sabão e Dona Mariazinha, fundadores da Doces Mantiqueira"
+      />
+      <figcaption>Seu Pedro Sabão e Dona Mariazinha</figcaption>
+    </figure>
+
+    <div class="historia__texto">
+      <p>
+        Tudo começou com Seu Pedro Sabão e Dona Mariazinha, fazendo balas de café em Piquete. Em 1987, Seu Pedro aprendeu
+        com um doceiro de Guaratinguetá as receitas que viraram a cara da casa: doce de leite, de abóbora, de batata-doce e
+        paçoca.
+      </p>
+      <p>Nos anos 90, a segunda geração assumiu o tacho — e o jeito de fazer continua o mesmo.</p>
+      <p>Hoje são mais de 40 anos adoçando festas, quermesses e mesas de todo o Vale do Paraíba até Resende.</p>
+
+      <ul class="historia__selos">
+        <li class="selo-texto">
+          <span>Integra a</span>
+          <strong>Rota Gastronômica do Vale do Paraíba & Mantiqueira</strong>
+        </li>
+        <li>
+          <a class="selo-texto selo-texto--link" href={negocio.reportagemG1} target="_blank" rel="noopener">
+            <span>Reportagem</span>
+            <strong>Saiu no g1</strong>
+            <span class="so-leitor">(abre em nova aba)</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .historia {
+    padding-block: var(--respiro);
+  }
+
+  .historia__grade {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    grid-template-areas:
+      'manifesto manifesto'
+      'foto texto';
+    gap: clamp(2.5rem, 5vw, 5rem) clamp(2rem, 6vw, 6rem);
+    align-items: start;
+  }
+
+  .historia__manifesto {
+    grid-area: manifesto;
+    color: var(--tacho);
+    font: 850 var(--t-manifesto) / 0.95 var(--titulo);
+    font-variation-settings: 'opsz' 144, 'SOFT' 100;
+    letter-spacing: -0.04em;
+  }
+
+  .historia__manifesto span {
+    display: block;
+  }
+
+  /* As três frases entram em escada, como um letreiro pintado. */
+  .historia__manifesto span:nth-child(2) {
+    padding-left: 1.2em;
+  }
+
+  .historia__manifesto span:nth-child(3) {
+    padding-left: 2.4em;
+  }
+
+  .historia__foto {
+    grid-area: foto;
+  }
+
+  .historia__foto :global(img) {
+    width: 100%;
+    border-radius: 2rem;
+    rotate: -2deg;
+    box-shadow: 0 24px 40px -24px rgb(43 26 18 / 0.55);
+  }
+
+  figcaption {
+    margin-top: 1.25rem;
+    color: var(--caramelo);
+    font-size: 0.9375rem;
+    font-weight: 500;
+  }
+
+  .historia__texto {
+    grid-area: texto;
+    max-width: 58ch;
+    font-size: 1.125rem;
+  }
+
+  .historia__texto p + p {
+    margin-top: 1.1rem;
+  }
+
+  .historia__selos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.875rem;
+    margin-top: 2.5rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .selo-texto {
+    display: grid;
+    gap: 0.15rem;
+    max-width: 22rem;
+    height: 100%;
+    padding: 0.9rem 1.4rem;
+    border: 2px solid var(--caramelo);
+    border-radius: 1.25rem;
+    color: var(--cafe);
+    text-decoration: none;
+  }
+
+  .selo-texto span {
+    color: var(--caramelo);
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .selo-texto strong {
+    font: 800 1.25rem / 1.15 var(--titulo);
+    font-variation-settings: 'opsz' 48, 'SOFT' 100;
+    letter-spacing: -0.01em;
+  }
+
+  .selo-texto--link:hover {
+    background: rgb(138 90 31 / 0.08);
+  }
+
+  .selo-texto--link strong {
+    text-decoration: underline;
+    text-decoration-thickness: 0.06em;
+    text-underline-offset: 0.18em;
+  }
+
+  @media (max-width: 760px) {
+    .historia__grade {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        'manifesto'
+        'foto'
+        'texto';
+    }
+
+    .historia__manifesto span:nth-child(2) {
+      padding-left: 0.6em;
+    }
+
+    .historia__manifesto span:nth-child(3) {
+      padding-left: 1.2em;
+    }
+  }
+</style>

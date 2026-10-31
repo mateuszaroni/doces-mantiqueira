@@ -1,0 +1,233 @@
+---
+import { Image } from 'astro:assets';
+import BotaoWhatsApp from './BotaoWhatsApp.astro';
+import { mensagens } from '../config';
+import figo from '../assets/recortes/figo.webp';
+import pacoca from '../assets/recortes/pacoca-tigela.webp';
+import sortida from '../assets/recortes/sortida.webp';
+
+const larguras = [280, 420, 640, 900];
+---
+
+<section class="hero" id="topo" aria-labelledby="hero-titulo">
+  <div class="hero__conteudo">
+    <h1 class="hero__titulo" id="hero-titulo"><span>Doces</span> <span>Mantiqueira</span></h1>
+    <p class="hero__apoio">Doces caseiros da Serra da Mantiqueira, desde 1985.</p>
+
+    <div class="hero__palco">
+      <Image
+        class="recorte recorte--figo"
+        src={figo}
+        widths={larguras}
+        sizes="(max-width: 760px) 54vw, 30vw"
+        alt="Figos cristalizados no açúcar, num prato branco"
+        loading="eager"
+        fetchpriority="high"
+      />
+      <Image
+        class="recorte recorte--pacoca"
+        src={pacoca}
+        widths={larguras}
+        sizes="(max-width: 760px) 50vw, 28vw"
+        alt="Paçoca de amendoim numa tigela vermelha, com amendoins em volta"
+        loading="eager"
+      />
+      <Image
+        class="recorte recorte--sortida"
+        src={sortida}
+        widths={larguras}
+        sizes="(max-width: 760px) 40vw, 22vw"
+        alt="Bandeja sortida com doce de abóbora, de batata, doce de leite e bananada"
+        loading="eager"
+      />
+      <div class="selo" aria-hidden="true">
+        <svg viewBox="0 0 120 120">
+          <defs><path id="selo-roda" d="M60 60m-44 0a44 44 0 1 1 88 0a44 44 0 1 1-88 0" /></defs>
+          <circle cx="60" cy="60" r="58" fill="#f2c14e" />
+          <text><textPath href="#selo-roda" textLength="274" lengthAdjust="spacingAndGlyphs">DESDE 1985 · PIQUETE-SP · DOCES CASEIROS ·</textPath></text>
+          <path d="M36 76 50 54l6 8 11-20 17 34z" fill="#c10413" />
+        </svg>
+      </div>
+    </div>
+
+    <div class="hero__acoes">
+      <BotaoWhatsApp variante="creme" mensagem={mensagens.varejo} rotulo="Pedir / orçamento para festa" />
+      <a class="botao botao--contorno" href="#revenda">Quero revender</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: max(100svh, 46rem);
+    padding: calc(var(--altura-cabecalho) + 2rem) var(--margem) 6rem;
+    overflow: hidden;
+    background: var(--vermelho);
+    color: var(--creme);
+    text-align: center;
+  }
+
+  .hero__titulo {
+    position: relative;
+    z-index: 2;
+    font-size: var(--t-gigante);
+    line-height: 0.8;
+    letter-spacing: -0.045em;
+  }
+
+  .hero__titulo span {
+    display: block;
+  }
+
+  .hero__apoio {
+    position: relative;
+    z-index: 2;
+    max-width: 30ch;
+    margin: clamp(1.5rem, 4vw, 3.25rem) auto 0;
+    font-size: var(--t-grande);
+    font-weight: 500;
+  }
+
+  .hero__acoes {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+  }
+
+  /* No desktop o palco some e os recortes se posicionam pela seção inteira. */
+  .hero__palco {
+    display: contents;
+  }
+
+  .hero :global(.recorte) {
+    position: absolute;
+    z-index: 1;
+    filter: drop-shadow(0 22px 26px rgb(60 0 6 / 0.5));
+    animation: flutua 7s ease-in-out infinite alternate;
+  }
+
+  .hero :global(.recorte--figo) {
+    --giro: 6deg;
+    width: clamp(220px, 30vw, 470px);
+    top: 4%;
+    right: -6%;
+  }
+
+  .hero :global(.recorte--pacoca) {
+    --giro: -4deg;
+    width: clamp(230px, 28vw, 440px);
+    bottom: -1%;
+    left: -4%;
+    animation-delay: -2s;
+  }
+
+  .hero :global(.recorte--sortida) {
+    --giro: 5deg;
+    width: clamp(180px, 22vw, 340px);
+    bottom: -10%;
+    right: 5%;
+    animation-delay: -4s;
+  }
+
+  @keyframes flutua {
+    from {
+      transform: translateY(0) rotate(var(--giro));
+    }
+    to {
+      transform: translateY(-14px) rotate(calc(var(--giro) * -0.4));
+    }
+  }
+
+  .selo {
+    position: absolute;
+    z-index: 3;
+    top: 22%;
+    right: 16%;
+    width: clamp(96px, 10vw, 150px);
+  }
+
+  .selo svg {
+    animation: gira 24s linear infinite;
+  }
+
+  .selo text {
+    fill: var(--cafe);
+    font: 700 10.5px var(--texto);
+    letter-spacing: 0.14em;
+  }
+
+  @keyframes gira {
+    to {
+      transform: rotate(1turn);
+    }
+  }
+
+  @media (max-width: 760px) {
+    .hero {
+      display: block;
+      min-height: auto;
+      padding: calc(var(--altura-cabecalho) + 1.25rem) 1rem 2.5rem;
+    }
+
+    .hero__titulo {
+      font-size: 15.2vw;
+    }
+
+    .hero__apoio {
+      margin-top: 1rem;
+    }
+
+    .hero__palco {
+      position: relative;
+      display: block;
+      height: 230px;
+      margin: 0.5rem -1rem 0;
+    }
+
+    .hero :global(.recorte) {
+      animation-duration: 6s;
+    }
+
+    .hero :global(.recorte--figo) {
+      width: 54%;
+      top: 2%;
+      right: -8%;
+    }
+
+    .hero :global(.recorte--pacoca) {
+      width: 50%;
+      top: 12%;
+      bottom: auto;
+      left: -6%;
+    }
+
+    .hero :global(.recorte--sortida) {
+      width: 40%;
+      bottom: -6%;
+      right: 30%;
+    }
+
+    .selo {
+      top: -6px;
+      left: 40%;
+      right: auto;
+      width: 84px;
+    }
+
+    .hero__acoes {
+      flex-direction: column;
+      margin-top: 0.25rem;
+    }
+
+    .hero__acoes > :global(*) {
+      width: 100%;
+    }
+  }
+</style>

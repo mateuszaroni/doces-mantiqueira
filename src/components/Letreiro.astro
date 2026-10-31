@@ -1,0 +1,94 @@
+---
+interface Props {
+  itens: string[];
+  variante?: 'vermelho' | 'creme';
+  /** Inclinação da faixa, em graus. */
+  giro?: number;
+  /** Sentido da rolagem. */
+  reverso?: boolean;
+}
+
+const { itens, variante = 'vermelho', giro = -2, reverso = false } = Astro.props;
+// Metade da trilha precisa cobrir telas largas; a outra metade é cópia, para o laço não ter emenda.
+const metade = [...itens, ...itens];
+---
+
+<div class:list={['letreiro', `letreiro--${variante}`, { 'letreiro--reverso': reverso }]} style={`--giro: ${giro}deg`}>
+  <p class="so-leitor">{itens.join(', ')}</p>
+  <div class="letreiro__trilha" aria-hidden="true">
+    {[0, 1].map(() => (
+      <span class="letreiro__metade">
+        {metade.map((item) => (
+          <span class="letreiro__item">
+            {item}
+            <svg viewBox="0 0 20 20"><path d="M10 0c.8 5.2 4.8 9.2 10 10-5.2.8-9.2 4.8-10 10-.8-5.2-4.8-9.2-10-10C5.2 9.2 9.2 5.2 10 0z" /></svg>
+          </span>
+        ))}
+      </span>
+    ))}
+  </div>
+</div>
+
+<style>
+  .letreiro {
+    position: relative;
+    z-index: 5;
+    margin-inline: -2rem;
+    padding-block: clamp(0.9rem, 1.6vw, 1.4rem);
+    overflow: hidden;
+    transform: rotate(var(--giro));
+    box-shadow: 0 14px 30px -18px rgb(43 26 18 / 0.6);
+  }
+
+  .letreiro--vermelho {
+    background: var(--vermelho);
+    color: var(--creme);
+    border-block: 3px solid var(--creme);
+  }
+
+  .letreiro--creme {
+    background: var(--creme);
+    color: var(--vermelho);
+    border-block: 3px solid var(--vermelho);
+  }
+
+  .letreiro__trilha {
+    display: flex;
+    width: max-content;
+    animation: rola 45s linear infinite;
+  }
+
+  .letreiro--reverso .letreiro__trilha {
+    animation-direction: reverse;
+  }
+
+  .letreiro__metade {
+    display: flex;
+  }
+
+  .letreiro__item {
+    display: inline-flex;
+    align-items: center;
+    gap: clamp(1rem, 2vw, 1.75rem);
+    padding-right: clamp(1rem, 2vw, 1.75rem);
+    font: 850 clamp(1.75rem, 4.2vw, 3.5rem) / 1 var(--titulo);
+    font-variation-settings: 'opsz' 144, 'SOFT' 100;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+  }
+
+  .letreiro__item svg {
+    width: 0.55em;
+    fill: var(--mel);
+  }
+
+  .letreiro--creme .letreiro__item svg {
+    fill: var(--caramelo);
+  }
+
+  @keyframes rola {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+</style>

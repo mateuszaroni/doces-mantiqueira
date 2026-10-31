@@ -24,7 +24,7 @@ const imagemOg = new URL('/og.jpg', Astro.site);
     <title>{titulo}</title>
     <meta name="description" content={descricao} />
     {indexavel && indexar ? <link rel="canonical" href={canonica} /> : <meta name="robots" content="noindex, nofollow" />}
-    <meta name="theme-color" content="#fbf7e6" />
+    <meta name="theme-color" content="#c10413" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pt_BR" />
     <meta property="og:site_name" content="Doces Mantiqueira" />
@@ -37,15 +37,15 @@ const imagemOg = new URL('/og.jpg', Astro.site);
     <meta property="og:image:height" content="630" />
     <meta
       property="og:image:alt"
-      content="Logo da Doces Mantiqueira e fotos de doces caseiros: doce de abóbora, de batata, doce de leite, bananada, figo e paçoca"
+      content="Doces Mantiqueira, de Piquete: figos cristalizados, paçoca numa tigela vermelha e bandeja de doces caseiros"
     />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <!-- Só a fonte do título é pré-carregada: é ela que desenha o primeiro elemento grande da página. -->
     <Font cssVariable="--fonte-titulo" preload />
-    <Font cssVariable="--fonte-texto" preload />
-    <Font cssVariable="--fonte-algarismos" preload />
+    <Font cssVariable="--fonte-texto" />
     <slot name="head" />
   </head>
   <body>

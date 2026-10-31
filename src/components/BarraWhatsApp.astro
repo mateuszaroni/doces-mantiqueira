@@ -1,0 +1,32 @@
+---
+import BotaoWhatsApp from './BotaoWhatsApp.astro';
+import { mensagens } from '../config';
+---
+
+<!-- Só no celular: o pedido fica sempre na zona do polegar. No desktop o botão do cabeçalho faz esse papel. -->
+<div class="barra">
+  <BotaoWhatsApp mensagem={mensagens.geral} rotulo="Pedir no WhatsApp" complementoLeitor="barra fixa" />
+</div>
+
+<style>
+  .barra {
+    display: none;
+  }
+
+  @media (max-width: 760px) {
+    .barra {
+      position: fixed;
+      inset: auto 0 0;
+      z-index: 40;
+      display: block;
+      padding: 0.625rem 1rem calc(0.625rem + env(safe-area-inset-bottom));
+      background: var(--creme);
+      box-shadow: 0 -10px 24px -14px rgb(43 26 18 / 0.45);
+    }
+
+    .barra :global(.botao) {
+      width: 100%;
+      min-height: 3.25rem;
+    }
+  }
+</style>

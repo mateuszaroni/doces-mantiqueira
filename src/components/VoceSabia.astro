@@ -1,0 +1,67 @@
+---
+import { Image } from 'astro:assets';
+import figoCortado from '../assets/fotos/produtos/figo-cortado.jpg';
+---
+
+<aside class="envelope voce-sabia" aria-labelledby="voce-sabia-titulo">
+  <div class="voce-sabia__texto">
+    <h2 id="voce-sabia-titulo">Você sabia?</h2>
+    <p>O doce de abóbora e o de batata levam até quatro dias para ficar prontos.</p>
+  </div>
+  <Image
+    class="voce-sabia__foto"
+    src={figoCortado}
+    widths={[280, 420, 560]}
+    sizes="(max-width: 760px) 60vw, 280px"
+    alt="Figo cristalizado cortado ao meio, mostrando o miolo"
+  />
+</aside>
+
+<style>
+  .voce-sabia {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 2rem clamp(2rem, 5vw, 5rem);
+    padding: clamp(2rem, 5vw, 4.5rem);
+    border-radius: 2.5rem;
+    background: var(--serra);
+    color: var(--creme);
+  }
+
+  h2 {
+    color: var(--mel);
+    font-size: clamp(1.5rem, 2.4vw, 2rem);
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    max-width: 22ch;
+    margin-top: 1rem;
+    font: 700 clamp(1.9rem, 4.4vw, 3.75rem) / 1.05 var(--titulo);
+    font-variation-settings: 'opsz' 144, 'SOFT' 100;
+    letter-spacing: -0.03em;
+  }
+
+  /* Máscara orgânica: a foto tem fundo de cenário, então entra recortada numa forma arredondada. */
+  .voce-sabia :global(.voce-sabia__foto) {
+    width: clamp(12rem, 22vw, 17.5rem);
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 58% 42% 52% 48% / 46% 54% 46% 54%;
+    rotate: 4deg;
+  }
+
+  @media (max-width: 760px) {
+    .voce-sabia {
+      grid-template-columns: 1fr;
+      border-radius: 2rem;
+    }
+
+    .voce-sabia :global(.voce-sabia__foto) {
+      width: 60%;
+      justify-self: end;
+      margin-top: -0.5rem;
+    }
+  }
+</style>

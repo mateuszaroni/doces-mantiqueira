@@ -1,0 +1,98 @@
+---
+import { Image } from 'astro:assets';
+import BotaoWhatsApp from './BotaoWhatsApp.astro';
+import { mensagens } from '../config';
+import pacote from '../assets/recortes/pacoca-pacote.webp';
+
+const argumentos = ['Ótima margem', 'Validade de 45 dias', 'Entrega em todo o Vale do Paraíba, até Resende (RJ)', 'Mais de 40 anos de tradição'];
+---
+
+<section class="revenda" id="revenda" aria-labelledby="revenda-titulo">
+  <div class="envelope revenda__grade">
+    <div class="revenda__texto">
+      <h2 class="titulo-secao" id="revenda-titulo">Quer revender?</h2>
+      <p class="revenda__lead">Para padarias, empórios, mercados e para quem quer uma renda extra.</p>
+      <ul class="revenda__argumentos">{argumentos.map((a) => <li>{a}</li>)}</ul>
+      <BotaoWhatsApp variante="mel" mensagem={mensagens.revenda} rotulo="Quero revender — falar com o Felipe" />
+    </div>
+    <Image
+      class="revenda__foto"
+      src={pacote}
+      widths={[320, 480, 676]}
+      sizes="(max-width: 760px) 70vw, 30vw"
+      alt="Pacote de paçoca de amendoim Doces Mantiqueira, 350g"
+      loading="lazy"
+    />
+  </div>
+</section>
+
+<style>
+  .revenda {
+    padding-block: var(--respiro) calc(var(--respiro) + 2rem);
+    background: var(--tacho);
+    color: var(--creme);
+    overflow: hidden;
+  }
+
+  .revenda__grade {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+    align-items: center;
+    gap: 3rem clamp(2rem, 5vw, 5rem);
+  }
+
+  .revenda__texto {
+    display: grid;
+    justify-items: start;
+  }
+
+  .revenda__lead {
+    max-width: 36ch;
+    margin-top: 1.5rem;
+    font-size: var(--t-grande);
+  }
+
+  .revenda__argumentos {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0;
+    width: 100%;
+    margin: 2.5rem 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .revenda__argumentos li {
+    padding: 1.25rem 1.5rem 1.25rem 0;
+    border-top: 2px solid rgb(251 244 228 / 0.25);
+    color: var(--mel);
+    font: 800 clamp(1.4rem, 2.4vw, 2rem) / 1.1 var(--titulo);
+    font-variation-settings: 'opsz' 72, 'SOFT' 100;
+    letter-spacing: -0.02em;
+  }
+
+  .revenda :global(.revenda__foto) {
+    width: 100%;
+    rotate: 7deg;
+    filter: drop-shadow(0 30px 30px rgb(0 0 0 / 0.45));
+  }
+
+  @media (max-width: 760px) {
+    .revenda__grade {
+      grid-template-columns: 1fr;
+    }
+
+    .revenda__argumentos {
+      grid-template-columns: 1fr;
+    }
+
+    .revenda__argumentos li {
+      padding-right: 0;
+    }
+
+    .revenda :global(.revenda__foto) {
+      width: 70%;
+      justify-self: center;
+    }
+  }
+</style>

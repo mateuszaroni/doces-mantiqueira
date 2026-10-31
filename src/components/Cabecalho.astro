@@ -1,0 +1,265 @@
+---
+import { siFacebook, siInstagram } from 'simple-icons';
+import logo from '../assets/logo/logo.svg';
+import BotaoWhatsApp from './BotaoWhatsApp.astro';
+import { mensagens, negocio } from '../config';
+
+interface Props {
+  /** Na 404 os links apontam para a página inicial. */
+  base?: string;
+}
+
+const { base = '' } = Astro.props;
+
+const links = [
+  { href: '#produtos', rotulo: 'Produtos' },
+  { href: '#historia', rotulo: 'Nossa história' },
+  { href: '#festas', rotulo: 'Festas' },
+  { href: '#revenda', rotulo: 'Revenda' },
+  { href: '#onde-estamos', rotulo: 'Onde estamos' },
+];
+---
+
+<header class="cabecalho">
+  <a class="cabecalho__logo" href={base || '#topo'}>
+    <img src={logo.src} width="132" height="63" alt="Doces Mantiqueira, Piquete — início" />
+  </a>
+
+  <nav class="cabecalho__nav" aria-label="Seções">
+    <ul>{links.map((l) => <li><a href={base + l.href}>{l.rotulo}</a></li>)}</ul>
+  </nav>
+
+  <BotaoWhatsApp class="cabecalho__cta" mensagem={mensagens.geral} rotulo="Pedir no WhatsApp" />
+
+  <button class="cabecalho__menu" type="button" popovertarget="menu" aria-label="Abrir menu">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h18M3 16h18" /></svg>
+    <span aria-hidden="true">Menu</span>
+  </button>
+</header>
+
+<!-- Menu do celular: popover nativo (abre, fecha com Esc e prende o foco sem JavaScript). -->
+<div id="menu" class="menu" popover>
+  <div class="menu__topo">
+    <img src={logo.src} width="108" height="51" alt="" />
+    <button class="menu__fechar" type="button" popovertarget="menu" popovertargetaction="hide">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" /></svg>
+      Fechar
+    </button>
+  </div>
+  <nav aria-label="Seções">
+    <ul class="menu__links">{links.map((l) => <li><a href={base + l.href}>{l.rotulo}</a></li>)}</ul>
+  </nav>
+  <div class="menu__pe">
+    <BotaoWhatsApp variante="creme" mensagem={mensagens.geral} rotulo="Pedir no WhatsApp" complementoLeitor="menu" />
+    <p>{negocio.horario.texto}</p>
+    <ul class="menu__redes">
+      <li>
+        <a href={negocio.redes.instagram} target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d={siInstagram.path} /></svg>
+          Instagram
+        </a>
+      </li>
+      <li>
+        <a href={negocio.redes.facebook} target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d={siFacebook.path} /></svg>
+          Facebook
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  // Ao tocar num link do menu, fecha o menu antes de rolar até a seção.
+  const menu = document.getElementById('menu');
+  menu?.querySelectorAll('.menu__links a').forEach((link) => {
+    link.addEventListener('click', () => menu.hidePopover());
+  });
+</script>
+
+<style>
+  .cabecalho {
+    position: fixed;
+    inset: 0.75rem var(--margem) auto;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 2.5vw, 2rem);
+    max-width: calc(var(--largura) + 4rem);
+    margin-inline: auto;
+    padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+    border-radius: 999px;
+    background: var(--creme);
+    box-shadow:
+      0 0 0 1px rgb(43 26 18 / 0.08),
+      0 10px 30px -12px rgb(43 26 18 / 0.35);
+  }
+
+  .cabecalho__logo img {
+    width: 132px;
+  }
+
+  .cabecalho__nav {
+    margin-left: auto;
+  }
+
+  .cabecalho__nav ul {
+    display: flex;
+    gap: clamp(1rem, 2vw, 1.75rem);
+    padding: 0;
+    list-style: none;
+  }
+
+  .cabecalho__nav a {
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .cabecalho__nav a:hover {
+    text-decoration: underline;
+  }
+
+  .cabecalho__menu {
+    display: none;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 3rem;
+    margin-left: auto;
+    padding: 0 1.25rem 0 1rem;
+    border: 2px solid var(--cafe);
+    border-radius: 999px;
+    background: none;
+    color: var(--cafe);
+    font: 600 1rem var(--texto);
+    cursor: pointer;
+  }
+
+  .cabecalho__menu svg {
+    width: 1.375rem;
+    stroke: currentColor;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+  }
+
+  @media (max-width: 1020px) {
+    .cabecalho__nav,
+    .cabecalho :global(.cabecalho__cta) {
+      display: none;
+    }
+
+    .cabecalho__menu {
+      display: inline-flex;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .cabecalho {
+      inset: 0.5rem 0.5rem auto;
+      padding: 0.375rem 0.375rem 0.375rem 1rem;
+    }
+
+    .cabecalho__logo img {
+      width: 104px;
+    }
+  }
+
+  /* Menu em tela cheia */
+  .menu {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    max-width: none;
+    height: 100dvh;
+    max-height: none;
+    margin: 0;
+    padding: 0.5rem 0.5rem calc(1.5rem + env(safe-area-inset-bottom));
+    border: 0;
+    background: var(--vermelho);
+    color: var(--creme);
+    overflow-y: auto;
+  }
+
+  .menu:popover-open {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .menu__topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.375rem 0.375rem 0.375rem 1rem;
+    border-radius: 999px;
+    background: var(--creme);
+  }
+
+  .menu__fechar {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 3rem;
+    padding: 0 1.25rem 0 1rem;
+    border: 2px solid var(--cafe);
+    border-radius: 999px;
+    background: none;
+    color: var(--cafe);
+    font: 600 1rem var(--texto);
+    cursor: pointer;
+  }
+
+  .menu__fechar svg {
+    width: 1.25rem;
+    stroke: currentColor;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+  }
+
+  .menu__links {
+    display: grid;
+    gap: 0.25rem;
+    padding: 2rem 1rem 1.5rem;
+    list-style: none;
+  }
+
+  .menu__links a {
+    display: block;
+    padding-block: 0.2rem;
+    font: 850 clamp(2.5rem, 11vw, 4rem) / 1.05 var(--titulo);
+    font-variation-settings: 'opsz' 144, 'SOFT' 100;
+    letter-spacing: -0.035em;
+    text-decoration: none;
+  }
+
+  .menu__pe {
+    display: grid;
+    gap: 1rem;
+    margin-top: auto;
+    padding-inline: 1rem;
+  }
+
+  .menu__redes {
+    display: flex;
+    gap: 1.5rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .menu__redes a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 3rem;
+    font-weight: 600;
+  }
+
+  .menu__redes svg {
+    width: 1.375rem;
+    fill: currentColor;
+  }
+
+  @media (min-width: 1021px) {
+    .menu {
+      display: none;
+    }
+  }
+</style>

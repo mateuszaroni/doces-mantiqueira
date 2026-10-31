@@ -1,29 +1,54 @@
 ---
 import Base from '../layouts/Base.astro';
-import Topo from '../components/Topo.astro';
-import Vitrine from '../components/Vitrine.astro';
+import Cabecalho from '../components/Cabecalho.astro';
+import Hero from '../components/Hero.astro';
+import Letreiro from '../components/Letreiro.astro';
+import Produtos from '../components/Produtos.astro';
+import VoceSabia from '../components/VoceSabia.astro';
 import Historia from '../components/Historia.astro';
 import Festas from '../components/Festas.astro';
 import Revenda from '../components/Revenda.astro';
 import OndeEstamos from '../components/OndeEstamos.astro';
 import Rodape from '../components/Rodape.astro';
-import WhatsAppFlutuante from '../components/WhatsAppFlutuante.astro';
+import BarraWhatsApp from '../components/BarraWhatsApp.astro';
 import DadosEstruturados from '../components/DadosEstruturados.astro';
+
+const doces = ['Paçoca', 'Cajuzinho', 'Bananada', 'Doce de leite', 'Abóbora', 'Batata roxa', 'Figo'].map((d) => d.toUpperCase());
+const piquete = ['Feito em Piquete', 'No pé da Serra da Mantiqueira', 'Desde 1985'].map((d) => d.toUpperCase());
 ---
 
 <Base
   titulo="Doces Mantiqueira — doces caseiros de Piquete, na Serra da Mantiqueira"
-  descricao="Doces caseiros feitos de forma artesanal em Piquete (SP), no pé da Serra da Mantiqueira, desde 1985. Paçoca, cajuzinho, doce de leite, de abóbora, de batata e mais. Peça pelo WhatsApp."
+  descricao="Doces caseiros feitos em Piquete (SP), no pé da Serra da Mantiqueira, desde 1985. Paçoca, cajuzinho, doce de leite, de abóbora, de batata e mais. Peça pelo WhatsApp."
 >
   <DadosEstruturados slot="head" />
+  <Cabecalho />
   <main id="conteudo">
-    <Topo />
-    <Vitrine />
+    <Hero />
+    <div class="faixa faixa--topo"><Letreiro itens={doces} /></div>
+    <Produtos />
+    <VoceSabia />
     <Historia />
     <Festas />
     <Revenda />
+    <div class="faixa faixa--revenda"><Letreiro itens={piquete} variante="creme" giro={2} reverso /></div>
     <OndeEstamos />
   </main>
   <Rodape />
-  <WhatsAppFlutuante />
+  <BarraWhatsApp />
 </Base>
+
+<style>
+  /* As faixas cruzam a divisa entre duas seções, como uma fita colada por cima. */
+  .faixa {
+    position: relative;
+    z-index: 5;
+    height: 0;
+    overflow-x: clip;
+    overflow-clip-margin: 0;
+  }
+
+  .faixa > :global(*) {
+    translate: 0 -50%;
+  }
+</style>

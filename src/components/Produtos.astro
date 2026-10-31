@@ -1,0 +1,196 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import BotaoWhatsApp from './BotaoWhatsApp.astro';
+import { mensagens } from '../config';
+import lista from '../data/doces.json';
+
+// A coleção não garante a ordem: a vitrine segue a ordem do arquivo (a do briefing).
+const ordem = lista.map((d) => d.id);
+const doces = (await getCollection('doces')).sort((a, b) => ordem.indexOf(a.id) - ordem.indexOf(b.id));
+---
+
+<section class="produtos" id="produtos" aria-labelledby="produtos-titulo">
+  <div class="envelope produtos__cabeca">
+    <h2 class="titulo-secao" id="produtos-titulo">Conheça nossos produtos</h2>
+    <p>Escolha o doce e peça pelo WhatsApp: a mensagem para o Felipe já vai com o nome dele.</p>
+  </div>
+
+  <p class="produtos__dica" id="produtos-dica">Deslize para ver os 9 doces</p>
+  <ul class="produtos__lista" tabindex="0" aria-label="Os 9 doces" aria-describedby="produtos-dica">
+    {
+      doces.map(({ data }, i) => (
+        <li class:list={['doce', { 'doce--sangra': data.sangra }]} style={`--fundo: ${data.fundo}; --giro: ${i % 2 ? 3 : -3}deg`}>
+          <div class="doce__foto">
+            <Image src={data.recorte} widths={[320, 480, 640, 900]} sizes="(max-width: 760px) 80vw, (max-width: 1100px) 45vw, 400px" alt={data.alt} />
+          </div>
+          <div class="doce__texto">
+            <h3>{data.nome}</h3>
+            <p>{data.descricao}</p>
+            <p class="doce__peso">350g</p>
+          </div>
+          <BotaoWhatsApp
+            class="doce__botao"
+            mensagem={mensagens.produto(data.artigo, data.nome.toLowerCase())}
+            rotulo="Pedir no WhatsApp"
+            complementoLeitor={data.nome}
+          />
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  .produtos {
+    padding-block: var(--respiro);
+  }
+
+  .produtos__cabeca {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem 3rem;
+  }
+
+  .produtos__cabeca p {
+    max-width: 34ch;
+    font-size: var(--t-grande);
+  }
+
+  .produtos__dica {
+    display: none;
+  }
+
+  .produtos__lista {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(1rem, 2vw, 1.75rem);
+    width: min(100% - 2 * var(--margem), var(--largura));
+    margin: clamp(2.5rem, 5vw, 4.5rem) auto 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .doce {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 2rem;
+    background: var(--fundo);
+  }
+
+  .doce__foto {
+    display: flex;
+    justify-content: center;
+    height: clamp(15rem, 22vw, 19rem);
+    padding: 1.75rem 1.5rem 0.5rem;
+  }
+
+  .doce__foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 16px 18px rgb(43 26 18 / 0.25));
+    transform: rotate(var(--giro));
+  }
+
+  /* Prato cortado no enquadramento da foto: o recorte passa das bordas do card e o lado reto some. */
+  .doce--sangra .doce__foto {
+    padding-inline: 0;
+  }
+
+  .doce--sangra .doce__foto img {
+    transform: scale(1.22);
+  }
+
+  .doce__texto {
+    flex: 1;
+    padding: 1rem 1.75rem 0;
+  }
+
+  .doce h3 {
+    font-size: var(--t-card);
+  }
+
+  .doce__texto p {
+    margin-top: 0.6rem;
+  }
+
+  .doce__peso {
+    display: inline-block;
+    padding: 0.15rem 0.75rem;
+    border: 1.5px solid currentColor;
+    border-radius: 999px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .doce :global(.doce__botao) {
+    margin: 1.5rem 1rem 1rem;
+    padding-inline: 1rem;
+  }
+
+  @media (max-width: 1100px) {
+    .produtos__lista {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  /* No celular, carrossel com rolagem lateral: o próximo card aparece pela metade. */
+  @media (max-width: 760px) {
+    .produtos__dica {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      width: min(100% - 2 * var(--margem), var(--largura));
+      margin: 2rem auto 0;
+      color: var(--caramelo);
+      font-weight: 600;
+    }
+
+    .produtos__dica::after {
+      content: '';
+      width: 2.5rem;
+      height: 2px;
+      background: currentColor;
+      animation: puxa 1.6s ease-in-out infinite alternate;
+    }
+
+    .produtos__lista {
+      grid-template-columns: none;
+      grid-auto-flow: column;
+      grid-auto-columns: 82%;
+      gap: 0.875rem;
+      width: auto;
+      margin-top: 1rem;
+      padding: 0 var(--margem) 1rem;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      /* Sem isto o Chrome no celular alarga a página até o fim do carrossel. */
+      contain: paint;
+      scroll-snap-type: x mandatory;
+      scroll-padding-inline: var(--margem);
+      scrollbar-width: none;
+    }
+
+    .produtos__lista::-webkit-scrollbar {
+      display: none;
+    }
+
+    .doce {
+      scroll-snap-align: start;
+    }
+
+    .doce__foto {
+      height: 14rem;
+    }
+  }
+
+  @keyframes puxa {
+    to {
+      transform: translateX(0.5rem);
+    }
+  }
+</style>

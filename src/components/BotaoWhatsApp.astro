@@ -1,0 +1,22 @@
+---
+import { siWhatsapp } from 'simple-icons';
+import { linkWhatsApp } from '../config';
+
+interface Props {
+  mensagem: string;
+  rotulo: string;
+  /** Texto extra só para leitores de tela, para diferenciar botões de mesmo rótulo. */
+  complementoLeitor?: string;
+  variante?: 'vermelho' | 'creme' | 'mel' | 'contorno';
+  icone?: boolean;
+  class?: string;
+}
+
+const { mensagem, rotulo, complementoLeitor, variante = 'vermelho', icone = true, class: classe } = Astro.props;
+---
+
+<a class:list={['botao', `botao--${variante}`, classe]} href={linkWhatsApp(mensagem)} target="_blank" rel="noopener">
+  {icone && <svg viewBox="0 0 24 24" aria-hidden="true"><path d={siWhatsapp.path} /></svg>}
+  <span>{rotulo}{complementoLeitor && <span class="so-leitor">: {complementoLeitor}</span>}</span>
+  <span class="so-leitor">, abre o WhatsApp em nova aba</span>
+</a>

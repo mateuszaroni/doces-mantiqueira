@@ -1,0 +1,81 @@
+---
+import { Image } from 'astro:assets';
+import BotaoWhatsApp from './BotaoWhatsApp.astro';
+import { mensagens } from '../config';
+import sortida from '../assets/recortes/sortida-prato-doces.webp';
+---
+
+<section class="festas" id="festas" aria-labelledby="festas-titulo">
+  <div class="envelope festas__grade">
+    <div class="festas__texto">
+      <h2 class="titulo-secao" id="festas-titulo">Festas, quermesses e arraiás</h2>
+      <p class="festas__lead">Para mesa de festa, quermesse de paróquia, arraiá e aniversário caipira.</p>
+      <p>
+        A bandeja sortida junta abóbora, batata, doce de leite e bananada. Junho e julho são a época mais procurada: vale
+        pedir com antecedência.
+      </p>
+      <BotaoWhatsApp mensagem={mensagens.festas} rotulo="Pedir orçamento para festa" />
+    </div>
+    <Image
+      class="festas__foto"
+      src={sortida}
+      widths={[360, 540, 720, 900]}
+      sizes="(max-width: 760px) 90vw, 45vw"
+      alt="Doce de abóbora, de batata, doce de leite e bananada arrumados juntos"
+      loading="lazy"
+    />
+  </div>
+</section>
+
+<style>
+  .festas {
+    padding-block: var(--respiro);
+    background: var(--mel);
+    overflow: hidden;
+  }
+
+  .festas__grade {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 2rem clamp(2rem, 5vw, 5rem);
+  }
+
+  .festas__texto {
+    display: grid;
+    justify-items: start;
+    gap: 1.25rem;
+  }
+
+  .festas__texto p {
+    max-width: 44ch;
+  }
+
+  .festas__lead {
+    margin-top: 0.75rem;
+    font-size: var(--t-grande);
+    font-weight: 600;
+  }
+
+  .festas__texto :global(.botao) {
+    margin-top: 0.75rem;
+  }
+
+  .festas :global(.festas__foto) {
+    width: 112%;
+    max-width: none;
+    rotate: -6deg;
+    filter: drop-shadow(0 26px 28px rgb(43 26 18 / 0.3));
+  }
+
+  @media (max-width: 760px) {
+    .festas__grade {
+      grid-template-columns: 1fr;
+    }
+
+    .festas :global(.festas__foto) {
+      width: 100%;
+      justify-self: center;
+    }
+  }
+</style>

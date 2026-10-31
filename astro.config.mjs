@@ -20,15 +20,16 @@ export default defineConfig({
   integrations: indexavel ? [sitemap({ filter: (pagina) => !pagina.includes('/404') })] : [],
   fonts: [
     {
+      // Títulos. Arquivo "full": traz os eixos de peso, tamanho óptico e SOFT (letra arredondada).
       provider: local,
-      name: 'Caprasimo',
+      name: 'Fraunces',
       cssVariable: '--fonte-titulo',
       fallbacks: ['Georgia', 'serif'],
       options: {
         variants: [
           {
-            src: ['@fontsource/caprasimo/files/caprasimo-latin-400-normal.woff2'],
-            weight: 400,
+            src: ['@fontsource-variable/fraunces/files/fraunces-latin-full-normal.woff2'],
+            weight: '100 900',
             style: 'normal',
           },
         ],
@@ -36,33 +37,15 @@ export default defineConfig({
     },
     {
       provider: local,
-      name: 'Atkinson Hyperlegible Next',
+      name: 'DM Sans',
       cssVariable: '--fonte-texto',
       fallbacks: ['system-ui', 'sans-serif'],
       options: {
         variants: [
           {
-            src: ['@fontsource-variable/atkinson-hyperlegible-next/files/atkinson-hyperlegible-next-latin-wght-normal.woff2'],
-            weight: '200 800',
+            src: ['@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2'],
+            weight: '100 1000',
             style: 'normal',
-          },
-        ],
-      },
-    },
-    {
-      // Só os algarismos 0–9, da Figtree: o zero da Atkinson é cortado (Ø) e destoa do site.
-      // Sem fallback, para as letras caírem na Atkinson. Arquivo gerado por subset (4 KB).
-      provider: local,
-      name: 'Algarismos',
-      cssVariable: '--fonte-algarismos',
-      fallbacks: [],
-      options: {
-        variants: [
-          {
-            src: ['./src/assets/fontes/figtree-algarismos.woff2'],
-            weight: '300 900',
-            style: 'normal',
-            unicodeRange: ['U+0030-0039'],
           },
         ],
       },
