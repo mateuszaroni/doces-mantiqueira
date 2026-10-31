@@ -29,3 +29,6 @@ design/**/trace-*.svg
 
 # relatórios da skill de design
 .taste-skill/
+
+# Máscaras cruas do rembg (scripts/recortar-fotos.py)
+.cache-recortes/

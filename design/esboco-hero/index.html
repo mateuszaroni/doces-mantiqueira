@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Esboço do hero — Doces Mantiqueira</title>
+<style>
+  /* Esboço para aprovação. Não é o site: só a composição do hero. */
+  @font-face { font-family: 'Fraunces'; src: url('fontes/fraunces-latin-full-normal.woff2') format('woff2'); font-weight: 100 900; font-display: swap; }
+  @font-face { font-family: 'DM Sans'; src: url('fontes/dm-sans-latin-wght-normal.woff2') format('woff2'); font-weight: 100 1000; font-display: swap; }
+
+  :root {
+    --vermelho: #C10413; --tacho: #7A0A12; --creme: #FBF4E4; --cafe: #2B1A12;
+    --caramelo: #8A5A1F; --mel: #F2C14E; --serra: #3E5A3A;
+    --fundo: var(--creme); --titulo: var(--vermelho); --texto: var(--cafe);
+  }
+  .vermelho { --fundo: var(--vermelho); --titulo: var(--creme); --texto: var(--creme); }
+
+  * { box-sizing: border-box; margin: 0; }
+  body { font: 400 1.0625rem/1.55 'DM Sans', system-ui, sans-serif; color: var(--texto); background: var(--fundo); }
+  a { color: inherit; }
+
+  .cabecalho { position: fixed; inset: 0 0 auto; z-index: 10; display: flex; align-items: center; gap: 2rem;
+    padding: .75rem clamp(1rem, 4vw, 3rem); }
+  .cabecalho img { width: 132px; height: auto; display: block; }
+  .vermelho .cabecalho { inset: .75rem clamp(.75rem, 3vw, 2.5rem) auto; padding: .5rem .5rem .5rem 1.5rem;
+    background: var(--creme); color: var(--cafe); border-radius: 999px; }
+  .vermelho .cabecalho .primario { background: var(--vermelho); color: #fff; }
+  .cabecalho nav { display: flex; gap: 1.6rem; margin-left: auto; font-weight: 500; }
+  .cabecalho nav a { text-decoration: none; }
+  .menu { display: none; margin-left: auto; width: 48px; height: 48px; border-radius: 50%; border: 2px solid currentColor; background: none; color: inherit; }
+
+  .botao { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-height: 52px;
+    padding: 0 1.5rem; border-radius: 999px; font: 600 1.0625rem/1 'DM Sans', sans-serif; text-decoration: none; }
+  .botao svg { width: 1.25em; height: 1.25em; flex: none; }
+  .primario { background: var(--vermelho); color: #fff; }
+  .secundario { border: 2px solid currentColor; }
+  .vermelho .primario { background: var(--creme); color: var(--vermelho); }
+
+  .hero { position: relative; min-height: 100svh; overflow: hidden; display: grid; place-items: center;
+    padding: 7rem 1rem 6rem; text-align: center; }
+  .titulo { position: relative; z-index: 2; font-family: 'Fraunces', serif; font-weight: 850;
+    font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 0; color: var(--titulo);
+    font-size: clamp(3.3rem, 14.5vw, 14rem); line-height: .8; letter-spacing: -.045em; }
+  .titulo span { display: block; }
+  .apoio { position: relative; z-index: 2; margin: clamp(1.5rem, 4vw, 3.25rem) auto 0; max-width: 30ch; font-size: clamp(1.0625rem, 1.6vw, 1.375rem); }
+  .acoes { position: relative; z-index: 2; display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; margin-top: 1.75rem; }
+
+  .recorte { position: absolute; z-index: 1; height: auto; filter: drop-shadow(0 18px 24px rgb(43 26 18 / .22));
+    animation: flutua 7s ease-in-out infinite alternate; }
+  .r-figo { width: clamp(220px, 30vw, 470px); top: 4%; right: -6%; --g: 6deg; }
+  .r-pacoca { width: clamp(230px, 28vw, 440px); bottom: -1%; left: -4%; --g: -4deg; animation-delay: -2s; }
+  .vermelho .recorte { filter: drop-shadow(0 22px 26px rgb(60 0 6 / .5)); }
+  .r-caju { width: clamp(180px, 22vw, 340px); bottom: -10%; right: 5%; --g: 5deg; animation-delay: -4s; }
+  @keyframes flutua { from { transform: translateY(0) rotate(var(--g)); } to { transform: translateY(-14px) rotate(calc(var(--g) * -.4)); } }
+
+  .selo { position: absolute; z-index: 3; width: clamp(96px, 10vw, 150px); top: 22%; right: 16%; color: var(--titulo); }
+  .selo svg { width: 100%; height: auto; display: block; animation: gira 24s linear infinite; }
+  .selo .disco { fill: var(--mel); }
+  .selo text { fill: var(--cafe); font: 700 10.5px 'DM Sans', sans-serif; letter-spacing: .14em; }
+  @keyframes gira { to { transform: rotate(1turn); } }
+
+  .barra { display: none; }
+
+  @media (prefers-reduced-motion: reduce) { .recorte, .selo svg { animation: none; } }
+
+  @media (max-width: 760px) {
+    .cabecalho { padding: .5rem 1rem; }
+    .cabecalho img { width: 108px; }
+    .cabecalho nav, .cabecalho .botao { display: none; }
+    .menu { display: block; }
+    .hero { display: block; min-height: auto; padding: 5.25rem 1rem 6.5rem; }
+    .titulo { font-size: 15.2vw; }
+    .apoio { margin-top: 1rem; }
+    .palco { position: relative; height: 230px; margin: .5rem -1rem 0; }
+    .recorte { animation-duration: 6s; }
+    .r-figo { width: 54%; top: 2%; right: -8%; }
+    .r-pacoca { width: 50%; bottom: auto; top: 12%; left: -6%; }
+    .r-caju { width: 40%; bottom: -6%; right: 30%; }
+    .vermelho .cabecalho { inset: .5rem .5rem auto; padding: .375rem .375rem .375rem 1rem; }
+    .selo { width: 84px; top: -6px; left: 40%; right: auto; }
+    .acoes { flex-direction: column; margin-top: .25rem; }
+    .acoes .botao { width: 100%; }
+    .barra { display: flex; position: fixed; inset: auto 0 0; z-index: 20; padding: .5rem 1rem calc(.5rem + env(safe-area-inset-bottom));
+      background: var(--creme); box-shadow: 0 -1px 0 rgb(43 26 18 / .12); }
+    .barra .botao { width: 100%; background: var(--vermelho); color: #fff; }
+  }
+  @media (min-width: 761px) { .palco { display: contents; } }
+</style>
+</head>
+<body>
+<script>if (new URLSearchParams(location.search).get('v') === 'vermelho') document.body.classList.add('vermelho');</script>
+<header class="cabecalho">
+  <a href="#"><img src="../../src/assets/logo/logo.svg" alt="Doces Mantiqueira" width="132" height="62"></a>
+  <nav><a href="#">Produtos</a><a href="#">Nossa história</a><a href="#">Festas</a><a href="#">Revenda</a><a href="#">Onde estamos</a></nav>
+  <a class="botao primario" href="#">Pedir no WhatsApp</a>
+  <button class="menu" aria-label="Abrir menu">≡</button>
+</header>
+
+<main>
+  <section class="hero">
+    <div>
+      <h1 class="titulo"><span>Doces</span><span>Mantiqueira</span></h1>
+      <p class="apoio">Doces caseiros da Serra da Mantiqueira, desde 1985.</p>
+      <div class="palco">
+        <img class="recorte r-figo" src="../../src/assets/recortes/figo.webp" alt="">
+        <img class="recorte r-pacoca" src="../../src/assets/recortes/pacoca-tigela.webp" alt="">
+        <img class="recorte r-caju" src="../../src/assets/recortes/sortida.webp" alt="">
+        <div class="selo" aria-hidden="true">
+          <svg viewBox="0 0 120 120">
+            <defs><path id="roda" d="M60 60m-44 0a44 44 0 1 1 88 0a44 44 0 1 1-88 0"/></defs>
+            <circle class="disco" cx="60" cy="60" r="58"/>
+            <text><textPath href="#roda" textLength="274" lengthAdjust="spacingAndGlyphs">DESDE 1985 · PIQUETE-SP · DOCES CASEIROS ·</textPath></text>
+            <path d="M38 74 52 52l6 8 10-18 16 32z" fill="#C10413"/>
+          </svg>
+        </div>
+      </div>
+      <div class="acoes">
+        <a class="botao primario" href="#">Pedir / orçamento para festa</a>
+        <a class="botao secundario" href="#revenda">Quero revender</a>
+      </div>
+    </div>
+  </section>
+</main>
+<div class="barra"><a class="botao" href="#">Pedir no WhatsApp</a></div>
+</body>
+</html>
