@@ -32,3 +32,6 @@ design/**/trace-*.svg
 
 # Máscaras cruas do rembg (scripts/recortar-fotos.py)
 .cache-recortes/
+
+# Capturas de tela para conferência
+design/capturas/
