@@ -47,7 +47,10 @@ html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
   scroll-behavior: smooth;
+  /* Cabeçalho fixo em cima e barra do WhatsApp embaixo não cobrem o que recebe foco. */
   scroll-padding-top: var(--altura-cabecalho);
+  scroll-padding-bottom: var(--barra-celular);
+  -webkit-tap-highlight-color: rgb(193 4 19 / 0.15);
 }
 
 body {

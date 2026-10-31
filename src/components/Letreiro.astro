@@ -58,6 +58,11 @@ const metade = [...itens, ...itens];
     animation: rola 45s linear infinite;
   }
 
+  /* Quem quiser ler com calma para a faixa passando o mouse. */
+  .letreiro:hover .letreiro__trilha {
+    animation-play-state: paused;
+  }
+
   .letreiro--reverso .letreiro__trilha {
     animation-direction: reverse;
   }

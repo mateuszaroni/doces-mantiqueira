@@ -13,7 +13,7 @@ const doces = (await getCollection('doces')).sort((a, b) => ordem.indexOf(a.id) 
 <section class="produtos" id="produtos" aria-labelledby="produtos-titulo">
   <div class="envelope produtos__cabeca">
     <h2 class="titulo-secao" id="produtos-titulo">Conheça nossos produtos</h2>
-    <p>Escolha o doce e peça pelo WhatsApp: a mensagem para o Felipe já vai com o nome dele.</p>
+    <p>Escolha o doce e peça pelo WhatsApp: a mensagem já vai com o nome dele.</p>
   </div>
 
   <p class="produtos__dica" id="produtos-dica">Deslize para ver os 9 doces</p>
@@ -22,7 +22,7 @@ const doces = (await getCollection('doces')).sort((a, b) => ordem.indexOf(a.id) 
       doces.map(({ data }, i) => (
         <li class:list={['doce', { 'doce--sangra': data.sangra }]} style={`--fundo: ${data.fundo}; --giro: ${i % 2 ? 3 : -3}deg`}>
           <div class="doce__foto">
-            <Image src={data.recorte} widths={[320, 480, 640, 900]} sizes="(max-width: 760px) 80vw, (max-width: 1100px) 45vw, 400px" alt={data.alt} />
+            <Image src={data.recorte} widths={[320, 480, 640, 900]} sizes="(max-width: 760px) 80vw, (max-width: 1100px) 45vw, 400px" quality={72} alt={data.alt} />
           </div>
           <div class="doce__texto">
             <h3>{data.nome}</h3>

@@ -17,6 +17,8 @@ const local = fontProviders.local();
 export default defineConfig({
   site,
   output: 'static',
+  // CSS pequeno: vai dentro do HTML e não bloqueia a primeira pintura.
+  build: { inlineStylesheets: 'always' },
   integrations: indexavel ? [sitemap({ filter: (pagina) => !pagina.includes('/404') })] : [],
   fonts: [
     {

@@ -6,12 +6,14 @@ import figo from '../assets/recortes/figo.webp';
 import pacoca from '../assets/recortes/pacoca-tigela.webp';
 import sortida from '../assets/recortes/sortida.webp';
 
+// Figo é o maior elemento no desktop; a bandeja sortida, no celular: os dois com prioridade alta.
 const larguras = [280, 420, 640, 900];
+const qualidade = 75;
 ---
 
 <section class="hero" id="topo" aria-labelledby="hero-titulo">
   <div class="hero__conteudo">
-    <h1 class="hero__titulo" id="hero-titulo"><span>Doces</span> <span>Mantiqueira</span></h1>
+    <h1 class="hero__titulo" id="hero-titulo" translate="no"><span>Doces</span> <span>Mantiqueira</span></h1>
     <p class="hero__apoio">Doces caseiros da Serra da Mantiqueira, desde 1985.</p>
 
     <div class="hero__palco">
@@ -19,6 +21,7 @@ const larguras = [280, 420, 640, 900];
         class="recorte recorte--figo"
         src={figo}
         widths={larguras}
+        quality={qualidade}
         sizes="(max-width: 760px) 54vw, 30vw"
         alt="Figos cristalizados no açúcar, num prato branco"
         loading="eager"
@@ -28,6 +31,7 @@ const larguras = [280, 420, 640, 900];
         class="recorte recorte--pacoca"
         src={pacoca}
         widths={larguras}
+        quality={qualidade}
         sizes="(max-width: 760px) 50vw, 28vw"
         alt="Paçoca de amendoim numa tigela vermelha, com amendoins em volta"
         loading="eager"
@@ -36,9 +40,11 @@ const larguras = [280, 420, 640, 900];
         class="recorte recorte--sortida"
         src={sortida}
         widths={larguras}
+        quality={qualidade}
         sizes="(max-width: 760px) 40vw, 22vw"
         alt="Bandeja sortida com doce de abóbora, de batata, doce de leite e bananada"
         loading="eager"
+        fetchpriority="high"
       />
       <div class="selo" aria-hidden="true">
         <svg viewBox="0 0 120 120">
