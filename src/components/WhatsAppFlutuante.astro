@@ -1,0 +1,51 @@
+---
+import { siWhatsapp } from 'simple-icons';
+import { linkWhatsApp, mensagens } from '../config';
+---
+
+<!-- Botão redondo do WhatsApp, sempre no canto inferior direito, em todas as telas. -->
+<a class="flutuante" href={linkWhatsApp(mensagens.geral)} target="_blank" rel="noopener" aria-label="Pedir no WhatsApp (abre em nova aba)">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d={siWhatsapp.path} /></svg>
+</a>
+
+<style>
+  .flutuante {
+    position: fixed;
+    right: max(1.25rem, env(safe-area-inset-right));
+    bottom: max(1.25rem, env(safe-area-inset-bottom));
+    z-index: 40;
+    display: grid;
+    place-items: center;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    /* Verde do WhatsApp um tom mais escuro: no verde oficial o ícone branco fica com contraste baixo. */
+    background: #1da851;
+    color: #fff;
+    box-shadow:
+      0 0 0 3px rgb(255 255 255 / 0.9),
+      0 12px 28px -8px rgb(0 0 0 / 0.5);
+    touch-action: manipulation;
+    transition: transform 0.2s;
+  }
+
+  .flutuante:hover {
+    transform: scale(1.06);
+  }
+
+  .flutuante svg {
+    width: 2rem;
+    fill: currentColor;
+  }
+
+  @media (max-width: 760px) {
+    .flutuante {
+      width: 3.5rem;
+      height: 3.5rem;
+    }
+
+    .flutuante svg {
+      width: 1.75rem;
+    }
+  }
+</style>
