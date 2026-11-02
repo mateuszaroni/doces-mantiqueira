@@ -7,7 +7,6 @@ import wawoff2 from 'wawoff2';
 
 const W = 1200;
 const H = 630;
-const VERMELHO = '#C10413';
 const CREME = '#FBF4E4';
 
 const FRAUNCES = 'node_modules/@fontsource-variable/fraunces/files/fraunces-latin-full-normal.woff2';
@@ -53,11 +52,8 @@ const camadaTexto = Buffer.from(
 // Logo clara direto sobre o vermelho, como no cabeçalho do site.
 const logo = await sharp('src/assets/logo/logo-fundo-escuro.svg', { density: 300 }).resize({ width: 210 }).png().toBuffer();
 
-// Fundo do hero: degradê vinho com a serra sombreada, sumindo para baixo.
-const fundo = Buffer.from(
-  `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}"><defs><radialGradient id="r" cx="62%" cy="30%" r="80%"><stop offset="0" stop-color="${VERMELHO}"/><stop offset="0.45" stop-color="#9a0813"/><stop offset="1" stop-color="#5c060d"/></radialGradient></defs><rect width="${W}" height="${H}" fill="url(#r)"/></svg>`,
-);
-const serra = await sharp('src/assets/fundo/serra-fundo.svg').resize(W, 480, { fit: 'cover', position: 'bottom' }).png().toBuffer();
+// Fundo do hero: a foto da serra no vermelho, ancorada no topo, onde estão os picos.
+const fundo = await sharp('src/assets/fundo/serra-foto.webp').resize(W, H, { fit: 'cover', position: 'top' }).toBuffer();
 
 // Recorte girado com sombra escura por baixo, como os recortes do hero.
 async function recorte(arquivo, largura, giro) {
@@ -101,7 +97,6 @@ async function colar(imagem, left, top) {
 
 await sharp(fundo)
   .composite([
-    { input: serra, left: 0, top: 40 },
     await colar(figo, 740, -70),
     await colar(pacoca, 820, 290),
     { input: logo, left: xTexto - 6, top: 36 },

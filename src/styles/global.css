@@ -1,5 +1,5 @@
 /* Doces Mantiqueira — base do site (v3).
-   Vermelho profundo com a serra sombreada, serifa clássica nos títulos, filetes dourados. */
+   Vermelho profundo com a foto da serra, serifa clássica nos títulos, filetes dourados. */
 
 :root {
   /* Paleta (contraste conferido no CLAUDE.md, todos os pares ≥ 4,5:1) */
@@ -10,10 +10,10 @@
   --caramelo: #8a5a1f;
   --mel: #f2c14e;
   --serra: #3e5a3a;
-  /* Derivados para o degradê do hero e os filetes */
-  --vinho: #5c060d;
+  /* Derivados do tom da foto da serra (cantos #4d0200, névoa #ab0202, brilho #d00206) */
+  --vinho: #5a0201;
   --dourado: rgb(242 193 78 / 0.65);
-  --fundo-vermelho: radial-gradient(120% 90% at 62% 30%, #c10413 0%, #9a0813 45%, var(--vinho) 100%);
+  --fundo-vermelho: radial-gradient(120% 95% at 50% 55%, #ab0202 0%, #7f0201 45%, #4d0200 100%);
 
   /* Tipografia */
   --titulo: var(--fonte-titulo), Georgia, serif;

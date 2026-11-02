@@ -6,15 +6,24 @@ import { mensagens } from '../config';
 import figo from '../assets/recortes/figo.webp';
 import pacoca from '../assets/recortes/pacoca-tigela.webp';
 import sortida from '../assets/recortes/sortida.webp';
-import serraFundo from '../assets/fundo/serra-fundo.svg';
+import serraFoto from '../assets/fundo/serra-foto.webp';
 
-// A bandeja sortida fica na frente do grupo e é o maior elemento: prioridade alta.
+// A foto da serra cobre o hero inteiro e é o maior elemento da primeira dobra: prioridade alta.
 const larguras = [280, 420, 640, 900];
 const qualidade = 75;
 ---
 
 <section class="hero" id="topo" aria-labelledby="hero-titulo">
-  <img class="hero__serra" src={serraFundo.src} width="1600" height="640" alt="" fetchpriority="low" />
+  <Image
+    class="hero__fundo"
+    src={serraFoto}
+    widths={[640, 960, 1280, 1672]}
+    sizes="100vw"
+    quality={80}
+    alt=""
+    loading="eager"
+    fetchpriority="high"
+  />
 
   <div class="hero__grade">
     <div class="hero__texto">
@@ -57,7 +66,6 @@ const qualidade = 75;
         sizes="(max-width: 760px) 46vw, 22vw"
         alt="Bandeja sortida com doce de abóbora, de batata, doce de leite e bananada"
         loading="eager"
-        fetchpriority="high"
       />
       <div class="selo" aria-hidden="true">
         <svg viewBox="0 0 120 120">
@@ -80,19 +88,18 @@ const qualidade = 75;
     min-height: max(100svh, 44rem);
     padding: calc(var(--altura-cabecalho) + 2rem) var(--margem) 5.5rem;
     overflow: hidden;
-    background: var(--fundo-vermelho);
+    background: #640201;
     color: var(--creme);
   }
 
-  /* A serra sombreada fica atrás de tudo e some para baixo, no vermelho. */
-  .hero__serra {
+  /* A foto da serra no vermelho cobre o hero inteiro, ancorada no topo (onde estão os picos). */
+  .hero :global(.hero__fundo) {
     position: absolute;
-    inset: 4rem 0 auto;
+    inset: 0;
     width: 100%;
-    height: 72%;
+    height: 100%;
     object-fit: cover;
-    object-position: center bottom;
-    mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+    object-position: center top;
     pointer-events: none;
   }
 
@@ -244,11 +251,6 @@ const qualidade = 75;
       display: block;
       min-height: auto;
       padding: calc(var(--altura-cabecalho) + 1.5rem) 1rem 2.5rem;
-    }
-
-    .hero__serra {
-      inset: 3rem 0 auto;
-      height: 22rem;
     }
 
     .hero__grade {

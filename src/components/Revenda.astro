@@ -2,14 +2,17 @@
 import { Image } from 'astro:assets';
 import BotaoWhatsApp from './BotaoWhatsApp.astro';
 import Filete from './Filete.astro';
-import serraFundo from '../assets/fundo/serra-fundo.svg';
+import { getImage } from 'astro:assets';
+import serraFoto from '../assets/fundo/serra-foto.webp';
 import { mensagens } from '../config';
 import pacote from '../assets/recortes/pacoca-pacote.webp';
+
+const serraRevenda = await getImage({ src: serraFoto, width: 1672, quality: 75 });
 
 const argumentos = ['Ótima margem', 'Validade de 45 dias', 'Entrega em todo o Vale do Paraíba, até Resende (RJ)', 'Mais de 40 anos de tradição'];
 ---
 
-<section class="revenda" id="revenda" aria-labelledby="revenda-titulo" style={`--serra-img: url(${serraFundo.src})`}>
+<section class="revenda" id="revenda" aria-labelledby="revenda-titulo" style={`--serra-img: url(${serraRevenda.src})`}>
   <div class="envelope revenda__grade">
     <div class="revenda__texto">
       <h2 class="titulo-secao" id="revenda-titulo">Quer revender?</h2>
@@ -33,11 +36,10 @@ const argumentos = ['Ótima margem', 'Validade de 45 dias', 'Entrega em todo o V
 <style>
   .revenda {
     padding-block: var(--respiro) calc(var(--respiro) + 2rem);
-    /* A mesma serra do hero, mais apagada, atrás da revenda. */
+    /* A mesma foto da serra do hero, um pouco escurecida para o texto ler bem. */
     background:
-      linear-gradient(rgb(92 6 13 / 0.6), rgb(92 6 13 / 0.6)),
-      var(--serra-img) center bottom / 130% auto no-repeat,
-      radial-gradient(110% 90% at 30% 20%, var(--tacho) 0%, var(--vinho) 100%);
+      linear-gradient(rgb(77 2 0 / 0.45), rgb(77 2 0 / 0.45)),
+      #640201 var(--serra-img) center top / cover no-repeat;
     color: var(--creme);
     overflow: hidden;
   }

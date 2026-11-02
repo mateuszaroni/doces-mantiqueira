@@ -1,7 +1,8 @@
 ---
 import { siFacebook, siInstagram } from 'simple-icons';
 import logo from '../assets/logo/logo-fundo-escuro.svg';
-import serraFundo from '../assets/fundo/serra-fundo.svg';
+import { getImage } from 'astro:assets';
+import serraFoto from '../assets/fundo/serra-foto.webp';
 import BotaoWhatsApp from './BotaoWhatsApp.astro';
 import { mensagens, negocio } from '../config';
 
@@ -11,6 +12,8 @@ interface Props {
 }
 
 const { base = '' } = Astro.props;
+// Fundo do menu: a mesma foto da serra do hero, numa versão menor (o menu só existe no celular).
+const serraMenu = await getImage({ src: serraFoto, width: 960, quality: 75 });
 
 const links = [
   { href: '#produtos', rotulo: 'Produtos' },
@@ -41,7 +44,7 @@ const links = [
 </header>
 
 <!-- Menu do celular: popover nativo (abre, fecha com Esc e prende o foco sem JavaScript). -->
-<div id="menu" class="menu" popover style={`--serra-img: url(${serraFundo.src})`}>
+<div id="menu" class="menu" popover style={`--serra-img: url(${serraMenu.src})`}>
   <div class="menu__topo">
     <img src={logo.src} width="120" height="57" alt="" />
     <button class="menu__fechar" type="button" popovertarget="menu" popovertargetaction="hide">
@@ -210,7 +213,7 @@ const links = [
     }
   }
 
-  /* Menu em tela cheia: o mesmo vermelho do hero, com a serra ao fundo. */
+  /* Menu em tela cheia: a mesma foto da serra do hero. */
   .menu {
     position: fixed;
     inset: 0;
@@ -221,9 +224,7 @@ const links = [
     margin: 0;
     padding: 0.75rem 1rem calc(1.5rem + env(safe-area-inset-bottom));
     border: 0;
-    background:
-      var(--serra-img) center bottom / 160% auto no-repeat,
-      var(--fundo-vermelho);
+    background: #640201 var(--serra-img) center top / cover no-repeat;
     color: var(--creme);
     overflow-y: auto;
     overscroll-behavior: contain;
