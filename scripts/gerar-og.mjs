@@ -36,25 +36,28 @@ function textoEmCaminho(base, eixos, texto, tamanho, x, linhaBase, cor, espacame
 }
 
 // Mesmos eixos do título do site.
-const titulo = { wght: 850, opsz: 144, SOFT: 100, WONK: 0 };
-const texto = { wght: 500 };
+// O contorno do fontkit sai um pouco mais fino que o navegador: peso maior para igualar ao site.
+const titulo = { wght: 700, opsz: 144, SOFT: 0, WONK: 0 };
+const apoio = { wght: 400, opsz: 36, SOFT: 0, WONK: 0 };
 
 const xTexto = 60;
 const camadaTexto = Buffer.from(
   `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">` +
-    textoEmCaminho(fontes.fraunces, titulo, 'Doces', 132, xTexto, 318, CREME, -0.045) +
-    textoEmCaminho(fontes.fraunces, titulo, 'Mantiqueira', 132, xTexto, 430, CREME, -0.045) +
-    textoEmCaminho(fontes.dmSans, texto, 'Doces caseiros de Piquete (SP),', 32, xTexto + 4, 510, CREME) +
-    textoEmCaminho(fontes.dmSans, texto, 'na Serra da Mantiqueira, desde 1985.', 32, xTexto + 4, 552, CREME) +
+    textoEmCaminho(fontes.fraunces, titulo, 'Doces', 132, xTexto, 318, CREME, -0.015) +
+    textoEmCaminho(fontes.fraunces, titulo, 'Mantiqueira', 132, xTexto, 430, CREME, -0.015) +
+    textoEmCaminho(fontes.fraunces, apoio, 'Doces caseiros de Piquete (SP),', 34, xTexto + 4, 510, CREME) +
+    textoEmCaminho(fontes.fraunces, apoio, 'na Serra da Mantiqueira, desde 1985.', 34, xTexto + 4, 552, CREME) +
     `</svg>`,
 );
 
-// Logo numa pílula creme, como no cabeçalho do site.
-const logo = await sharp('src/assets/logo/logo.svg', { density: 300 }).resize({ width: 190 }).png().toBuffer();
-const { height: alturaLogo } = await sharp(logo).metadata();
-const pilula = Buffer.from(
-  `<svg xmlns="http://www.w3.org/2000/svg" width="250" height="${alturaLogo + 28}"><rect width="250" height="${alturaLogo + 28}" rx="${(alturaLogo + 28) / 2}" fill="${CREME}"/></svg>`,
+// Logo clara direto sobre o vermelho, como no cabeçalho do site.
+const logo = await sharp('src/assets/logo/logo-fundo-escuro.svg', { density: 300 }).resize({ width: 210 }).png().toBuffer();
+
+// Fundo do hero: degradê vinho com a serra sombreada, sumindo para baixo.
+const fundo = Buffer.from(
+  `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}"><defs><radialGradient id="r" cx="62%" cy="30%" r="80%"><stop offset="0" stop-color="${VERMELHO}"/><stop offset="0.45" stop-color="#9a0813"/><stop offset="1" stop-color="#5c060d"/></radialGradient></defs><rect width="${W}" height="${H}" fill="url(#r)"/></svg>`,
 );
+const serra = await sharp('src/assets/fundo/serra-fundo.svg').resize(W, 480, { fit: 'cover', position: 'bottom' }).png().toBuffer();
 
 // Recorte girado com sombra escura por baixo, como os recortes do hero.
 async function recorte(arquivo, largura, giro) {
@@ -96,12 +99,12 @@ async function colar(imagem, left, top) {
   return { input: parte, left: Math.max(left, 0), top: Math.max(top, 0) };
 }
 
-await sharp({ create: { width: W, height: H, channels: 3, background: VERMELHO } })
+await sharp(fundo)
   .composite([
+    { input: serra, left: 0, top: 40 },
     await colar(figo, 740, -70),
     await colar(pacoca, 820, 290),
-    { input: pilula, left: xTexto - 4, top: 40 },
-    { input: logo, left: xTexto + 26, top: 54 },
+    { input: logo, left: xTexto - 6, top: 36 },
     { input: camadaTexto, left: 0, top: 0 },
   ])
   .jpeg({ quality: 84, mozjpeg: true })

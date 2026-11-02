@@ -1,16 +1,19 @@
 ---
 import { Image } from 'astro:assets';
 import BotaoWhatsApp from './BotaoWhatsApp.astro';
+import Filete from './Filete.astro';
+import serraFundo from '../assets/fundo/serra-fundo.svg';
 import { mensagens } from '../config';
 import pacote from '../assets/recortes/pacoca-pacote.webp';
 
 const argumentos = ['Ótima margem', 'Validade de 45 dias', 'Entrega em todo o Vale do Paraíba, até Resende (RJ)', 'Mais de 40 anos de tradição'];
 ---
 
-<section class="revenda" id="revenda" aria-labelledby="revenda-titulo">
+<section class="revenda" id="revenda" aria-labelledby="revenda-titulo" style={`--serra-img: url(${serraFundo.src})`}>
   <div class="envelope revenda__grade">
     <div class="revenda__texto">
       <h2 class="titulo-secao" id="revenda-titulo">Quer revender?</h2>
+      <Filete class="revenda__filete" />
       <p class="revenda__lead">Para padarias, empórios, mercados e para quem quer uma renda extra.</p>
       <ul class="revenda__argumentos">{argumentos.map((a) => <li>{a}</li>)}</ul>
       <BotaoWhatsApp variante="mel" mensagem={mensagens.revenda} rotulo="Quero revender — falar com o Felipe" />
@@ -30,7 +33,11 @@ const argumentos = ['Ótima margem', 'Validade de 45 dias', 'Entrega em todo o V
 <style>
   .revenda {
     padding-block: var(--respiro) calc(var(--respiro) + 2rem);
-    background: var(--tacho);
+    /* A mesma serra do hero, mais apagada, atrás da revenda. */
+    background:
+      linear-gradient(rgb(92 6 13 / 0.6), rgb(92 6 13 / 0.6)),
+      var(--serra-img) center bottom / 130% auto no-repeat,
+      radial-gradient(110% 90% at 30% 20%, var(--tacho) 0%, var(--vinho) 100%);
     color: var(--creme);
     overflow: hidden;
   }
@@ -47,9 +54,13 @@ const argumentos = ['Ótima margem', 'Validade de 45 dias', 'Entrega em todo o V
     justify-items: start;
   }
 
+  .revenda :global(.revenda__filete) {
+    margin-top: 1.25rem;
+  }
+
   .revenda__lead {
     max-width: 36ch;
-    margin-top: 1.5rem;
+    margin-top: 1.25rem;
     font-size: var(--t-grande);
   }
 
@@ -67,8 +78,8 @@ const argumentos = ['Ótima margem', 'Validade de 45 dias', 'Entrega em todo o V
     padding: 1.25rem 1.5rem 1.25rem 0;
     border-top: 2px solid rgb(251 244 228 / 0.25);
     color: var(--mel);
-    font: 800 clamp(1.4rem, 2.4vw, 2rem) / 1.1 var(--titulo);
-    font-variation-settings: 'opsz' 72, 'SOFT' 100;
+    font: 600 clamp(1.4rem, 2.4vw, 2rem) / 1.1 var(--titulo);
+    font-variation-settings: 'opsz' 72, 'SOFT' 0;
     letter-spacing: -0.02em;
   }
 

@@ -1,13 +1,17 @@
 ---
 import { negocio, linkComoChegar } from '../config';
 import serra from '../assets/logo/serra.svg';
+import Filete from './Filete.astro';
 
 const { endereco } = negocio;
 ---
 
 <section class="onde" id="onde-estamos" aria-labelledby="onde-titulo">
   <div class="envelope onde__grade">
-    <h2 class="titulo-secao" id="onde-titulo">Onde estamos</h2>
+    <div class="onde__cabeca">
+      <h2 class="titulo-secao" id="onde-titulo">Onde estamos</h2>
+      <Filete tom="escuro" class="filete-secao" />
+    </div>
 
     <div class="onde__endereco">
       <address>
@@ -50,7 +54,7 @@ const { endereco } = negocio;
     gap: 2.5rem clamp(2rem, 6vw, 6rem);
   }
 
-  .onde h2 {
+  .onde__cabeca {
     grid-column: 1 / -1;
   }
 
@@ -63,9 +67,9 @@ const { endereco } = negocio;
   .onde__rua {
     margin-bottom: 0.5rem;
     color: var(--tacho);
-    font: 850 clamp(2rem, 4.5vw, 3.75rem) / 1 var(--titulo);
-    font-variation-settings: 'opsz' 144, 'SOFT' 100;
-    letter-spacing: -0.035em;
+    font: 600 clamp(2rem, 4.5vw, 3.75rem) / 1 var(--titulo);
+    font-variation-settings: 'opsz' 144, 'SOFT' 0;
+    letter-spacing: -0.02em;
   }
 
   .onde__endereco .botao {

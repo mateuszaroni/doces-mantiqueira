@@ -1,5 +1,5 @@
-/* Doces Mantiqueira — base do site.
-   Tradição na tipografia e nas cores; modernidade na escala, no layout e no movimento. */
+/* Doces Mantiqueira — base do site (v3).
+   Vermelho profundo com a serra sombreada, serifa clássica nos títulos, filetes dourados. */
 
 :root {
   /* Paleta (contraste conferido no CLAUDE.md, todos os pares ≥ 4,5:1) */
@@ -10,12 +10,16 @@
   --caramelo: #8a5a1f;
   --mel: #f2c14e;
   --serra: #3e5a3a;
+  /* Derivados para o degradê do hero e os filetes */
+  --vinho: #5c060d;
+  --dourado: rgb(242 193 78 / 0.65);
+  --fundo-vermelho: radial-gradient(120% 90% at 62% 30%, #c10413 0%, #9a0813 45%, var(--vinho) 100%);
 
   /* Tipografia */
   --titulo: var(--fonte-titulo), Georgia, serif;
   --texto: var(--fonte-texto), system-ui, sans-serif;
-  --t-gigante: clamp(3.3rem, 14.5vw, 14rem);
-  --t-secao: clamp(2.9rem, 8.5vw, 7.5rem);
+  --t-gigante: clamp(3.3rem, 7.4vw, 8rem);
+  --t-secao: clamp(2.6rem, 7vw, 6.25rem);
   --t-manifesto: clamp(2.4rem, 6vw, 5.25rem);
   --t-card: clamp(1.75rem, 2.6vw, 2.25rem);
   --t-grande: clamp(1.125rem, 1.6vw, 1.375rem);
@@ -80,10 +84,10 @@ h1,
 h2,
 h3 {
   font-family: var(--titulo);
-  font-weight: 850;
-  font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 0;
+  font-weight: 600;
+  font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 0;
   line-height: 0.9;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.02em;
   text-wrap: balance;
 }
 
@@ -136,6 +140,11 @@ p {
 .titulo-secao {
   font-size: var(--t-secao);
   max-width: 12ch;
+}
+
+/* Filete com a montanhinha logo abaixo do título da seção. */
+.filete-secao {
+  margin-top: 1.25rem;
 }
 
 /* Botões */
@@ -193,6 +202,31 @@ p {
 
 .botao--contorno:hover {
   background: rgb(255 255 255 / 0.12);
+}
+
+/* Contorno com seta, como no conceito v3. Fica sobre o vermelho. */
+.botao--linha {
+  border: 1.5px solid currentColor;
+  background: rgb(255 255 255 / 0.04);
+  color: var(--creme);
+  font-weight: 500;
+  padding-inline: 1.5rem 1.25rem;
+}
+
+.botao--linha:hover {
+  background: var(--creme);
+  color: var(--vermelho);
+}
+
+.botao__seta {
+  width: 0.9em !important;
+  height: 0.9em !important;
+  margin-left: 0.4rem;
+  fill: none !important;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .botao--mel {
