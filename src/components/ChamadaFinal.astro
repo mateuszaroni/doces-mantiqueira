@@ -1,0 +1,104 @@
+---
+import { getImage } from 'astro:assets';
+import BotaoWhatsApp from './BotaoWhatsApp.astro';
+import Filete from './Filete.astro';
+import { linkComoChegar, mensagens, negocio } from '../config';
+import serraFoto from '../assets/fundo/serra-foto.webp';
+
+// O último convite antes do rodapé, para quem leu a página inteira (o visitante mais quente).
+const serra = await getImage({ src: serraFoto, width: 1672, quality: 75 });
+const horario = negocio.horario.texto.charAt(0).toLowerCase() + negocio.horario.texto.slice(1);
+---
+
+<section class="chamada" aria-labelledby="chamada-titulo" style={`--serra-img: url(${serra.src})`}>
+  <div class="envelope chamada__conteudo">
+    <h2 id="chamada-titulo">Do tacho para a sua mesa.</h2>
+    <Filete class="chamada__filete" />
+    <p>Escolha o doce e mande uma mensagem. Aberto {horario}.</p>
+    <div class="chamada__acoes">
+      <BotaoWhatsApp variante="creme" mensagem={mensagens.geral} rotulo="Pedir no WhatsApp" complementoLeitor="chamada final" />
+      <a class="chamada__mapa" href={linkComoChegar} target="_blank" rel="noopener">
+        Como chegar
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg>
+        <span class="so-leitor">(abre o Google Maps em nova aba)</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .chamada {
+    padding-block: clamp(5rem, 11vw, 9rem);
+    background:
+      linear-gradient(rgb(77 2 0 / 0.35), rgb(77 2 0 / 0.55)),
+      #640201 var(--serra-img) center top / cover no-repeat;
+    color: var(--creme);
+    text-align: center;
+  }
+
+  .chamada__conteudo {
+    display: grid;
+    justify-items: center;
+  }
+
+  h2 {
+    max-width: 14ch;
+    font-size: var(--t-secao);
+    text-shadow: 0 6px 30px rgb(40 0 4 / 0.45);
+  }
+
+  .chamada :global(.chamada__filete) {
+    margin-top: 1.5rem;
+  }
+
+  p {
+    max-width: 34ch;
+    margin-top: 1.25rem;
+    font: 400 clamp(1.25rem, 2vw, 1.625rem) / 1.35 var(--titulo);
+    font-variation-settings: 'opsz' 36, 'SOFT' 0;
+  }
+
+  .chamada__acoes {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem 1.75rem;
+    margin-top: 2.25rem;
+  }
+
+  .chamada__mapa {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    min-height: 3rem;
+    padding-inline: 0.5rem;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .chamada__mapa:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--mel);
+  }
+
+  .chamada__mapa svg {
+    width: 0.9em;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  @media (max-width: 760px) {
+    .chamada__acoes {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .chamada__acoes > :global(.botao) {
+      width: 100%;
+    }
+  }
+</style>

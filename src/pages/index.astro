@@ -4,11 +4,13 @@ import Cabecalho from '../components/Cabecalho.astro';
 import Hero from '../components/Hero.astro';
 import Letreiro from '../components/Letreiro.astro';
 import Produtos from '../components/Produtos.astro';
+import AntesDePedir from '../components/AntesDePedir.astro';
 import VoceSabia from '../components/VoceSabia.astro';
 import Historia from '../components/Historia.astro';
 import Festas from '../components/Festas.astro';
 import Revenda from '../components/Revenda.astro';
 import OndeEstamos from '../components/OndeEstamos.astro';
+import ChamadaFinal from '../components/ChamadaFinal.astro';
 import Rodape from '../components/Rodape.astro';
 import WhatsAppFlutuante from '../components/WhatsAppFlutuante.astro';
 import DadosEstruturados from '../components/DadosEstruturados.astro';
@@ -27,12 +29,14 @@ const piquete = ['Feito em Piquete', 'No pé da Serra da Mantiqueira', 'Desde 19
     <Hero />
     <div class="faixa faixa--topo"><Letreiro itens={doces} /></div>
     <Produtos />
+    <AntesDePedir />
     <VoceSabia />
     <Historia />
     <Festas />
     <Revenda />
     <div class="faixa faixa--revenda"><Letreiro itens={piquete} variante="creme" giro={2} reverso /></div>
     <OndeEstamos />
+    <ChamadaFinal />
   </main>
   <Rodape />
   <WhatsAppFlutuante />

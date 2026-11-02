@@ -2,6 +2,8 @@
 
 Aplicado ao site que já está no ar (docesmantiqueira.netlify.app, versão v3). Tudo aqui parte dos fatos do CLAUDE.md e do que está publicado. Onde um passo pede algo que ainda não temos (concorrentes, depoimentos reais, palavras dos clientes, números de tráfego), está marcado como **lacuna**. Nada foi inventado para preencher.
 
+**Atualização de 02/11/2026:** as três melhorias de maior impacto do passo 6 já estão construídas: a prova no hero, o bloco "Antes de pedir", só com respostas confirmadas, e a chamada final.
+
 Regras do briefing que valem para todos os passos: sem preços, sem avaliações ou estrelas inventadas, sem "mais vendido", sem cookies nem Google Analytics, o Felipe só aparece nos botões de WhatsApp, página única em Astro estático, animações só em CSS.
 
 ---
@@ -51,7 +53,7 @@ Regras do briefing que valem para todos os passos: sem preços, sem avaliações
 | 6 | Festas | **Ocasião**: junho e julho, quermesse | no ar |
 | 7 | Revenda | **Oportunidade**: segunda porta | no ar |
 | 8 | Faixa 2 + Onde estamos | **Logística**: endereço, horário, cidades | no ar |
-| 9 | **CTA final** | **Fechamento**: um último convite antes do rodapé | **falta** |
+| 9 | **CTA final** | **Fechamento**: um último convite antes do rodapé | construído (02/11/2026) |
 
 A narrativa leva o visitante da vontade à escolha, da escolha à confiança e da confiança ao clique. Hoje falta a última etapa: a página termina no endereço e no rodapé, sem um convite final (ver passo 6).
 
