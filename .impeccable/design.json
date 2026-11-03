@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-03T02:51:53+00:00",
+  "generatedAt": "2026-11-03T03:13:39+00:00",
   "title": "Design System: Doces Mantiqueira",
   "extensions": {
     "colorMeta": {
@@ -160,6 +160,22 @@
         "displayName": "Display",
         "purpose": "Só o nome \"Doces Mantiqueira\" no hero, em duas linhas."
       },
+      "title-featured": {
+        "displayName": "Title featured",
+        "purpose": "Nome do doce em destaque no cardápio."
+      },
+      "title-small": {
+        "displayName": "Title small",
+        "purpose": "Título do \"Você sabia?\"."
+      },
+      "body-large": {
+        "displayName": "Body large",
+        "purpose": "Texto da história e de Onde estamos."
+      },
+      "meta": {
+        "displayName": "Meta",
+        "purpose": "Legendas, rótulos, dica do hero, número do WhatsApp, rodapé; mínimo do site (16px)."
+      },
       "headline": {
         "displayName": "Headline",
         "purpose": "Título de cada seção, até 12ch; manifesto e chamada final."
@@ -192,7 +208,12 @@
       {
         "name": "doce-hero",
         "value": "drop-shadow(0 22px 26px rgb(40 0 4 / 0.55))",
-        "purpose": "Recortes de doce sobre a foto da serra."
+        "purpose": "Recortes de doce sobre a foto da serra (hero e chamada final)."
+      },
+      {
+        "name": "botao-hero",
+        "value": "0 14px 30px -14px rgb(40 0 4 / 0.7)",
+        "purpose": "Botão creme principal do hero."
       },
       {
         "name": "doce-card",
@@ -252,11 +273,6 @@
         "purpose": "Faixas de letreiro; pausa no hover."
       },
       {
-        "name": "puxa",
-        "value": "1.6s ease-in-out infinite alternate",
-        "purpose": "Dica \"Deslize\" do carrossel no celular."
-      },
-      {
         "name": "estado",
         "value": "0.2s",
         "purpose": "Cor e escala de botões no hover e no toque."
@@ -300,7 +316,7 @@
       "name": "Botão vermelho",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "Ação de WhatsApp sobre o creme e nos cards de doce.",
+      "description": "Ação de WhatsApp sobre o creme (seção Festas).",
       "html": "<a class=\"ds-btn-vermelho\" href=\"#\"><svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" aria-hidden=\"true\"><path fill=\"currentColor\" d=\"M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z\"/></svg><span>Pedir no WhatsApp</span></a>",
       "css": ".ds-btn-vermelho{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;min-height:3.25rem;padding:.75rem 1.6rem;border:2px solid transparent;border-radius:999px;font:600 1.0625rem/1.2 'DM Sans',system-ui,sans-serif;text-decoration:none;cursor:pointer;transition:background-color .2s,color .2s,transform .2s;background:var(--vermelho,#c10413);color:#fff;} .ds-btn-vermelho:hover{background:var(--tacho,#7a0a12);} .ds-btn-vermelho:focus-visible{outline:3px solid var(--mel,#f2c14e);outline-offset:3px;} .ds-btn-vermelho:active{transform:scale(.98);}"
     },
@@ -308,7 +324,7 @@
       "name": "Botão creme",
       "kind": "button",
       "refersTo": "button-creme",
-      "description": "Ação de WhatsApp sobre o vermelho e o vinho (menu, chamada final).",
+      "description": "Botão principal do hero e ação de WhatsApp no menu e na chamada final.",
       "html": "<div class=\"ds-fundo-vinho\"><a class=\"ds-btn-creme\" href=\"#\"><svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" aria-hidden=\"true\"><path fill=\"currentColor\" d=\"M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z\"/></svg><span>Pedir no WhatsApp</span></a></div>",
       "css": ".ds-fundo-vinho{background:#5a0201;padding:1.5rem;border-radius:1rem;} .ds-btn-creme{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;min-height:3.25rem;padding:.75rem 1.6rem;border:2px solid transparent;border-radius:999px;font:600 1.0625rem/1.2 'DM Sans',system-ui,sans-serif;text-decoration:none;cursor:pointer;transition:background-color .2s,color .2s,transform .2s;background:var(--creme,#fbf4e4);color:var(--vermelho,#c10413);} .ds-btn-creme:hover{background:#fff;} .ds-btn-creme:focus-visible{outline:3px solid var(--mel,#f2c14e);outline-offset:3px;} .ds-btn-creme:active{transform:scale(.98);}"
     },
@@ -316,8 +332,8 @@
       "name": "Botão em linha com seta",
       "kind": "button",
       "refersTo": "button-linha",
-      "description": "Botão principal do hero e do cabeçalho, sobre a foto da serra.",
-      "html": "<div class=\"ds-fundo-serra\"><a class=\"ds-btn-linha\" href=\"#\"><svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" aria-hidden=\"true\"><path fill=\"currentColor\" d=\"M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z\"/></svg><span>Entre em contato conosco</span><svg viewBox=\"0 0 24 24\" width=\"14\" height=\"14\" aria-hidden=\"true\"><path d=\"M9 5l7 7-7 7\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a></div>",
+      "description": "Botão do cabeçalho, sobre a foto da serra; aparece depois de rolar.",
+      "html": "<div class=\"ds-fundo-serra\"><a class=\"ds-btn-linha\" href=\"#\"><svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" aria-hidden=\"true\"><path fill=\"currentColor\" d=\"M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z\"/></svg><span>Pedir no WhatsApp</span></a></div>",
       "css": ".ds-fundo-serra{background:radial-gradient(120% 95% at 50% 55%,#ab0202 0%,#7f0201 45%,#4d0200 100%);padding:1.5rem;border-radius:1rem;} .ds-btn-linha{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;min-height:3.25rem;padding:.75rem 1.6rem;border:2px solid transparent;border-radius:999px;font:600 1.0625rem/1.2 'DM Sans',system-ui,sans-serif;text-decoration:none;cursor:pointer;transition:background-color .2s,color .2s,transform .2s;border:1.5px solid currentColor;padding-inline:1.5rem 1.25rem;background:rgb(255 255 255/.04);color:var(--creme,#fbf4e4);font-weight:500;} .ds-btn-linha:hover{background:var(--creme,#fbf4e4);color:var(--vermelho,#c10413);} .ds-btn-linha:focus-visible{outline:3px solid var(--mel,#f2c14e);outline-offset:3px;}"
     },
     {
@@ -329,19 +345,19 @@
       "css": ".ds-fundo-vinho2{background:#5a0201;padding:1.5rem;border-radius:1rem;} .ds-btn-mel{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;min-height:3.25rem;padding:.75rem 1.6rem;border:2px solid transparent;border-radius:999px;font:600 1.0625rem/1.2 'DM Sans',system-ui,sans-serif;text-decoration:none;cursor:pointer;transition:background-color .2s,color .2s,transform .2s;background:var(--mel,#f2c14e);color:var(--cafe,#2b1a12);} .ds-btn-mel:hover{background:#f6d27f;} .ds-btn-mel:focus-visible{outline:3px solid var(--mel,#f2c14e);outline-offset:3px;}"
     },
     {
-      "name": "Etiqueta de peso",
-      "kind": "chip",
-      "description": "O \"350g\" dos cards de doce.",
-      "html": "<span class=\"ds-chip-peso\">350g</span>",
-      "css": ".ds-chip-peso{display:inline-block;padding:.15rem .75rem;border:1.5px solid currentColor;border-radius:999px;color:var(--cafe,#2b1a12);font:600 1.0625rem 'DM Sans',system-ui,sans-serif;font-variant-numeric:tabular-nums;}"
+      "name": "Link com seta",
+      "kind": "custom",
+      "description": "Ações que não são pedido (\"Como chegar\", \"Quero revender\"): texto com seta, nunca botão cheio.",
+      "html": "<a class=\"ds-link-seta\" href=\"#\">Como chegar<svg viewBox=\"0 0 24 24\" width=\"14\" height=\"14\" aria-hidden=\"true\"><path d=\"M9 5l7 7-7 7\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a>",
+      "css": ".ds-link-seta{display:inline-flex;align-items:center;gap:.4rem;min-height:3rem;color:var(--tacho,#7a0a12);font:600 1.0625rem 'DM Sans',system-ui,sans-serif;text-decoration:underline;text-decoration-color:rgb(122 10 18/.35);text-underline-offset:.3em;} .ds-link-seta:hover{text-decoration-color:currentColor;} .ds-link-seta:focus-visible{outline:3px solid var(--mel,#f2c14e);outline-offset:3px;}"
     },
     {
       "name": "Card de doce",
       "kind": "card",
       "refersTo": "card-doce",
-      "description": "Card da vitrine: fundo pastel do doce, foto recortada no topo, botão vermelho na base.",
-      "html": "<article class=\"ds-card-doce\"><div class=\"ds-card-doce__foto\"></div><div class=\"ds-card-doce__texto\"><h3>Doce de abóbora</h3><p>Doce de abóbora em pedaços, até quatro dias de preparo.</p><span class=\"ds-card-doce__peso\">350g</span></div><a class=\"ds-card-doce__botao\" href=\"#\"><svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" aria-hidden=\"true\"><path fill=\"currentColor\" d=\"M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z\"/></svg><span>Pedir no WhatsApp</span></a></article>",
-      "css": ".ds-card-doce{display:flex;flex-direction:column;width:20rem;overflow:hidden;border-radius:2rem;background:#fad9bf;color:var(--cafe,#2b1a12);font:400 1.0625rem/1.6 'DM Sans',system-ui,sans-serif;} .ds-card-doce__foto{height:9rem;margin:1.5rem 1.5rem 0;border-radius:50%;background:radial-gradient(circle,#e0823a 0 45%,#fff 46% 70%,transparent 71%);filter:drop-shadow(0 16px 18px rgb(43 26 18/.25));} .ds-card-doce__texto{padding:1rem 1.75rem 0;} .ds-card-doce h3{margin:0;font-size:2rem;line-height:.9;font-family:Fraunces,Georgia,serif;font-weight:600;font-variation-settings:'opsz' 144,'SOFT' 0;letter-spacing:-.02em;} .ds-card-doce p{margin:.6rem 0 0;} .ds-card-doce__peso{display:inline-block;margin-top:.6rem;padding:.15rem .75rem;border:1.5px solid currentColor;border-radius:999px;font-weight:600;} .ds-card-doce__botao{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;min-height:3.25rem;padding:.75rem 1.6rem;border:2px solid transparent;border-radius:999px;font:600 1.0625rem/1.2 'DM Sans',system-ui,sans-serif;text-decoration:none;cursor:pointer;transition:background-color .2s,color .2s,transform .2s;margin:1.5rem 1rem 1rem;padding-inline:1rem;background:var(--vermelho,#c10413);color:#fff;} .ds-card-doce__botao:hover{background:var(--tacho,#7a0a12);} .ds-card-doce__botao:focus-visible{outline:3px solid var(--mel,#f2c14e);outline-offset:3px;}"
+      "description": "Card da vitrine: fundo pastel do doce, foto recortada no topo, botão de contorno na base.",
+      "html": "<article class=\"ds-card-doce\"><div class=\"ds-card-doce__foto\"></div><div class=\"ds-card-doce__texto\"><h3>Doce de abóbora</h3><p>Doce de abóbora em pedaços, até quatro dias de preparo.</p></div><a class=\"ds-card-doce__botao\" href=\"#\"><svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" aria-hidden=\"true\"><path fill=\"currentColor\" d=\"M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z\"/></svg><span>Pedir no WhatsApp</span></a></article>",
+      "css": ".ds-card-doce{display:flex;flex-direction:column;width:20rem;overflow:hidden;border-radius:2rem;background:#fad9bf;color:var(--cafe,#2b1a12);font:400 1.0625rem/1.6 'DM Sans',system-ui,sans-serif;} .ds-card-doce__foto{height:9rem;margin:1.5rem 1.5rem 0;border-radius:50%;background:radial-gradient(circle,#e0823a 0 45%,#fff 46% 70%,transparent 71%);filter:drop-shadow(0 16px 18px rgb(43 26 18/.25));} .ds-card-doce__texto{padding:1rem 1.75rem 0;} .ds-card-doce h3{margin:0;font-size:2rem;line-height:.9;font-family:Fraunces,Georgia,serif;font-weight:600;font-variation-settings:'opsz' 144,'SOFT' 0;letter-spacing:-.02em;} .ds-card-doce p{margin:.6rem 0 0;} .ds-card-doce__peso{display:inline-block;margin-top:.6rem;padding:.15rem .75rem;border:1.5px solid currentColor;border-radius:999px;font-weight:600;} .ds-card-doce__botao{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;min-height:3.25rem;padding:.75rem 1.6rem;border:2px solid transparent;border-radius:999px;font:600 1.0625rem/1.2 'DM Sans',system-ui,sans-serif;text-decoration:none;cursor:pointer;transition:background-color .2s,color .2s,transform .2s;margin:1.5rem 1rem 1rem;padding-inline:1rem;border-color:var(--tacho,#7a0a12);color:var(--tacho,#7a0a12);} .ds-card-doce__botao:hover{background:var(--vermelho,#c10413);border-color:var(--vermelho,#c10413);color:#fff;} .ds-card-doce__botao:focus-visible{outline:3px solid var(--mel,#f2c14e);outline-offset:3px;}"
     },
     {
       "name": "Cabeçalho rolado",
@@ -397,8 +413,18 @@
         "section": "colors"
       },
       {
+        "name": "The Botão Cheio É WhatsApp Rule",
+        "body": "Botão cheio (vermelho, creme ou mel) é sempre uma ação de WhatsApp. Ações que não são pedido, como \"Como chegar\" e o \"Quero revender\" do hero, são links de texto com seta.",
+        "section": "colors"
+      },
+      {
         "name": "The Peso 600 Rule",
         "body": "Os títulos em Fraunces usam peso 600 (400 nos textos de apoio), nunca 800 ou 900. O contraste vem do tamanho, não do peso.",
+        "section": "typography"
+      },
+      {
+        "name": "The Piso de 16px Rule",
+        "body": "Nenhum texto lido fica abaixo de 16px (`meta`). A única exceção é o texto do selo girando, que é decorativo e fica oculto para leitores de tela.",
         "section": "typography"
       },
       {
@@ -418,11 +444,13 @@
       "**Do** usar Fraunces 600 nos títulos, com `'SOFT' 0` e `opsz` alto, e DM Sans no texto corrido.",
       "**Do** colocar o filete com a montanhinha logo abaixo dos títulos de seção.",
       "**Do** manter os movimentos lentos e contínuos (balanço de 7s, selo de 24s, faixa de 45s) e desligar todos com `prefers-reduced-motion`.",
+      "**Do** reservar o botão cheio para o WhatsApp e usar link com seta para as outras ações.",
       "**Do** manter o texto do corpo com no mínimo 16px e os alvos de toque com 48px ou mais."
     ],
     "donts": [
       "**Don't** usar bandeirinha, chita ou estampa de festa junina no layout: esse clima fica nas fotos.",
-      "**Don't** dar sombra a card, painel ou seção. Sombra é de objeto.",
+      "**Don't** dar sombra a card, painel ou seção. Sombra é de objeto. O botão principal do hero é a exceção: a sombra marca a ação mais importante da página.",
+      "**Don't** usar texto lido abaixo de 16px.",
       "**Don't** usar o verde do WhatsApp fora do botão redondo.",
       "**Don't** usar Fraunces arredondada (`'SOFT' 100`) nem pesos 800 e 900 nos títulos. A versão mais pesada e arredondada foi trocada pela serifa clássica no rebrand v3.",
       "**Don't** desenhar a serra em vetor no lugar da foto. A versão desenhada foi recusada no rebrand v3.",

@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
-import figoCortado from '../assets/fotos/produtos/figo-cortado.jpg';
+// O fato fala de abóbora e batata: a foto é do doce de abóbora, cortado ao meio.
+import aboboraCortada from '../assets/fotos/extras/abobora-cortada.jpg';
 ---
 
 <aside class="envelope voce-sabia" aria-labelledby="voce-sabia-titulo">
@@ -10,10 +11,10 @@ import figoCortado from '../assets/fotos/produtos/figo-cortado.jpg';
   </div>
   <Image
     class="voce-sabia__foto"
-    src={figoCortado}
+    src={aboboraCortada}
     widths={[280, 420, 560]}
     sizes="(max-width: 760px) 60vw, 280px"
-    alt="Figo cristalizado cortado ao meio, mostrando o miolo"
+    alt="Pedaços de doce de abóbora empilhados sobre uma tábua de madeira"
   />
 </aside>
 

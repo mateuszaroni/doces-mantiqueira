@@ -1,5 +1,5 @@
 ---
-import { negocio, linkComoChegar } from '../config';
+import { negocio, linkComoChegar, whatsappExibicao } from '../config';
 import serra from '../assets/logo/serra.svg';
 import Filete from './Filete.astro';
 
@@ -19,11 +19,13 @@ const { endereco } = negocio;
         <span>{endereco.bairro}, {endereco.cidade} - {endereco.uf}</span>
         <span>CEP {endereco.cep}</span>
       </address>
-      <a class="botao botao--vermelho" href={linkComoChegar} target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
+      <!-- Link, não botão: botão cheio fica reservado para o WhatsApp. -->
+      <a class="onde__mapa" href={linkComoChegar} target="_blank" rel="noopener">
+        <svg class="onde__pino" viewBox="0 0 24 24" aria-hidden="true">
           <path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" />
         </svg>
         Como chegar
+        <svg class="onde__seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg>
         <span class="so-leitor">(abre o Google Maps em nova aba)</span>
       </a>
     </div>
@@ -32,6 +34,10 @@ const { endereco } = negocio;
       <div>
         <dt>Horário</dt>
         <dd>{negocio.horario.texto}</dd>
+      </div>
+      <div>
+        <dt>WhatsApp</dt>
+        <dd class="onde__numero" translate="no">{whatsappExibicao}</dd>
       </div>
       <div>
         <dt>Cidades atendidas</dt>
@@ -72,8 +78,39 @@ const { endereco } = negocio;
     letter-spacing: -0.02em;
   }
 
-  .onde__endereco .botao {
-    margin-top: 2rem;
+  .onde__mapa {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    min-height: 3rem;
+    margin-top: 1.5rem;
+    color: var(--tacho);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: rgb(122 10 18 / 0.35);
+    text-underline-offset: 0.3em;
+  }
+
+  .onde__mapa:hover {
+    text-decoration-color: currentColor;
+  }
+
+  .onde__pino {
+    width: 1.25rem;
+    fill: currentColor;
+  }
+
+  .onde__seta {
+    width: 0.9em;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .onde__numero {
+    font-variant-numeric: tabular-nums;
   }
 
   .onde__info {

@@ -54,6 +54,8 @@ html {
   scroll-padding-top: var(--altura-cabecalho);
   scroll-padding-bottom: 6rem;
   -webkit-tap-highlight-color: rgb(193 4 19 / 0.15);
+  /* A barra de rolagem também é da marca. */
+  scrollbar-color: var(--tacho) var(--creme);
 }
 
 body {

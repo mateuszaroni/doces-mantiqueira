@@ -1,20 +1,41 @@
 ---
-import { getImage } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import BotaoWhatsApp from './BotaoWhatsApp.astro';
 import Filete from './Filete.astro';
-import { linkComoChegar, mensagens, negocio } from '../config';
+import { linkComoChegar, mensagens, negocio, whatsappExibicao } from '../config';
 import serraFoto from '../assets/fundo/serra-foto.webp';
+import abobora from '../assets/recortes/abobora.webp';
+import banana from '../assets/recortes/banana.webp';
 
 // O último convite antes do rodapé, para quem leu a página inteira (o visitante mais quente).
+// Termina com doce na mesa: a última lembrança da página é o produto, não só o vermelho.
 const serra = await getImage({ src: serraFoto, width: 1672, quality: 75 });
 const horario = negocio.horario.texto.charAt(0).toLowerCase() + negocio.horario.texto.slice(1);
 ---
 
 <section class="chamada" aria-labelledby="chamada-titulo" style={`--serra-img: url(${serra.src})`}>
+  <Image
+    class="chamada__doce chamada__doce--abobora"
+    src={abobora}
+    widths={[320, 480, 672]}
+    sizes="(max-width: 760px) 46vw, 26vw"
+    quality={72}
+    alt="Doce de abóbora em pedaços, arrumado em roda num prato"
+    loading="lazy"
+  />
+  <Image
+    class="chamada__doce chamada__doce--banana"
+    src={banana}
+    widths={[320, 480, 640]}
+    sizes="(max-width: 760px) 40vw, 22vw"
+    quality={72}
+    alt="Doce de banana em cubinhos com açúcar cristal, numa bandeja branca"
+    loading="lazy"
+  />
   <div class="envelope chamada__conteudo">
     <h2 id="chamada-titulo">Do tacho para a sua mesa.</h2>
     <Filete class="chamada__filete" />
-    <p>Escolha o doce e mande uma mensagem. Aberto {horario}.</p>
+    <p>Faça o seu pedido numa mensagem. Aberto {horario}.</p>
     <div class="chamada__acoes">
       <BotaoWhatsApp variante="creme" mensagem={mensagens.geral} rotulo="Pedir no WhatsApp" complementoLeitor="chamada final" />
       <a class="chamada__mapa" href={linkComoChegar} target="_blank" rel="noopener">
@@ -23,20 +44,47 @@ const horario = negocio.horario.texto.charAt(0).toLowerCase() + negocio.horario.
         <span class="so-leitor">(abre o Google Maps em nova aba)</span>
       </a>
     </div>
+    <p class="chamada__numero">A gente responde pelo WhatsApp: <strong translate="no">{whatsappExibicao}</strong></p>
   </div>
 </section>
 
 <style>
   .chamada {
+    position: relative;
+    overflow: hidden;
     padding-block: clamp(5rem, 11vw, 9rem);
     background:
       linear-gradient(rgb(77 2 0 / 0.35), rgb(77 2 0 / 0.55)),
-      #640201 var(--serra-img) center top / cover no-repeat;
+      var(--vinho) var(--serra-img) center top / cover no-repeat;
     color: var(--creme);
     text-align: center;
   }
 
+  /* Dois doces na mesa, um de cada lado, saindo pelas bordas: o mesmo gesto do hero, sem balançar. */
+  .chamada :global(.chamada__doce) {
+    position: absolute;
+    z-index: 0;
+    filter: drop-shadow(0 22px 26px rgb(40 0 4 / 0.55));
+    pointer-events: none;
+  }
+
+  .chamada :global(.chamada__doce--abobora) {
+    width: clamp(220px, 26vw, 400px);
+    left: -5%;
+    bottom: -8%;
+    rotate: -8deg;
+  }
+
+  .chamada :global(.chamada__doce--banana) {
+    width: clamp(190px, 22vw, 340px);
+    right: -3%;
+    top: 8%;
+    rotate: 7deg;
+  }
+
   .chamada__conteudo {
+    position: relative;
+    z-index: 1;
     display: grid;
     justify-items: center;
   }
@@ -91,7 +139,38 @@ const horario = negocio.horario.texto.charAt(0).toLowerCase() + negocio.horario.
     stroke-linejoin: round;
   }
 
+  .chamada__numero {
+    max-width: none;
+    margin-top: 1.5rem;
+    font: 400 1rem / 1.5 var(--texto);
+    color: rgb(251 244 228 / 0.9);
+  }
+
+  .chamada__numero strong {
+    color: var(--creme);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
   @media (max-width: 760px) {
+    .chamada {
+      padding-bottom: 13rem;
+    }
+
+    .chamada :global(.chamada__doce--abobora) {
+      width: 52%;
+      left: -8%;
+      bottom: -2.5rem;
+    }
+
+    .chamada :global(.chamada__doce--banana) {
+      width: 42%;
+      top: auto;
+      right: -4%;
+      bottom: 0.5rem;
+    }
+
     .chamada__acoes {
       flex-direction: column;
       width: 100%;

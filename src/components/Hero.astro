@@ -31,7 +31,9 @@ const qualidade = 75;
       <Filete class="hero__filete" />
       <p class="hero__apoio">Doces caseiros da Serra da Mantiqueira, desde 1985.</p>
       <div class="hero__acoes">
-        <BotaoWhatsApp variante="linha" mensagem={mensagens.varejo} rotulo="Entre em contato conosco" />
+        <!-- Botão cheio: é a ação mais importante da página, então é o mais forte dela. -->
+        <BotaoWhatsApp variante="creme" seta mensagem={mensagens.varejo} rotulo="Entre em contato conosco" class="hero__cta" />
+        <p class="hero__dica">Abre o WhatsApp com a mensagem pronta.</p>
         <a class="hero__revenda" href="#revenda">
           Quero revender
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg>
@@ -64,7 +66,7 @@ const qualidade = 75;
         widths={larguras}
         quality={qualidade}
         sizes="(max-width: 760px) 46vw, 22vw"
-        alt="Bandeja sortida com doce de abóbora, de batata, doce de leite e bananada"
+        alt="Bandeja sortida com doce de abóbora, de batata, doce de leite e doce de banana"
         loading="eager"
       />
       <div class="selo" aria-hidden="true">
@@ -88,7 +90,7 @@ const qualidade = 75;
     min-height: max(100svh, 44rem);
     padding: calc(var(--altura-cabecalho) + 2rem) var(--margem) 5.5rem;
     overflow: hidden;
-    background: #640201;
+    background: var(--vinho);
     color: var(--creme);
   }
 
@@ -148,6 +150,18 @@ const qualidade = 75;
     justify-items: center;
     gap: 1rem;
     margin-top: clamp(1.75rem, 3vw, 2.5rem);
+  }
+
+  .hero :global(.hero__cta) {
+    min-height: 3.5rem;
+    padding-inline: 1.75rem 1.5rem;
+    box-shadow: 0 14px 30px -14px rgb(40 0 4 / 0.7);
+  }
+
+  .hero__dica {
+    margin-top: -0.4rem;
+    color: rgb(251 244 228 / 0.85);
+    font-size: 1rem;
   }
 
   .hero__revenda {
@@ -284,7 +298,7 @@ const qualidade = 75;
     .hero__apoio {
       order: 3;
       margin-top: 0.6rem;
-      font-size: 1.1875rem;
+      font-size: 1.25rem;
     }
 
     .hero__palco {

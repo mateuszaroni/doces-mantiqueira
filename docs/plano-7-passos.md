@@ -2,7 +2,7 @@
 
 Aplicado ao site que já está no ar (docesmantiqueira.netlify.app, versão v3). Tudo aqui parte dos fatos do CLAUDE.md e do que está publicado. Onde um passo pede algo que ainda não temos (concorrentes, depoimentos reais, palavras dos clientes, números de tráfego), está marcado como **lacuna**. Nada foi inventado para preencher.
 
-**Atualização de 02/11/2026:** as três melhorias de maior impacto do passo 6 já estão construídas: a prova no hero, o bloco "Antes de pedir", só com respostas confirmadas, e a chamada final. Depois, a pedido do Mateus, a linha de prova do hero (g1 e Rota) foi retirada; o selo do g1 continua em Nossa história.
+**Atualização de 02/11/2026:** as três melhorias de maior impacto do passo 6 já estão construídas: a prova no hero, o bloco "Antes de pedir", só com respostas confirmadas, e a chamada final. Depois, a pedido do Mateus, a linha de prova do hero (g1 e Rota) foi retirada; o selo do g1 continua em Nossa história. Na rodada do Impeccable (03/11/2026), o bloco "Antes de pedir" virou uma frase na introdução dos produtos (350g e preço pelo WhatsApp), e o número do WhatsApp passou a aparecer como texto em Onde estamos e na chamada final.
 
 Regras do briefing que valem para todos os passos: sem preços, sem avaliações ou estrelas inventadas, sem "mais vendido", sem cookies nem Google Analytics, o Felipe só aparece nos botões de WhatsApp, página única em Astro estático, animações só em CSS.
 

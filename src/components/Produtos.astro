@@ -17,24 +17,39 @@ const doces = (await getCollection('doces')).sort((a, b) => ordem.indexOf(a.id) 
       <h2 class="titulo-secao" id="produtos-titulo">Conheça nossos produtos</h2>
       <Filete tom="escuro" class="filete-secao" />
     </div>
-    <p>Escolha o doce e peça pelo WhatsApp: a mensagem já vai com o nome dele.</p>
+    <p>
+      Escolha o doce e peça pelo WhatsApp: a mensagem já vai com o nome dele. Todos vêm no pacote de 350g, e o preço você
+      combina na conversa.
+    </p>
   </div>
 
-  <p class="produtos__dica" id="produtos-dica">Deslize para ver os 9 doces</p>
+  <p class="produtos__dica" id="produtos-dica">
+    Deslize para ver os 9 doces
+    <span class="produtos__posicao" aria-hidden="true"><span data-posicao>1</span> de {doces.length}</span>
+  </p>
   <ul class="produtos__lista" tabindex="0" aria-label="Os 9 doces" aria-describedby="produtos-dica">
     {
       doces.map(({ data }, i) => (
-        <li class:list={['doce', { 'doce--sangra': data.sangra }]} style={`--fundo: ${data.fundo}; --giro: ${i % 2 ? 3 : -3}deg`}>
+        <li
+          class:list={['doce', { 'doce--sangra': data.sangra, 'doce--destaque': i === 0 }]}
+          style={`--fundo: ${data.fundo}; --giro: ${i % 2 ? 3 : -3}deg`}
+        >
           <div class="doce__foto">
-            <Image src={data.recorte} widths={[320, 480, 640, 900]} sizes="(max-width: 760px) 80vw, (max-width: 1100px) 45vw, 400px" quality={72} alt={data.alt} />
+            <Image
+              src={data.recorte}
+              widths={[320, 480, 640, 900]}
+              sizes={i === 0 ? '(max-width: 760px) 80vw, (max-width: 1100px) 90vw, 820px' : '(max-width: 760px) 80vw, (max-width: 1100px) 45vw, 400px'}
+              quality={72}
+              alt={data.alt}
+            />
           </div>
           <div class="doce__texto">
             <h3>{data.nome}</h3>
             <p>{data.descricao}</p>
-            <p class="doce__peso">350g</p>
           </div>
           <BotaoWhatsApp
             class="doce__botao"
+            variante="contorno"
             mensagem={mensagens.produto(data.artigo, data.nome.toLowerCase())}
             rotulo="Pedir no WhatsApp"
             complementoLeitor={data.nome}
@@ -45,21 +60,39 @@ const doces = (await getCollection('doces')).sort((a, b) => ordem.indexOf(a.id) 
   </ul>
 </section>
 
+<script>
+  // Carrossel do celular: mostra em qual dos 9 doces a pessoa está ("3 de 9").
+  const lista = document.querySelector('.produtos__lista');
+  const posicao = document.querySelector('[data-posicao]');
+  if (lista && posicao && 'IntersectionObserver' in window) {
+    const cards = [...lista.children];
+    const observador = new IntersectionObserver(
+      (entradas) => {
+        for (const e of entradas) {
+          if (e.isIntersecting) posicao.textContent = String(cards.indexOf(e.target) + 1);
+        }
+      },
+      { root: lista, threshold: 0.6 },
+    );
+    cards.forEach((card) => observador.observe(card));
+  }
+</script>
+
 <style>
   .produtos {
     padding-block: var(--respiro);
   }
 
   .produtos__cabeca {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 1.5rem 3rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    align-items: end;
+    gap: 1.5rem clamp(2rem, 6vw, 6rem);
   }
 
   .produtos__cabeca p {
-    max-width: 34ch;
+    max-width: 38ch;
+    justify-self: end;
     font-size: var(--t-grande);
   }
 
@@ -122,31 +155,80 @@ const doces = (await getCollection('doces')).sort((a, b) => ordem.indexOf(a.id) 
     margin-top: 0.6rem;
   }
 
-  .doce__peso {
-    display: inline-block;
-    padding: 0.15rem 0.75rem;
-    border: 1.5px solid currentColor;
-    border-radius: 999px;
-    font-weight: 600;
-    font-variant-numeric: tabular-nums;
-  }
-
+  /* Botão de contorno: nove botões cheios virariam uma parede vermelha. */
   .doce :global(.doce__botao) {
     margin: 1.5rem 1rem 1rem;
     padding-inline: 1rem;
+    border-color: var(--tacho);
+    color: var(--tacho);
+  }
+
+  .doce :global(.doce__botao:hover) {
+    border-color: var(--vermelho);
+    background: var(--vermelho);
+    color: #fff;
+  }
+
+  /* O primeiro doce abre o cardápio em destaque: ocupa 2 colunas e 2 linhas. */
+  .doce--destaque {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+
+  .doce--destaque .doce__foto {
+    flex: 1;
+    height: auto;
+    min-height: clamp(20rem, 30vw, 26rem);
+    padding: 3rem clamp(3rem, 8vw, 7rem) 0.5rem;
+  }
+
+  .doce--destaque .doce__texto {
+    flex: none;
+    padding-inline: 2.5rem;
+  }
+
+  .doce--destaque h3 {
+    font-size: clamp(2.25rem, 4vw, 3.5rem);
+  }
+
+  .doce--destaque .doce__texto p {
+    font-size: var(--t-grande);
+  }
+
+  .doce--destaque :global(.doce__botao) {
+    align-self: flex-start;
+    margin: 1.75rem 2.5rem 2rem;
+    padding-inline: 1.6rem;
   }
 
   @media (max-width: 1100px) {
     .produtos__lista {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+
+    .doce--destaque {
+      grid-row: auto;
+    }
+
+    .doce--destaque .doce__foto {
+      min-height: 24rem;
+    }
   }
 
   /* No celular, carrossel com rolagem lateral: o próximo card aparece pela metade. */
   @media (max-width: 760px) {
+    .produtos__cabeca {
+      grid-template-columns: 1fr;
+    }
+
+    .produtos__cabeca p {
+      justify-self: start;
+    }
+
     .produtos__dica {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       gap: 0.5rem;
       width: min(100% - 2 * var(--margem), var(--largura));
       margin: 2rem auto 0;
@@ -154,12 +236,9 @@ const doces = (await getCollection('doces')).sort((a, b) => ordem.indexOf(a.id) 
       font-weight: 600;
     }
 
-    .produtos__dica::after {
-      content: '';
-      width: 2.5rem;
-      height: 2px;
-      background: currentColor;
-      animation: puxa 1.6s ease-in-out infinite alternate;
+    .produtos__posicao {
+      color: var(--cafe);
+      font-variant-numeric: tabular-nums;
     }
 
     .produtos__lista {
@@ -187,14 +266,34 @@ const doces = (await getCollection('doces')).sort((a, b) => ordem.indexOf(a.id) 
       scroll-snap-align: start;
     }
 
-    .doce__foto {
-      height: 14rem;
+    .doce--destaque {
+      grid-column: auto;
     }
-  }
 
-  @keyframes puxa {
-    to {
-      transform: translateX(0.5rem);
+    .doce__foto,
+    .doce--destaque .doce__foto {
+      flex: none;
+      height: 14rem;
+      min-height: 0;
+      padding: 1.75rem 1.5rem 0.5rem;
+    }
+
+    .doce--destaque .doce__texto {
+      padding-inline: 1.75rem;
+    }
+
+    .doce--destaque h3 {
+      font-size: var(--t-card);
+    }
+
+    .doce--destaque .doce__texto p {
+      font-size: inherit;
+    }
+
+    .doce--destaque :global(.doce__botao) {
+      align-self: stretch;
+      margin: 1.5rem 1rem 1rem;
+      padding-inline: 1rem;
     }
   }
 </style>

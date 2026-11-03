@@ -102,7 +102,7 @@ const links = [
 
   /* Quase opaco: translúcido, o vinho fica marrom sobre a seção mel. */
   .cabecalho--rolou {
-    background: rgb(92 6 13 / 0.97);
+    background: rgb(90 2 1 / 0.97);
     box-shadow: 0 10px 30px -14px rgb(0 0 0 / 0.6);
   }
 
@@ -155,7 +155,18 @@ const links = [
     background-size: 100% 2px;
   }
 
+  /* No topo, o botão do hero é a ação; o do cabeçalho aparece depois de rolar. */
+  .cabecalho:not(.cabecalho--rolou) :global(.cabecalho__cta) {
+    visibility: hidden;
+    opacity: 0;
+  }
+
   .cabecalho :global(.cabecalho__cta) {
+    transition:
+      opacity 0.3s,
+      visibility 0.3s,
+      background-color 0.2s,
+      color 0.2s;
     min-height: 2.875rem;
     padding: 0.5rem 1.25rem;
     font-size: 1rem;
@@ -224,7 +235,7 @@ const links = [
     margin: 0;
     padding: 0.75rem 1rem calc(1.5rem + env(safe-area-inset-bottom));
     border: 0;
-    background: #640201 var(--serra-img) center top / cover no-repeat;
+    background: var(--vinho) var(--serra-img) center top / cover no-repeat;
     color: var(--creme);
     overflow-y: auto;
     overscroll-behavior: contain;

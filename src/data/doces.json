@@ -22,9 +22,9 @@
     "id": "doce-de-banana",
     "nome": "Doce de banana",
     "artigo": "o",
-    "descricao": "Bananada em cubinhos, com açúcar cristal.",
+    "descricao": "Doce de banana em cubinhos, com açúcar cristal.",
     "recorte": "../assets/recortes/banana.webp",
-    "alt": "Bananada em cubinhos com açúcar cristal, numa bandeja branca",
+    "alt": "Doce de banana em cubinhos com açúcar cristal, numa bandeja branca",
     "fundo": "#ECD6DA"
   },
   {
@@ -40,7 +40,7 @@
     "id": "doce-de-batata",
     "nome": "Doce de batata",
     "artigo": "o",
-    "descricao": "Doce de batata-doce branca em pedaços, até quatro dias de preparo.",
+    "descricao": "Doce de batata-doce branca em pedaços.",
     "recorte": "../assets/recortes/batata.webp",
     "alt": "Pedaços de doce de batata-doce branca numa bandeja",
     "fundo": "#F5E6C6"
@@ -49,7 +49,7 @@
     "id": "doce-de-abobora",
     "nome": "Doce de abóbora",
     "artigo": "o",
-    "descricao": "Doce de abóbora em pedaços, até quatro dias de preparo.",
+    "descricao": "Doce de abóbora em pedaços.",
     "recorte": "../assets/recortes/abobora.webp",
     "alt": "Pedaços de doce de abóbora arrumados em roda num prato",
     "fundo": "#FAD9BF"
@@ -76,9 +76,9 @@
     "id": "bandeja-sortida",
     "nome": "Bandeja sortida",
     "artigo": "a",
-    "descricao": "Um pouco de cada: abóbora, batata, doce de leite e bananada.",
+    "descricao": "Um pouco de cada: abóbora, batata, doce de leite e doce de banana.",
     "recorte": "../assets/recortes/sortida.webp",
-    "alt": "Bandeja com doce de abóbora, de batata, doce de leite e bananada",
+    "alt": "Bandeja com doce de abóbora, de batata, doce de leite e doce de banana",
     "fundo": "#F7E6B8"
   }
 ]

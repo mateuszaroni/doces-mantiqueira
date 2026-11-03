@@ -47,6 +47,8 @@ export const linkComoChegar = `https://www.google.com/maps/search/?api=1&query=$
 
 // Só dígitos, no formato do wa.me: 55 + DDD + número. Felipe: (12) 99194-7972.
 export const whatsappFelipe = '5512991947972';
+// O mesmo número em texto, para quem não consegue abrir o WhatsApp pelo botão.
+export const whatsappExibicao = '(12) 99194-7972';
 
 export const mensagens = {
   varejo: 'Olá, Felipe! Vim pelo site e quero fazer um pedido / orçamento para festa.',

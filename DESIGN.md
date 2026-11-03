@@ -40,11 +40,35 @@ typography:
     fontWeight: 400
     lineHeight: 1.3
     fontVariation: "'opsz' 36, 'SOFT' 0"
+  title-featured:
+    fontFamily: "Fraunces, Georgia, serif"
+    fontSize: "clamp(2.25rem, 4vw, 3.5rem)"
+    fontWeight: 600
+    lineHeight: 0.9
+    letterSpacing: "-0.02em"
+    fontVariation: "'opsz' 144, 'SOFT' 0, 'WONK' 0"
+  title-small:
+    fontFamily: "Fraunces, Georgia, serif"
+    fontSize: "clamp(1.5rem, 2.4vw, 2rem)"
+    fontWeight: 600
+    lineHeight: 0.9
+    letterSpacing: "-0.02em"
+    fontVariation: "'opsz' 144, 'SOFT' 0, 'WONK' 0"
+  body-large:
+    fontFamily: "DM Sans, system-ui, sans-serif"
+    fontSize: "1.125rem"
+    fontWeight: 400
+    lineHeight: 1.6
   body:
     fontFamily: "DM Sans, system-ui, sans-serif"
     fontSize: "1.0625rem"
     fontWeight: 400
     lineHeight: 1.6
+  meta:
+    fontFamily: "DM Sans, system-ui, sans-serif"
+    fontSize: "1rem"
+    fontWeight: 400
+    lineHeight: 1.5
   label:
     fontFamily: "DM Sans, system-ui, sans-serif"
     fontSize: "1.0625rem"
@@ -102,6 +126,15 @@ components:
     textColor: "{colors.branco}"
     rounded: "{rounded.circulo}"
     size: "4rem"
+  button-card:
+    textColor: "{colors.vermelho-tacho}"
+    typography: "{typography.label}"
+    rounded: "{rounded.pilula}"
+    padding: "0.75rem 1rem"
+    height: "3.25rem"
+  button-card-hover:
+    backgroundColor: "{colors.vermelho-mantiqueira}"
+    textColor: "{colors.branco}"
   card-doce:
     textColor: "{colors.marrom-cafe}"
     rounded: "{rounded.card}"
@@ -142,13 +175,13 @@ Paleta quente de cozinha e serra. O vermelho manda, o creme acolhe e o mel e o v
 
 ### Primary
 - **Vermelho Mantiqueira** (`vermelho-mantiqueira`): a cor da marca. Usada nos botões de ação sobre o creme, na faixa de letreiro principal e no brilho atrás do pico da serra. Com texto branco, o contraste é 6,4:1.
-- **Vermelho Tacho** (`vermelho-tacho`): o hover dos botões vermelhos e os títulos de manifesto e endereço sobre o creme.
+- **Vermelho Tacho** (`vermelho-tacho`): o fundo do rodapé (como pede o briefing), o hover dos botões vermelhos, o contorno e o texto do botão dos cards, o link "Como chegar" e os títulos de manifesto e endereço sobre o creme.
 
 ### Secondary
-- **Vinho da Serra** (`vinho-serra`): o tom escuro tirado da foto da serra. Usado no rodapé, no cabeçalho depois de rolar e como cor de fundo enquanto a foto carrega. O degradê de apoio vai da névoa (#ab0202) ao canto escuro (#4d0200), passando por #7f0201.
+- **Vinho da Serra** (`vinho-serra`): o tom escuro tirado da foto da serra. Usado no cabeçalho depois de rolar (a 97%) e como cor de fundo de todo bloco com a foto (hero, menu, revenda, chamada final) enquanto ela carrega. O degradê de apoio vai da névoa (#ab0202) ao canto escuro (#4d0200), passando por #7f0201.
 
 ### Tertiary
-- **Mel** (`mel`): destaque sobre fundo escuro. Aparece nos argumentos da revenda, nos losangos da faixa, no sublinhado dos links, no anel de foco e no selo "Desde 1985". Os filetes usam o mel a 65%.
+- **Mel** (`mel`): destaque sobre fundo escuro. Aparece nos argumentos da revenda, nos losangos da faixa, no sublinhado dos links, no anel de foco, no selo "Desde 1985" e no filete de 3px que separa o rodapé da chamada final. Os filetes com montanhinha usam o mel a 65%.
 - **Verde Serra** (`verde-serra`): acento discreto, só no card "Você sabia?" e na linha de montanha de "Onde estamos".
 - **Verde WhatsApp** (`verde-whatsapp`): exclusivo do botão redondo flutuante. É um tom mais escuro que o verde oficial, para o ícone branco passar de 3:1.
 
@@ -162,6 +195,8 @@ Paleta quente de cozinha e serra. O vermelho manda, o creme acolhe e o mel e o v
 
 **The Verde Só no WhatsApp Rule.** O verde do WhatsApp aparece em um único lugar: o botão redondo. Todos os outros botões de WhatsApp usam a paleta da marca.
 
+**The Botão Cheio É WhatsApp Rule.** Botão cheio (vermelho, creme ou mel) é sempre uma ação de WhatsApp. Ações que não são pedido, como "Como chegar" e o "Quero revender" do hero, são links de texto com seta.
+
 ## Typography
 
 **Display Font:** Fraunces (com Georgia, serif)
@@ -172,13 +207,16 @@ Paleta quente de cozinha e serra. O vermelho manda, o creme acolhe e o mel e o v
 ### Hierarchy
 - **Display** (600, clamp 3.3–8rem, 0.92): só o nome "Doces Mantiqueira" no hero, em duas linhas, com sombra de texto suave.
 - **Headline** (600, clamp 2.6–6.25rem, 0.9): o título de cada seção, alinhado à esquerda, com no máximo 12ch de largura. O manifesto da história (clamp 2.4–5.25rem) e o "Do tacho para a sua mesa." seguem o mesmo peso.
-- **Title** (600, clamp 1.75–2.25rem): o nome do doce nos cards. Na revenda e no "Antes de pedir", as variações de 1.25–2rem seguem o mesmo peso.
+- **Title** (600, clamp 1.75–2.25rem): o nome do doce nos cards. **Title featured** (clamp 2.25–3.5rem) é o nome do doce em destaque, e **Title small** (clamp 1.5–2rem) é o "Você sabia?". Os argumentos da revenda seguem o mesmo peso.
 - **Lead** (400, clamp 1.25–1.875rem, 1.3, opsz 36): os textos de apoio em serifa (subtítulo do hero, chamada final) e os links do cabeçalho (400, 1.125rem).
-- **Body** (400, 1.0625rem, 1.6): todo texto corrido, com no mínimo 16px e linhas de 34 a 58ch.
+- **Body** (400, 1.0625rem, 1.6): todo texto corrido, com linhas de 34 a 58ch. **Body large** (1.125rem) é o texto da história e das informações de "Onde estamos".
+- **Meta** (400, 1rem, 1.5): legendas, rótulos dos selos, a dica sob o botão do hero, a linha do número do WhatsApp e os dados do rodapé. É o menor tamanho de texto do site.
 - **Label** (600, 1.0625rem, 1.2): botões. O selo girando usa DM Sans 700 de 10,5px, em caixa alta, com espaçamento de 0,14em.
 
 ### Named Rules
 **The Peso 600 Rule.** Os títulos em Fraunces usam peso 600 (400 nos textos de apoio), nunca 800 ou 900. O contraste vem do tamanho, não do peso.
+
+**The Piso de 16px Rule.** Nenhum texto lido fica abaixo de 16px (`meta`). A única exceção é o texto do selo girando, que é decorativo e fica oculto para leitores de tela.
 
 **The Caixa Alta Só na Faixa Rule.** A caixa alta aparece só nas faixas de letreiro e no texto do selo. Títulos, rótulos e botões ficam em caixa normal.
 
@@ -187,7 +225,7 @@ Paleta quente de cozinha e serra. O vermelho manda, o creme acolhe e o mel e o v
 Página única em coluna, com seções de largura total. O conteúdo fica num envelope de até 1280px com margem lateral fluida (clamp de 1rem a 3rem), e as seções se separam por um respiro grande (clamp de 4.5rem a 9rem).
 
 - **Hero:** duas colunas no desktop (texto centralizado à esquerda e o grupo de doces à direita), com altura de no mínimo 100svh. Até 900px vira uma coluna: título, filete, apoio, doces e botões, tudo visível em 360×740.
-- **Produtos:** 3 colunas, 2 até 1100px e, até 760px, um carrossel horizontal com scroll-snap. Cada card ocupa 82% da largura, para o próximo aparecer pela metade.
+- **Produtos:** a cabeça da seção tem duas colunas: o título à esquerda e, à direita, a introdução, que diz "350g" e explica o preço uma vez só para todos os doces. A grade tem 3 colunas, e o primeiro doce abre em destaque, ocupando 2 colunas e 2 linhas. Até 1100px são 2 colunas, com o destaque na largura toda. Até 760px é um carrossel horizontal com scroll-snap: cada card ocupa 82% da largura, para o próximo aparecer pela metade, e um contador "n de 9" mostra a posição.
 - **Faixas de letreiro:** atravessam a divisa entre duas seções, com altura zero, deslocadas 50% e giradas ±2°.
 - **Cabeçalho:** fixo. Em 1020px os links dão lugar ao botão "Menu", que abre um menu em tela cheia.
 - **Pontos de quebra:** 600px, 760px, 900px, 1020px e 1100px.
@@ -197,7 +235,8 @@ Página única em coluna, com seções de largura total. O conteúdo fica num en
 Objetos sobre a mesa. As superfícies (seções, cards, painéis) são planas e não têm sombra. A profundidade fica com o que seria um objeto real: os doces recortados, as fotos, as faixas de letreiro, o cabeçalho depois de rolar e o botão flutuante. A sombra é sempre quente (vinho ou café) e difusa, projetada para baixo, nunca cinza neutra.
 
 ### Shadow Vocabulary
-- **Doce no hero** (`drop-shadow(0 22px 26px rgb(40 0 4 / 0.55))`): os recortes sobre a foto da serra.
+- **Doce no hero** (`drop-shadow(0 22px 26px rgb(40 0 4 / 0.55))`): os recortes sobre a foto da serra, no hero e na chamada final.
+- **Botão do hero** (`0 14px 30px -14px rgb(40 0 4 / 0.7)`): o botão creme principal, a única sombra em botão.
 - **Doce no card** (`drop-shadow(0 16px 18px rgb(43 26 18 / 0.25))`): os recortes sobre os pastéis.
 - **Doce em destaque** (`drop-shadow(0 26px 28px rgb(43 26 18 / 0.3))` sobre o mel; `drop-shadow(0 30px 30px rgb(0 0 0 / 0.45))` sobre o vinho): bandeja de festas e pacote da revenda.
 - **Foto** (`0 24px 40px -24px rgb(43 26 18 / 0.55)`): a foto dos avós.
@@ -223,18 +262,17 @@ Quando o prato está cortado no enquadramento original, o recorte passa das bord
 ### Buttons
 Acolhedores e diretos: pílulas generosas com rótulo que diz o que acontece.
 - **Shape:** pílula (999px), altura mínima de 3.25rem e ícone do WhatsApp à esquerda.
-- **Primary (vermelho):** fundo Vermelho Mantiqueira e texto branco, sobre o creme e os cards. No hover, vai para Vermelho Tacho.
-- **Creme:** fundo creme e texto vermelho, sobre o vermelho e o vinho (menu, chamada final). No hover, fica branco.
-- **Linha:** contorno creme de 1.5px com seta no fim, sobre a foto da serra (hero, cabeçalho). No hover, preenche de creme e o texto fica vermelho.
+- **Primary (vermelho):** fundo Vermelho Mantiqueira e texto branco, na seção Festas. No hover, vai para Vermelho Tacho.
+- **Creme:** fundo creme e texto vermelho, sobre o vermelho e o vinho. É o botão principal do hero (com seta, 3.5rem de altura e sombra quente), o do menu e o da chamada final. No hover, fica branco.
+- **Card:** contorno de 2px e texto em Vermelho Tacho. No hover, preenche de Vermelho Mantiqueira com texto branco. É de contorno de propósito: nove botões cheios virariam uma parede vermelha.
+- **Linha:** contorno creme de 1.5px sobre a foto da serra, no cabeçalho. Só aparece depois de rolar, porque no topo a ação é o botão do hero. No hover, preenche de creme e o texto fica vermelho.
 - **Mel:** fundo mel e texto café, só na revenda.
 - **Hover / Focus:** transição de cor em 0.2s. No toque, o botão encolhe para 0.98. O foco é um anel mel de 3px com afastamento de 3px.
-- **Links com seta:** "Quero revender ›" e "Como chegar ›" são links de texto com seta, sublinhado mel no hover e 3rem de altura de toque.
-
-### Chips
-- **Peso "350g":** contorno de 1.5px na cor do texto, pílula, DM Sans 600 e números tabulares.
+- **Links com seta:** "Quero revender ›" e "Como chegar ›" são links de texto com seta e 3rem de altura de toque. No vermelho, o sublinhado mel aparece no hover. Em "Onde estamos", o "Como chegar" vem em Vermelho Tacho, com o pino de mapa e sublinhado.
 
 ### Cards / Containers
-- **Card de doce:** canto de 2rem, fundo pastel do doce, sem sombra e sem borda. A foto fica no topo (de 15 a 19rem de altura, inclinada ±3°) e o botão vermelho ocupa a largura na base.
+- **Card de doce:** canto de 2rem, fundo pastel do doce, sem sombra e sem borda. A foto fica no topo (de 15 a 19rem de altura, inclinada ±3°), seguida do nome, da descrição e do botão de contorno na base. O peso não se repete no card: está na introdução da seção.
+- **Card em destaque:** o primeiro doce ocupa 2 colunas e 2 linhas, com a foto crescendo até preencher o card, o nome em `title-featured`, a descrição em tamanho grande e o botão alinhado à esquerda. No celular volta a ser um card comum do carrossel.
 - **Painel "Você sabia?":** Verde Serra, canto de 2.5rem, título em mel e frase grande em Fraunces creme.
 - **Selos de texto (história):** borda caramelo de 2px, canto de 1.25rem, rótulo pequeno em caramelo e título em Fraunces.
 
@@ -251,6 +289,9 @@ Disco mel com o texto "DESDE 1985 · PIQUETE-SP · DOCES CASEIROS" em círculo e
 ### Signature: filete com montanhinha
 Dois filetes de 1px (mel a 65% sobre o escuro, caramelo a 55% sobre o creme) com a montanhinha da logo em traço no meio, com até 26rem de largura. Fica logo abaixo dos títulos do hero e das seções.
 
+### Signature: chamada final
+"Do tacho para a sua mesa." sobre a foto da serra, com dois recortes parados (doce de abóbora no prato e doce de banana na bandeja) saindo pelas bordas. Embaixo dos botões vem a linha "A gente responde pelo WhatsApp: (12) 99194-7972". O número também aparece em "Onde estamos", para quem não consegue abrir o WhatsApp pelo botão. Assim, a última lembrança da página é doce, não só o vermelho.
+
 ### Signature: botão flutuante do WhatsApp
 Círculo Verde WhatsApp de 4rem (3.5rem no celular), fixo no canto inferior direito, com aro branco de 3px e sombra. Aumenta 6% no hover. Aparece em todas as telas.
 
@@ -262,11 +303,13 @@ Círculo Verde WhatsApp de 4rem (3.5rem no celular), fixo no canto inferior dire
 - **Do** usar Fraunces 600 nos títulos, com `'SOFT' 0` e `opsz` alto, e DM Sans no texto corrido.
 - **Do** colocar o filete com a montanhinha logo abaixo dos títulos de seção.
 - **Do** manter os movimentos lentos e contínuos (balanço de 7s, selo de 24s, faixa de 45s) e desligar todos com `prefers-reduced-motion`.
+- **Do** reservar o botão cheio para o WhatsApp e usar link com seta para as outras ações.
 - **Do** manter o texto do corpo com no mínimo 16px e os alvos de toque com 48px ou mais.
 
 ### Don't:
 - **Don't** usar bandeirinha, chita ou estampa de festa junina no layout: esse clima fica nas fotos.
-- **Don't** dar sombra a card, painel ou seção. Sombra é de objeto.
+- **Don't** dar sombra a card, painel ou seção. Sombra é de objeto. O botão principal do hero é a exceção: a sombra marca a ação mais importante da página.
+- **Don't** usar texto lido abaixo de 16px.
 - **Don't** usar o verde do WhatsApp fora do botão redondo.
 - **Don't** usar Fraunces arredondada (`'SOFT' 100`) nem pesos 800 e 900 nos títulos. A versão mais pesada e arredondada foi trocada pela serifa clássica no rebrand v3.
 - **Don't** desenhar a serra em vetor no lugar da foto. A versão desenhada foi recusada no rebrand v3.
