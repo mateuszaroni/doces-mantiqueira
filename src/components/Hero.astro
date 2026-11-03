@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import BotaoWhatsApp from './BotaoWhatsApp.astro';
 import Filete from './Filete.astro';
-import { mensagens, negocio } from '../config';
+import { mensagens } from '../config';
 import figo from '../assets/recortes/figo.webp';
 import pacoca from '../assets/recortes/pacoca-tigela.webp';
 import sortida from '../assets/recortes/sortida.webp';
@@ -37,12 +37,6 @@ const qualidade = 75;
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg>
         </a>
       </div>
-      <!-- A prova mais forte, à vista sem rolar (antes só aparecia em Nossa história). -->
-      <p class="hero__prova">
-        <a href={negocio.reportagemG1} target="_blank" rel="noopener">Saiu no g1<span class="so-leitor"> (abre em nova aba)</span></a>
-        <span aria-hidden="true">·</span>
-        Integra a Rota Gastronômica do Vale do Paraíba &amp; Mantiqueira
-      </p>
     </div>
 
     <div class="hero__palco">
@@ -169,25 +163,6 @@ const qualidade = 75;
   .hero__revenda:hover {
     text-decoration: underline;
     text-decoration-color: var(--mel);
-  }
-
-  .hero__prova {
-    max-width: 34ch;
-    margin-top: 1.25rem;
-    color: rgb(251 244 228 / 0.85);
-    font-size: 0.9375rem;
-    line-height: 1.5;
-  }
-
-  .hero__prova a {
-    color: var(--creme);
-    font-weight: 600;
-    text-decoration-color: var(--mel);
-  }
-
-  .hero__prova span[aria-hidden] {
-    margin-inline: 0.35rem;
-    color: var(--mel);
   }
 
   .hero__revenda svg {
@@ -340,14 +315,6 @@ const qualidade = 75;
     .selo {
       top: -6%;
       width: 76px;
-    }
-
-    .hero__prova {
-      order: 6;
-      justify-self: center;
-      margin-top: 0.5rem;
-      text-align: center;
-      font-size: 0.875rem;
     }
 
     .hero__acoes {
