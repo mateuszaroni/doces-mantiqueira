@@ -10,6 +10,7 @@ target_fingerprint: "sha256:435e72c1925a4038cfd8b7711fe4dd76edc0bd830e4249f396a3
 target_path: "C:\\Users\\mateus.silva\\Desktop\\pessoal\\doces-mantiqueira\\src\\pages\\index.astro"
 timestamp: 2026-11-03T02-59-01Z
 slug: src-pages-index-astro
+closed: true
 ---
 Método: dois agentes isolados (A: revisão de design · B: detector do Impeccable + navegador)
 
