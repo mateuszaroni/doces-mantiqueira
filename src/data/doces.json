@@ -13,10 +13,9 @@
     "nome": "Cajuzinho",
     "artigo": "o",
     "descricao": "Docinho de amendoim passado no açúcar.",
-    "recorte": "../assets/recortes/cajuzinho.webp",
-    "alt": "Cajuzinhos passados no açúcar, num prato",
-    "fundo": "#F0D6C6",
-    "sangra": true
+    "recorte": "../assets/recortes/cajuzinho-bandejinha.webp",
+    "alt": "Cajuzinhos passados no açúcar, numa bandeja branca",
+    "fundo": "#F0D6C6"
   },
   {
     "id": "doce-de-banana",
@@ -32,8 +31,8 @@
     "nome": "Doce de batata roxa",
     "artigo": "o",
     "descricao": "Doce de batata-doce roxa em pedaços.",
-    "recorte": "../assets/recortes/batata-roxa.webp",
-    "alt": "Pedaços de doce de batata-doce roxa num prato amarelo",
+    "recorte": "../assets/recortes/batata-roxa-bandejinha.webp",
+    "alt": "Pedaços de doce de batata-doce roxa numa bandeja branca",
     "fundo": "#E4D8EC"
   },
   {
@@ -50,8 +49,8 @@
     "nome": "Doce de abóbora",
     "artigo": "o",
     "descricao": "Doce de abóbora em pedaços.",
-    "recorte": "../assets/recortes/abobora.webp",
-    "alt": "Pedaços de doce de abóbora arrumados em roda num prato",
+    "recorte": "../assets/recortes/abobora-bandejinha.webp",
+    "alt": "Pedaços de doce de abóbora numa bandeja branca",
     "fundo": "#FAD9BF"
   },
   {
@@ -59,8 +58,8 @@
     "nome": "Doce de leite",
     "artigo": "o",
     "descricao": "Doce de leite em tabletes.",
-    "recorte": "../assets/recortes/doce-de-leite-doces.webp",
-    "alt": "Tabletes de doce de leite arrumados em roda",
+    "recorte": "../assets/recortes/doce-de-leite-bandejinha.webp",
+    "alt": "Tabletes de doce de leite em três fileiras, numa bandeja branca",
     "fundo": "#F1E1C8"
   },
   {
@@ -68,8 +67,8 @@
     "nome": "Figo cristalizado",
     "artigo": "o",
     "descricao": "Figo inteiro, cristalizado no açúcar.",
-    "recorte": "../assets/recortes/figo-prato-doces.webp",
-    "alt": "Figos inteiros cristalizados no açúcar",
+    "recorte": "../assets/recortes/figo-bandejinha.webp",
+    "alt": "Figos inteiros cristalizados no açúcar, numa bandeja branca",
     "fundo": "#DEE4D2"
   },
   {

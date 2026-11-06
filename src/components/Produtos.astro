@@ -31,7 +31,7 @@ const doces = (await getCollection('doces')).sort((a, b) => ordem.indexOf(a.id) 
     {
       doces.map(({ data }, i) => (
         <li
-          class:list={['doce', { 'doce--sangra': data.sangra, 'doce--destaque': i === 0 }]}
+          class:list={['doce', { 'doce--destaque': i === 0 }]}
           style={`--fundo: ${data.fundo}; --giro: ${i % 2 ? 3 : -3}deg`}
         >
           <div class="doce__foto">
@@ -131,15 +131,6 @@ const doces = (await getCollection('doces')).sort((a, b) => ordem.indexOf(a.id) 
     object-fit: contain;
     filter: drop-shadow(0 16px 18px rgb(43 26 18 / 0.25));
     transform: rotate(var(--giro));
-  }
-
-  /* Prato cortado no enquadramento da foto: o recorte passa das bordas do card e o lado reto some. */
-  .doce--sangra .doce__foto {
-    padding-inline: 0;
-  }
-
-  .doce--sangra .doce__foto img {
-    transform: scale(1.22);
   }
 
   .doce__texto {

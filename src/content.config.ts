@@ -16,8 +16,6 @@ const doces = defineCollection({
       alt: z.string(),
       // Tom pastel do card, derivado da cor do doce. Texto sempre em marrom café.
       fundo: z.string().regex(/^#[0-9A-Fa-f]{6}$/),
-      // Recorte com lado reto (prato cortado no enquadramento): sai pelas bordas do card.
-      sangra: z.boolean().default(false),
     }),
 });
 

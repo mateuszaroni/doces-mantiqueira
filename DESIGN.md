@@ -210,7 +210,7 @@ Paleta quente de cozinha e serra. O vermelho manda, o creme acolhe e o mel e o v
 - **Title** (600, clamp 1.75–2.25rem): o nome do doce nos cards. **Title featured** (clamp 2.25–3.5rem) é o nome do doce em destaque, e **Title small** (clamp 1.5–2rem) é o "Você sabia?". Os argumentos da revenda seguem o mesmo peso.
 - **Lead** (400, clamp 1.25–1.875rem, 1.3, opsz 36): os textos de apoio em serifa (subtítulo do hero, chamada final) e os links do cabeçalho (400, 1.125rem).
 - **Body** (400, 1.0625rem, 1.6): todo texto corrido, com linhas de 34 a 58ch. **Body large** (1.125rem) é o texto da história e das informações de "Onde estamos".
-- **Meta** (400, 1rem, 1.5): legendas, rótulos dos selos, a dica sob o botão do hero, a linha do número do WhatsApp e os dados do rodapé. É o menor tamanho de texto do site.
+- **Meta** (400, 1rem, 1.5): legendas, rótulos dos selos, a linha do número do WhatsApp e os dados do rodapé. É o menor tamanho de texto do site.
 - **Label** (600, 1.0625rem, 1.2): botões. O selo girando usa DM Sans 700 de 10,5px, em caixa alta, com espaçamento de 0,14em.
 
 ### Named Rules

@@ -174,7 +174,7 @@
       },
       "meta": {
         "displayName": "Meta",
-        "purpose": "Legendas, rótulos, dica do hero, número do WhatsApp, rodapé; mínimo do site (16px)."
+        "purpose": "Legendas, rótulos, número do WhatsApp, rodapé; mínimo do site (16px)."
       },
       "headline": {
         "displayName": "Headline",

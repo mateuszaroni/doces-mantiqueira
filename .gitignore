@@ -35,3 +35,6 @@ design/**/trace-*.svg
 
 # Capturas de tela para conferência
 design/capturas/
+
+# Prancha das rodadas parciais do recortar-fotos.py
+design/recortes/_prancha-parcial.jpg
