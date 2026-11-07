@@ -6,7 +6,8 @@ import Filete from './Filete.astro';
 import { mensagens } from '../config';
 import lista from '../data/doces.json';
 
-// A coleção não garante a ordem: a vitrine segue a ordem do arquivo (a do briefing).
+// A coleção não garante a ordem: a vitrine segue a ordem do arquivo. A bandeja sortida
+// abre a lista, em destaque, seguida da paçoca (pedido do Mateus); o resto segue o briefing.
 const ordem = lista.map((d) => d.id);
 const doces = (await getCollection('doces')).sort((a, b) => ordem.indexOf(a.id) - ordem.indexOf(b.id));
 ---

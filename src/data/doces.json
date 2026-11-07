@@ -1,5 +1,14 @@
 [
   {
+    "id": "bandeja-sortida",
+    "nome": "Bandeja sortida",
+    "artigo": "a",
+    "descricao": "Um pouco de cada: abóbora, batata, doce de leite e doce de banana.",
+    "recorte": "../assets/recortes/sortida.webp",
+    "alt": "Bandeja com doce de abóbora, de batata, doce de leite e doce de banana",
+    "fundo": "#F7E6B8"
+  },
+  {
     "id": "pacoca",
     "nome": "Paçoca",
     "artigo": "a",
@@ -70,14 +79,5 @@
     "recorte": "../assets/recortes/figo-bandejinha.webp",
     "alt": "Figos inteiros cristalizados no açúcar, numa bandeja branca",
     "fundo": "#DEE4D2"
-  },
-  {
-    "id": "bandeja-sortida",
-    "nome": "Bandeja sortida",
-    "artigo": "a",
-    "descricao": "Um pouco de cada: abóbora, batata, doce de leite e doce de banana.",
-    "recorte": "../assets/recortes/sortida.webp",
-    "alt": "Bandeja com doce de abóbora, de batata, doce de leite e doce de banana",
-    "fundo": "#F7E6B8"
   }
 ]

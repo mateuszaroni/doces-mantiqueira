@@ -319,9 +319,10 @@ const qualidade = 75;
       left: 37%;
     }
 
+    /* Dentro do grupo de fotos, sem subir sobre a linha de apoio. */
     .selo {
-      top: -6%;
-      width: 76px;
+      top: 6%;
+      width: 64px;
     }
 
     .hero__acoes {
@@ -330,10 +331,15 @@ const qualidade = 75;
       gap: 0.25rem;
     }
 
+    /* Botão do tamanho do texto, não da tela: continua o maior da dobra sem virar uma faixa. */
     .hero__acoes > :global(.botao) {
-      width: 100%;
-      padding-inline: 1rem;
+      min-height: 3rem;
+      padding-inline: 1.25rem;
       font-size: 1rem;
+    }
+
+    .hero__acoes > :global(.botao .botao__seta) {
+      display: none;
     }
   }
 </style>
