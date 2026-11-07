@@ -1,9 +1,19 @@
 ---
+import { getImage } from 'astro:assets';
 import { negocio, linkComoChegar, whatsappExibicao } from '../config';
 import serra from '../assets/logo/serra.svg';
+// Mapa fixo (imagem), gerado por scripts/gerar-mapa.py: sem iframe e sem cookies.
+import mapa from '../assets/mapa/mapa-piquete.png';
+import mapaCelular from '../assets/mapa/mapa-piquete-celular.png';
 import Filete from './Filete.astro';
 
 const { endereco } = negocio;
+
+// O celular recebe um recorte mais fechado do mesmo mapa, para os nomes das ruas continuarem legíveis.
+const larguras = [560, 840, 1120];
+const grandes = await Promise.all(larguras.map((width) => getImage({ src: mapa, width, format: 'webp', quality: 80 })));
+const pequenos = await Promise.all([420].map((width) => getImage({ src: mapaCelular, width, format: 'webp', quality: 80 })));
+const srcset = (lista: Awaited<ReturnType<typeof getImage>>[]) => lista.map((i) => `${i.src} ${i.attributes.width}w`).join(', ');
 ---
 
 <section class="onde" id="onde-estamos" aria-labelledby="onde-titulo">
@@ -29,6 +39,29 @@ const { endereco } = negocio;
         <span class="so-leitor">(abre o Google Maps em nova aba)</span>
       </a>
     </div>
+
+    <figure class="onde__mapa-fig">
+      <a class="onde__mapa-link" href={linkComoChegar} target="_blank" rel="noopener">
+        <picture>
+          <source media="(max-width: 760px)" srcset={srcset(pequenos)} sizes="calc(100vw - 2rem)" width={mapaCelular.width} height={mapaCelular.height} />
+          <img
+            src={grandes[1].src}
+            srcset={srcset(grandes)}
+            sizes="45vw"
+            width={mapa.width}
+            height={mapa.height}
+            alt={`Mapa do centro de Piquete com um pino na ${endereco.rua}, perto da Avenida Conselheiro Rodrigues Alves`}
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
+        <span class="onde__mapa-selo" aria-hidden="true">Abrir no Google Maps</span>
+        <span class="so-leitor">(abre o Google Maps em nova aba)</span>
+      </a>
+      <figcaption>
+        Mapa: © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">colaboradores do OpenStreetMap</a>
+      </figcaption>
+    </figure>
 
     <dl class="onde__info">
       <div>
@@ -56,12 +89,68 @@ const { endereco } = negocio;
 
   .onde__grade {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    grid-template-areas:
+      'cabeca cabeca'
+      'endereco mapa'
+      'info mapa';
     gap: 2.5rem clamp(2rem, 6vw, 6rem);
+    align-items: start;
   }
 
   .onde__cabeca {
-    grid-column: 1 / -1;
+    grid-area: cabeca;
+  }
+
+  .onde__endereco {
+    grid-area: endereco;
+  }
+
+  .onde__mapa-fig {
+    grid-area: mapa;
+  }
+
+  /* O mapa é um objeto sobre a mesa: canto arredondado, leve giro e sombra quente. */
+  .onde__mapa-link {
+    position: relative;
+    display: block;
+    border-radius: 1.75rem;
+    overflow: hidden;
+    rotate: 1.5deg;
+    box-shadow: 0 24px 40px -24px rgb(43 26 18 / 0.55);
+    transition: rotate 0.3s ease;
+  }
+
+  .onde__mapa-link:hover {
+    rotate: 0deg;
+  }
+
+  .onde__mapa-link :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .onde__mapa-selo {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    padding: 0.5rem 0.9rem;
+    border-radius: 999px;
+    background: var(--creme);
+    color: var(--tacho);
+    font-weight: 600;
+    box-shadow: 0 6px 16px -8px rgb(43 26 18 / 0.5);
+  }
+
+  .onde__mapa-fig figcaption {
+    margin-top: 1rem;
+    color: var(--caramelo);
+    font-size: 1rem;
+  }
+
+  .onde__mapa-fig figcaption a {
+    color: inherit;
   }
 
   address {
@@ -114,6 +203,7 @@ const { endereco } = negocio;
   }
 
   .onde__info {
+    grid-area: info;
     display: grid;
     gap: 2rem;
     align-content: start;
@@ -140,6 +230,15 @@ const { endereco } = negocio;
   @media (max-width: 760px) {
     .onde__grade {
       grid-template-columns: 1fr;
+      grid-template-areas:
+        'cabeca'
+        'endereco'
+        'mapa'
+        'info';
+    }
+
+    .onde__mapa-link {
+      rotate: none;
     }
   }
 </style>

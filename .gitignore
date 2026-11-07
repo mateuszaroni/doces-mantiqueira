@@ -38,3 +38,6 @@ design/capturas/
 
 # Prancha das rodadas parciais do recortar-fotos.py
 design/recortes/_prancha-parcial.jpg
+
+# Blocos do OpenStreetMap baixados pelo gerar-mapa.py
+.cache-mapa/
