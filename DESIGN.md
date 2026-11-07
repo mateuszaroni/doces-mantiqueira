@@ -157,7 +157,7 @@ components:
 
 Os doces são os protagonistas, servidos sobre uma toalha vermelha profunda, com a Serra da Mantiqueira ao fundo. O sistema monta uma mesa posta. Atrás fica a foto da serra no vinho, com o brilho do pico. Na frente ficam a tigela de paçoca, o prato de figos e a bandeja sortida, recortados e com sombra, como objetos de verdade. Entre uma seção e outra, o creme funciona como toalha clara: é onde se escolhe, se lê a história e se encontra o endereço.
 
-A tradição está na tipografia e nas cores: Fraunces em serifa clássica de alto contraste, o vermelho da marca e os filetes dourados com a montanhinha da logo. A modernidade está na escala e no movimento: títulos muito grandes, faixas de letreiro inclinadas que passam rolando, doces que balançam devagar e um selo que gira. A densidade é baixa, com muito respiro entre as seções e um assunto por bloco.
+A tradição está na tipografia e nas cores: Fraunces em serifa clássica de alto contraste, o vermelho da marca e os filetes dourados com a montanhinha da logo. A modernidade está na escala e no movimento: títulos muito grandes, faixas de letreiro inclinadas que passam rolando, e doces que balançam devagar. A densidade é baixa, com muito respiro entre as seções e um assunto por bloco.
 
 A festa junina entra pelas fotos, nunca pelo layout: nada de bandeirinha, chita ou estampa caricata.
 
@@ -166,7 +166,7 @@ A festa junina entra pelas fotos, nunca pelo layout: nada de bandeirinha, chita 
 - Doces recortados, sem fundo, sempre com sombra quente embaixo.
 - Serifa clássica grande nos títulos e sans limpa no texto.
 - Filetes dourados com a montanhinha da logo como único ornamento.
-- Três movimentos contínuos (doces balançando, selo girando, letreiro rolando) e nada mais.
+- Dois movimentos contínuos (doces balançando e letreiro rolando) e nada mais. O selo girando saiu do hero a pedido do Mateus.
 - Toda ação termina no WhatsApp.
 
 ## Colors
@@ -181,8 +181,8 @@ Paleta quente de cozinha e serra. O vermelho manda, o creme acolhe e o mel e o v
 - **Vinho da Serra** (`vinho-serra`): o tom escuro tirado da foto da serra. Usado no cabeçalho depois de rolar (a 97%) e como cor de fundo de todo bloco com a foto (hero, menu, revenda, chamada final) enquanto ela carrega. O degradê de apoio vai da névoa (#ab0202) ao canto escuro (#4d0200), passando por #7f0201.
 
 ### Tertiary
-- **Mel** (`mel`): destaque sobre fundo escuro. Aparece nos argumentos da revenda, nos losangos da faixa, no sublinhado dos links, no anel de foco, no selo "Desde 1985" e no filete de 3px que separa o rodapé da chamada final. Os filetes com montanhinha usam o mel a 65%.
-- **Verde Serra** (`verde-serra`): acento discreto, só no card "Você sabia?" e na linha de montanha de "Onde estamos".
+- **Mel** (`mel`): destaque sobre fundo escuro. Aparece nos argumentos da revenda, nos losangos da faixa, no sublinhado dos links, no anel de foco e no filete de 3px que separa o rodapé da chamada final. Os filetes com montanhinha usam o mel a 65%.
+- **Verde Serra** (`verde-serra`): acento discreto, só no card "Você sabia?".
 - **Verde WhatsApp** (`verde-whatsapp`): exclusivo do botão redondo flutuante. É um tom mais escuro que o verde oficial, para o ícone branco passar de 3:1.
 
 ### Neutral
@@ -211,14 +211,14 @@ Paleta quente de cozinha e serra. O vermelho manda, o creme acolhe e o mel e o v
 - **Lead** (400, clamp 1.25–1.875rem, 1.3, opsz 36): os textos de apoio em serifa (subtítulo do hero, chamada final) e os links do cabeçalho (400, 1.125rem).
 - **Body** (400, 1.0625rem, 1.6): todo texto corrido, com linhas de 34 a 58ch. **Body large** (1.125rem) é o texto da história e das informações de "Onde estamos".
 - **Meta** (400, 1rem, 1.5): legendas, rótulos dos selos, a linha do número do WhatsApp e os dados do rodapé. É o menor tamanho de texto do site.
-- **Label** (600, 1.0625rem, 1.2): botões. O selo girando usa DM Sans 700 de 10,5px, em caixa alta, com espaçamento de 0,14em.
+- **Label** (600, 1.0625rem, 1.2): botões.
 
 ### Named Rules
 **The Peso 600 Rule.** Os títulos em Fraunces usam peso 600 (400 nos textos de apoio), nunca 800 ou 900. O contraste vem do tamanho, não do peso.
 
-**The Piso de 16px Rule.** Nenhum texto lido fica abaixo de 16px (`meta`). A única exceção é o texto do selo girando, que é decorativo e fica oculto para leitores de tela.
+**The Piso de 16px Rule.** Nenhum texto lido fica abaixo de 16px (`meta`).
 
-**The Caixa Alta Só na Faixa Rule.** A caixa alta aparece só nas faixas de letreiro e no texto do selo. Títulos, rótulos e botões ficam em caixa normal.
+**The Caixa Alta Só na Faixa Rule.** A caixa alta aparece só nas faixas de letreiro. Títulos, rótulos e botões ficam em caixa normal.
 
 ## Layout
 
@@ -283,9 +283,6 @@ Acolhedores e diretos: pílulas generosas com rótulo que diz o que acontece.
 ### Signature: faixa de letreiro
 Faixa vermelha (ou creme) com borda de 3px na cor oposta, girada ±2°. A lista de doces em Fraunces 600, caixa alta, passa num laço de 45s com losangos mel entre os itens. Ela para quando o mouse passa por cima, e para de vez com `prefers-reduced-motion`.
 
-### Signature: selo "Desde 1985"
-Disco mel com o texto "DESDE 1985 · PIQUETE-SP · DOCES CASEIROS" em círculo e a montanha vermelha no centro. Gira uma volta a cada 24s, encostado no grupo de doces do hero.
-
 ### Signature: filete com montanhinha
 Dois filetes de 1px (mel a 65% sobre o escuro, caramelo a 55% sobre o creme) com a montanhinha da logo em traço no meio, com até 26rem de largura. Fica logo abaixo dos títulos do hero e das seções.
 
@@ -302,7 +299,7 @@ Círculo Verde WhatsApp de 4rem (3.5rem no celular), fixo no canto inferior dire
 - **Do** recortar os doces sem fundo e dar a eles a sombra quente do vocabulário acima.
 - **Do** usar Fraunces 600 nos títulos, com `'SOFT' 0` e `opsz` alto, e DM Sans no texto corrido.
 - **Do** colocar o filete com a montanhinha logo abaixo dos títulos de seção.
-- **Do** manter os movimentos lentos e contínuos (balanço de 7s, selo de 24s, faixa de 45s) e desligar todos com `prefers-reduced-motion`.
+- **Do** manter os movimentos lentos e contínuos (balanço de 7s, faixa de 45s) e desligar todos com `prefers-reduced-motion`.
 - **Do** reservar o botão cheio para o WhatsApp e usar link com seta para as outras ações.
 - **Do** manter o texto do corpo com no mínimo 16px e os alvos de toque com 48px ou mais.
 

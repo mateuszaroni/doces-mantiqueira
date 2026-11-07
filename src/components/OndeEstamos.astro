@@ -1,7 +1,6 @@
 ---
 import { getImage } from 'astro:assets';
 import { negocio, linkComoChegar, whatsappExibicao } from '../config';
-import serra from '../assets/logo/serra.svg';
 // Mapa fixo (imagem), gerado por scripts/gerar-mapa.py: sem iframe e sem cookies.
 import mapa from '../assets/mapa/mapa-piquete.png';
 import mapaCelular from '../assets/mapa/mapa-piquete-celular.png';
@@ -78,13 +77,12 @@ const srcset = (lista: Awaited<ReturnType<typeof getImage>>[]) => lista.map((i) 
       </div>
     </dl>
   </div>
-  <div class="onde__serra" style={`--serra-img: url(${serra.src}); aspect-ratio: ${serra.width} / ${serra.height}`} aria-hidden="true"></div>
 </section>
 
 <style>
   .onde {
     position: relative;
-    padding-top: calc(var(--respiro) + 1rem);
+    padding-block: calc(var(--respiro) + 1rem) var(--respiro);
   }
 
   .onde__grade {
@@ -217,14 +215,6 @@ const srcset = (lista: Awaited<ReturnType<typeof getImage>>[]) => lista.map((i) 
   dd {
     margin-top: 0.35rem;
     font-size: 1.125rem;
-  }
-
-  /* A linha da serra, tirada da logo e pintada de verde, fecha a página antes do rodapé. */
-  .onde__serra {
-    width: min(55%, 26rem);
-    margin: clamp(3rem, 6vw, 4.5rem) auto 0;
-    background: var(--serra);
-    mask: var(--serra-img) center / contain no-repeat;
   }
 
   @media (max-width: 760px) {

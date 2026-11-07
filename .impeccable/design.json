@@ -263,11 +263,6 @@
         "purpose": "Doces do hero balançando (sobe 14px e gira levemente)."
       },
       {
-        "name": "gira",
-        "value": "24s linear infinite",
-        "purpose": "Selo \"Desde 1985\"."
-      },
-      {
         "name": "rola",
         "value": "45s linear infinite",
         "purpose": "Faixas de letreiro; pausa no hover."
@@ -392,13 +387,13 @@
   ],
   "narrative": {
     "northStar": "A Mesa da Mantiqueira",
-    "overview": "Os doces são os protagonistas, servidos sobre uma toalha vermelha profunda, com a Serra da Mantiqueira ao fundo. O sistema monta uma mesa posta. Atrás fica a foto da serra no vinho, com o brilho do pico. Na frente ficam a tigela de paçoca, o prato de figos e a bandeja sortida, recortados e com sombra, como objetos de verdade. Entre uma seção e outra, o creme funciona como toalha clara: é onde se escolhe, se lê a história e se encontra o endereço.\n\nA tradição está na tipografia e nas cores: Fraunces em serifa clássica de alto contraste, o vermelho da marca e os filetes dourados com a montanhinha da logo. A modernidade está na escala e no movimento: títulos muito grandes, faixas de letreiro inclinadas que passam rolando, doces que balançam devagar e um selo que gira. A densidade é baixa, com muito respiro entre as seções e um assunto por bloco.\n\nA festa junina entra pelas fotos, nunca pelo layout: nada de bandeirinha, chita ou estampa caricata.",
+    "overview": "Os doces são os protagonistas, servidos sobre uma toalha vermelha profunda, com a Serra da Mantiqueira ao fundo. O sistema monta uma mesa posta. Atrás fica a foto da serra no vinho, com o brilho do pico. Na frente ficam a tigela de paçoca, o prato de figos e a bandeja sortida, recortados e com sombra, como objetos de verdade. Entre uma seção e outra, o creme funciona como toalha clara: é onde se escolhe, se lê a história e se encontra o endereço.\n\nA tradição está na tipografia e nas cores: Fraunces em serifa clássica de alto contraste, o vermelho da marca e os filetes dourados com a montanhinha da logo. A modernidade está na escala e no movimento: títulos muito grandes, faixas de letreiro inclinadas que passam rolando, e doces que balançam devagar. A densidade é baixa, com muito respiro entre as seções e um assunto por bloco.\n\nA festa junina entra pelas fotos, nunca pelo layout: nada de bandeirinha, chita ou estampa caricata.",
     "keyCharacteristics": [
       "Vermelho profundo com a foto da serra na abertura, no menu, na revenda e na chamada final. Creme nas seções de leitura e escolha.",
       "Doces recortados, sem fundo, sempre com sombra quente embaixo.",
       "Serifa clássica grande nos títulos e sans limpa no texto.",
       "Filetes dourados com a montanhinha da logo como único ornamento.",
-      "Três movimentos contínuos (doces balançando, selo girando, letreiro rolando) e nada mais.",
+      "Dois movimentos contínuos (doces balançando e letreiro rolando) e nada mais.",
       "Toda ação termina no WhatsApp."
     ],
     "rules": [
@@ -424,12 +419,12 @@
       },
       {
         "name": "The Piso de 16px Rule",
-        "body": "Nenhum texto lido fica abaixo de 16px (`meta`). A única exceção é o texto do selo girando, que é decorativo e fica oculto para leitores de tela.",
+        "body": "Nenhum texto lido fica abaixo de 16px (`meta`).",
         "section": "typography"
       },
       {
         "name": "The Caixa Alta Só na Faixa Rule",
-        "body": "A caixa alta aparece só nas faixas de letreiro e no texto do selo. Títulos, rótulos e botões ficam em caixa normal.",
+        "body": "A caixa alta aparece só nas faixas de letreiro. Títulos, rótulos e botões ficam em caixa normal.",
         "section": "typography"
       },
       {
@@ -443,7 +438,7 @@
       "**Do** recortar os doces sem fundo e dar a eles a sombra quente do vocabulário acima.",
       "**Do** usar Fraunces 600 nos títulos, com `'SOFT' 0` e `opsz` alto, e DM Sans no texto corrido.",
       "**Do** colocar o filete com a montanhinha logo abaixo dos títulos de seção.",
-      "**Do** manter os movimentos lentos e contínuos (balanço de 7s, selo de 24s, faixa de 45s) e desligar todos com `prefers-reduced-motion`.",
+      "**Do** manter os movimentos lentos e contínuos (balanço de 7s, faixa de 45s) e desligar todos com `prefers-reduced-motion`.",
       "**Do** reservar o botão cheio para o WhatsApp e usar link com seta para as outras ações.",
       "**Do** manter o texto do corpo com no mínimo 16px e os alvos de toque com 48px ou mais."
     ],
