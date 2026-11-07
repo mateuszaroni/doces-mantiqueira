@@ -68,15 +68,6 @@ const qualidade = 75;
         alt="Bandeja sortida com doce de abóbora, de batata, doce de leite e doce de banana"
         loading="eager"
       />
-      <div class="selo" aria-hidden="true">
-        <svg viewBox="0 0 120 120">
-          <defs><path id="selo-roda" d="M60 60m-44 0a44 44 0 1 1 88 0a44 44 0 1 1-88 0" /></defs>
-          <circle cx="60" cy="60" r="58" fill="#f2c14e" />
-          <circle cx="60" cy="60" r="53" fill="none" stroke="#2b1a12" stroke-opacity="0.25" />
-          <text><textPath href="#selo-roda" textLength="274" lengthAdjust="spacingAndGlyphs">DESDE 1985 · PIQUETE-SP · DOCES CASEIROS ·</textPath></text>
-          <path d="M36 76 50 54l6 8 11-20 17 34z" fill="#c10413" />
-        </svg>
-      </div>
     </div>
   </div>
 </section>
@@ -229,30 +220,6 @@ const qualidade = 75;
     }
   }
 
-  .selo {
-    position: absolute;
-    z-index: 3;
-    top: -2%;
-    left: 40%;
-    width: clamp(88px, 10vw, 150px);
-  }
-
-  .selo svg {
-    animation: gira 24s linear infinite;
-  }
-
-  .selo text {
-    fill: var(--cafe);
-    font: 700 10.5px var(--texto);
-    letter-spacing: 0.14em;
-  }
-
-  @keyframes gira {
-    to {
-      transform: rotate(1turn);
-    }
-  }
-
   @media (max-width: 900px) {
     .hero {
       display: block;
@@ -317,12 +284,6 @@ const qualidade = 75;
       width: 38%;
       top: 34%;
       left: 37%;
-    }
-
-    /* Dentro do grupo de fotos, sem subir sobre a linha de apoio. */
-    .selo {
-      top: 6%;
-      width: 64px;
     }
 
     .hero__acoes {

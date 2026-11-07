@@ -71,19 +71,12 @@ import { negocio } from '../config';
     font: 600 var(--t-manifesto) / 0.95 var(--titulo);
     font-variation-settings: 'opsz' 144, 'SOFT' 0;
     letter-spacing: -0.02em;
+    /* Centralizado sobre as duas colunas, para não sobrar um vazio à direita. */
+    text-align: center;
   }
 
   .historia__manifesto span {
     display: block;
-  }
-
-  /* As três frases entram em escada, como um letreiro pintado. */
-  .historia__manifesto span:nth-child(2) {
-    padding-left: 1.2em;
-  }
-
-  .historia__manifesto span:nth-child(3) {
-    padding-left: 2.4em;
   }
 
   .historia__foto {
@@ -166,12 +159,9 @@ import { negocio } from '../config';
         'texto';
     }
 
-    .historia__manifesto span:nth-child(2) {
-      padding-left: 0.6em;
-    }
-
-    .historia__manifesto span:nth-child(3) {
-      padding-left: 1.2em;
+    /* No celular, a frase mais longa ocupa quase a largura toda. */
+    .historia__manifesto {
+      font-size: 12.5vw;
     }
   }
 </style>
